@@ -1,9 +1,14 @@
 package cz.muni.fi.pa165.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
- * Robo
+ * @Robo
  *
  */
+@Entity
+@Table(name="Role")
 public class Role{
 
     @Id

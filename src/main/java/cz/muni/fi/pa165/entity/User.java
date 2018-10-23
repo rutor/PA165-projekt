@@ -1,7 +1,7 @@
 package cz.muni.fi.pa165.entity;
 
 /**
- * Robo
+ * @Robo
  *
  */
 
@@ -23,7 +23,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 @Entity
-@Table(name="Users")
+@Table(name="User")
 public class User {
 
 
