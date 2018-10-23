@@ -20,7 +20,7 @@ public void create(Genre genre) {
 	}
 
 	public List<Genre> findAll() {
-		return em.createQuery("select g from Genre g").getResultList();
+		return em.createQuery("select g from Genre g", Genre.class).getResultList();
 	}
 
 	public Genre findById(Long id) {
