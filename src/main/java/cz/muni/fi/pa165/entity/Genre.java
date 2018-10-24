@@ -1,19 +1,34 @@
 package cz.muni.fi.pa165.entity;
 
+import java.util.Collections;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Genre {
 	@Id
-	Long id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
+	
 	@Column(nullable=false, unique=true)
 	@NotNull
-	String name;
+	private String name;
+	
 	@Column(nullable=false)
 	@NotNull
-	String description;
+	private String description;
+	
+	
+	@OneToMany(mappedBy="show")
+	private Set<Show> shows;
+	
 	/**
 	 * @return the id of this genre
 	 */
@@ -59,6 +74,28 @@ public class Genre {
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
+	
+	public Set<Show> getShows() {
+		return Collections.unmodifiableSet(this.shows);
+	}
+	/**
+	 * Adds a show to the show list.
+	 * This should not be called, except when the other side of the relation agrees, e. g. the only legitimate caller is Show.setGenre.
+	 * @param show the show to add
+	 */
+	void addShow(Show show) {
+		this.shows.add(show);
+	}
+	
+	/**
+	 * Removes a show from the list of shows of this genre.
+	 * The same concistency precautions apply as for addShow.
+	 * @param show the show to remove
+	 */
+	void removeShow(Show show) {
+		this.shows.remove(show);
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -2,10 +2,14 @@ package cz.muni.fi.pa165.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
 @Entity
 public class Show {
 @Id
+@GeneratedValue(strategy=GenerationType.IDENTITY)
 private Long id;
 
 @Column(nullable=false, unique=true)
@@ -16,6 +20,10 @@ private String description;
 
 @Column(nullable=false)
 private int duration; // in minutes, 131 years should be enough for every show you could thing of
+
+@Column(nullable=false)
+@ManyToOne
+private Genre genre;
 
 /**
  * Gets the id of this show. 
@@ -80,6 +88,25 @@ public int getDuration() {
  */
 public void setDuration(int duration) {
 	this.duration = duration;
+}
+/**
+ * Returns the genre of this show.
+ * @return the genre
+ */
+public Genre getGenre() {
+	return this.genre;
+}
+
+/**
+ * Sets this show's genre, also updating the genre's show set accordingly.
+ * @param genre the genre to set
+ */
+public void setGenre(Genre genre) {
+	if(this.genre != null) {
+		this.genre.removeShow(this);
+	}
+	this.genre = genre;
+	this.genre.addShow(this);
 }
 
 /* (non-Javadoc)
