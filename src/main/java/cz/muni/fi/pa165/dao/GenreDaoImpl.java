@@ -2,8 +2,7 @@ package cz.muni.fi.pa165.dao;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.persistence.*;
 
 import cz.muni.fi.pa165.entity.Genre;
 

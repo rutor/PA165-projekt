@@ -1,6 +1,3 @@
-/**
- * 
- */
 package cz.muni.fi.pa165.dao;
 
 import java.util.List;

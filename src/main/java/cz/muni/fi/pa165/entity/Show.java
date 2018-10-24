@@ -1,10 +1,8 @@
 package cz.muni.fi.pa165.entity;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import java.util.Objects;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Show {
@@ -13,16 +11,20 @@ public class Show {
 private Long id;
 
 @Column(nullable=false, unique=true)
+@NotNull
 private String name;
 
 @Column(nullable=false)
+@NotNull
 private String description;
 
 @Column(nullable=false)
+@NotNull
 private int duration; // in minutes, 131 years should be enough for every show you could thing of
 
 @Column(nullable=false)
 @ManyToOne
+@NotNull
 private Genre genre;
 
 /**
@@ -116,7 +118,7 @@ public void setGenre(Genre genre) {
 public int hashCode() {
 	final int prime = 31;
 	int result = 1;
-	result = prime * result + ((name == null) ? 0 : name.hashCode());
+	result = prime * result + Objects.hash(name);
 	return result;
 }
 
@@ -135,14 +137,6 @@ public boolean equals(Object obj) {
 		return false;
 	}
 	Show other = (Show) obj;
-	if (name == null) {
-		if (other.name != null) {
-			return false;
-		}
-	} else if (!name.equals(other.getName())) {
-		return false;
-	}
-	return true;
+	return Objects.equals(name,  other.getName());
 }
-
 }

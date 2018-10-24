@@ -1,15 +1,12 @@
 package cz.muni.fi.pa165.entity;
 
 import java.util.Collections;
+import java.util.Objects;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
 
 @Entity
 public class Genre {
@@ -25,10 +22,9 @@ public class Genre {
 	@NotNull
 	private String description;
 	
-	
-	@OneToMany(mappedBy="show")
-	private Set<Show> shows;
-	
+	@OneToMany(mappedBy="show", fetch=FetchType.LAZY)
+		private Set<Show> shows;
+
 	/**
 	 * @return the id of this genre
 	 */
@@ -71,10 +67,10 @@ public class Genre {
 		this.description = description;
 	}
 	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
+	/**
+	 * Returns the set of shows of this genre. Note that due to the lazy nature of the reverse association, a query may occur. To prevent this use fetch join or similar.
+	 * @return an immutable set of shows
 	 */
-	
 	public Set<Show> getShows() {
 		return Collections.unmodifiableSet(this.shows);
 	}
@@ -95,12 +91,15 @@ public class Genre {
 	void removeShow(Show show) {
 		this.shows.remove(show);
 	}
-	
-	@Override
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+		@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + Objects.hash(name);
 		return result;
 	}
 	
@@ -119,14 +118,6 @@ public class Genre {
 			return false;
 		}
 		Genre other = (Genre) obj;
-		if (name == null) {
-			if (other.name != null) {
-				return false;
-			}
-		} else if (!name.equals(other.getName())) {
-			return false;
-		}
-		return true;
-	}
-
+		return Objects.equals(name,  other.getName());
+}
 }
