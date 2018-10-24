@@ -25,7 +25,12 @@
 	    <artifactId>hibernate-core</artifactId>
 	    <version>5.3.7.Final</version>
     </dependency>
-    <!-- junit -->
+    <dependency>
+      <groupId>org.hibernate.validator</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>6.0.12.Final</version>
+    </dependency>
+	<!-- junit -->
     <dependency>
 		<groupId>org.hamcrest</groupId>
 		<artifactId>hamcrest-library</artifactId>
