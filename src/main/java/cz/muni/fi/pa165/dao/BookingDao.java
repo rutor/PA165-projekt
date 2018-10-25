@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.dao;
 
 import cz.muni.fi.pa165.entity.*;
+import cz.muni.fi.pa165.enums.PaymentStatus;
 
 import java.time.LocalDate;
 import java.util.List;
