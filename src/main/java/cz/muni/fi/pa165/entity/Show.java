@@ -104,11 +104,7 @@ public Genre getGenre() {
  * @param genre the genre to set
  */
 public void setGenre(Genre genre) {
-	if(this.genre != null) {
-		this.genre.removeShow(this);
-	}
 	this.genre = genre;
-	this.genre.addShow(this);
 }
 
 /* (non-Javadoc)

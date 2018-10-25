@@ -74,23 +74,6 @@ public class Genre {
 	public Set<Show> getShows() {
 		return Collections.unmodifiableSet(this.shows);
 	}
-	/**
-	 * Adds a show to the show list.
-	 * This should not be called, except when the other side of the relation agrees, e. g. the only legitimate caller is Show.setGenre.
-	 * @param show the show to add
-	 */
-	void addShow(Show show) {
-		this.shows.add(show);
-	}
-	
-	/**
-	 * Removes a show from the list of shows of this genre.
-	 * The same concistency precautions apply as for addShow.
-	 * @param show the show to remove
-	 */
-	void removeShow(Show show) {
-		this.shows.remove(show);
-	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()

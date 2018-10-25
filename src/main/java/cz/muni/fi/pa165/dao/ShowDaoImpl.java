@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import cz.muni.fi.pa165.entity.Genre;
 import cz.muni.fi.pa165.entity.Show;
 
 public class ShowDaoImpl implements ShowDao {
@@ -26,4 +27,7 @@ private EntityManager em;
 		return em.find(Show.class,  id);
 	}
 
+	public List<Show> findAllByGenre(Genre genre) {
+		return em.createQuery("select s from Show s where genre = :genre").setParameter("genre",  genre).getResultList();
+	}
 }

@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.dao;
 
 import java.util.List;
 
+import cz.muni.fi.pa165.entity.Genre;
 import cz.muni.fi.pa165.entity.Show;
 
 /**
@@ -29,4 +30,10 @@ public interface ShowDao {
  * @return the show, or null if it does not exist
  */
 	public Show findById(Long id);
+	/**
+	 * Returns all shows which belong to the specified genre.
+	 * @param genre the genre we're interested in
+	 * @return list of all shows belonging to this genre
+	 */
+	public List<Show> findAllByGenre(Genre genre);
 }
