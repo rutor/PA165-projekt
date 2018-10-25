@@ -112,10 +112,7 @@ public void setGenre(Genre genre) {
  */
 @Override
 public int hashCode() {
-	final int prime = 31;
-	int result = 1;
-	result = prime * result + Objects.hash(name);
-	return result;
+	return Objects.hash(name);
 }
 
 /* (non-Javadoc)
@@ -125,9 +122,6 @@ public int hashCode() {
 public boolean equals(Object obj) {
 	if (this == obj) {
 		return true;
-	}
-	if (obj == null) {
-		return false;
 	}
 	if (!(obj instanceof Show)) {
 		return false;

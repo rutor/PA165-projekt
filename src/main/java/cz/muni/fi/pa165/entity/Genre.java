@@ -80,10 +80,7 @@ public class Genre {
 	 */
 		@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + Objects.hash(name);
-		return result;
+		return Objects.hash(name);
 	}
 	
 	/* (non-Javadoc)
@@ -93,9 +90,6 @@ public class Genre {
 	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;
-		}
-		if (obj == null) {
-			return false;
 		}
 		if (!(obj instanceof Genre)) {
 			return false;
