@@ -20,10 +20,10 @@ private String description;
 
 @Column(nullable=false)
 @NotNull
-private int duration; // in minutes, 131 years should be enough for every show you could thing of
+private int duration;
 
 @Column(nullable=false)
-@ManyToOne
+@ManyToOne(fetch=FetchType.LAZY)
 @NotNull
 private Genre genre;
 
