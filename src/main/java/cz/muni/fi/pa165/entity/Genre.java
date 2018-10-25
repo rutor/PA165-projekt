@@ -1,8 +1,6 @@
 package cz.muni.fi.pa165.entity;
 
-import java.util.Collections;
 import java.util.Objects;
-import java.util.Set;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -22,9 +20,6 @@ public class Genre {
 	@NotNull
 	private String description;
 	
-	@OneToMany(mappedBy="show", fetch=FetchType.LAZY)
-		private Set<Show> shows;
-
 	/**
 	 * @return the id of this genre
 	 */
@@ -67,14 +62,6 @@ public class Genre {
 		this.description = description;
 	}
 	
-	/**
-	 * Returns the set of shows of this genre. Note that due to the lazy nature of the reverse association, a query may occur. To prevent this use fetch join or similar.
-	 * @return an immutable set of shows
-	 */
-	public Set<Show> getShows() {
-		return Collections.unmodifiableSet(this.shows);
-	}
-
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
