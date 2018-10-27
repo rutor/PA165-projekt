@@ -4,9 +4,12 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.springframework.stereotype.Repository;
+
 import cz.muni.fi.pa165.entity.Genre;
 import cz.muni.fi.pa165.entity.Show;
 
+@Repository
 public class ShowDaoImpl implements ShowDao {
 @PersistenceContext
 private EntityManager em;

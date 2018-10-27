@@ -4,8 +4,11 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.springframework.stereotype.Repository;
+
 import cz.muni.fi.pa165.entity.Genre;
 
+@Repository
 public class GenreDaoImpl implements GenreDao {
 @PersistenceContext
 private EntityManager em;
