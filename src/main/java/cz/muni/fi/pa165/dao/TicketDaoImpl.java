@@ -1,12 +1,14 @@
 package cz.muni.fi.pa165.dao;
 
 import cz.muni.fi.pa165.entity.*;
+import javax.inject.Named;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@Named
 public class TicketDaoImpl implements TicketDao {
 
     /** Start of selection query */
