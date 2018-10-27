@@ -5,7 +5,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
- *
+ * Class for halls' evidence
  * @author xtrnkal
  */
 @Entity
@@ -61,7 +61,7 @@ public class Hall {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(name, capacity);
     }
 
     @Override
@@ -73,7 +73,7 @@ public class Hall {
             return false;
         }
         Hall other = (Hall) obj;
-        return Objects.equals(name, other.getName());
+        return Objects.equals(name, other.getName()) && Objects.equals(capacity, other.getCapacity());
     }
 
 }

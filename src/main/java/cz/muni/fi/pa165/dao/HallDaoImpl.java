@@ -2,15 +2,18 @@ package cz.muni.fi.pa165.dao;
 
 import java.util.List;
 import javax.persistence.*;
-//import org.springframework.stereotype.Repository;
+import javax.inject.Named;
+import org.springframework.stereotype.Repository;
 
 import cz.muni.fi.pa165.entity.Hall;
+
 
 /**
  * Interface of DAO for Hall entity
  * @author xtrnkal
  */
-//@Repository
+@Repository
+@Named
 public class HallDaoImpl implements HallDao {
     @PersistenceContext
     private EntityManager em;

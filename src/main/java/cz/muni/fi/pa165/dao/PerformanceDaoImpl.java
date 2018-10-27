@@ -2,15 +2,19 @@ package cz.muni.fi.pa165.dao;
 
 import java.util.List;
 import javax.persistence.*;
+import javax.inject.Named;
+import org.springframework.stereotype.Repository;
 
 import cz.muni.fi.pa165.entity.Performance;
 import cz.muni.fi.pa165.entity.Hall;
-//import cz.muni.fi.pa165.entity.Show;
+import cz.muni.fi.pa165.entity.Show;
 
 /**
  * Implementation of DAO for Performance entity
  * @author xtrnkal
  */
+@Repository
+@Named
 public class PerformanceDaoImpl implements PerformanceDao {
     @PersistenceContext
     private EntityManager em;
@@ -35,12 +39,10 @@ public class PerformanceDaoImpl implements PerformanceDao {
         return em.find(Performance.class, id);
     }
     
-    /*
     public List<Performance> findAllByShow(Show show) {
         return em.createQuery("select p from Performace p where show = :show", Performance.class)
                 .setParameter("show", show).getResultList();
     }
-    */
 
     public List<Performance> findAllByHall(Hall hall) {
         return em.createQuery("select p from Performance p where hall := hall", Performance.class)
