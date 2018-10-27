@@ -1,7 +1,6 @@
 package cz.muni.fi.pa165.enums;
 
 import lombok.*;
-import javax.persistence.*;
 import javax.validation.constraints.*;
 
 /**
