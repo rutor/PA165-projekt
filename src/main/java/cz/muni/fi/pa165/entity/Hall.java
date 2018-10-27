@@ -23,7 +23,6 @@ public class Hall {
     @NotNull
     private Long capacity;
 
-    @Column(nullable = false)
     private String address;
 
     public Hall(String name, Long capacity) {

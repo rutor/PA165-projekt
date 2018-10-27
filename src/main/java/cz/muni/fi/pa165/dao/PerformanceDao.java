@@ -2,12 +2,10 @@ package cz.muni.fi.pa165.dao;
 
 import java.util.List;
 
-import cz.muni.fi.pa165.entity.Hall;
-import cz.muni.fi.pa165.entity.Performance;
-import cz.muni.fi.pa165.entity.Show;
+import cz.muni.fi.pa165.entity.*;
 
 /**
- * Interface of DAO for Performance entity
+ * Interface of Performance dao
  * @author xtrnkal
  */
 public interface PerformanceDao {

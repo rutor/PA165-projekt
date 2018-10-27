@@ -5,12 +5,10 @@ import javax.persistence.*;
 import javax.inject.Named;
 import org.springframework.stereotype.Repository;
 
-import cz.muni.fi.pa165.entity.Performance;
-import cz.muni.fi.pa165.entity.Hall;
-import cz.muni.fi.pa165.entity.Show;
+import cz.muni.fi.pa165.entity.*;
 
 /**
- * Implementation of DAO for Performance entity
+ * Implementation of PerformanceDao
  * @author xtrnkal
  */
 @Repository

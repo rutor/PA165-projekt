@@ -3,9 +3,11 @@ package cz.muni.fi.pa165.entity;
 import java.time.LocalDate;
 import java.util.Objects;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * Class for show performances
+ *
  * @author xtrnkal
  */
 @Entity
@@ -15,16 +17,18 @@ public class Performance {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column()
     private String description;
 
-    @Column()
     private Float price;
 
-    @Column()
+    @Column(nullable=false)
+    @NotNull
     private LocalDate startDate;
 
+    @ManyToOne(targetEntity = Show.class)
     private Show show;
+    
+    @ManyToOne(targetEntity = Hall.class)
     private Hall hall;
 
     public Performance(Show show, Hall hall) {
@@ -86,14 +90,26 @@ public class Performance {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof Performance)) {
-            return false;
+        if (obj instanceof Performance) {
+            Performance other = (Performance) obj;
+            if (!Objects.equals(description, other.getDescription())) {
+                return false;
+            }
+            if (!Objects.equals(price, other.getPrice())) {
+                return false;
+            }
+            if (!Objects.equals(startDate, other.getStartDate())) {
+                return false;
+            }
+            if (!Objects.equals(hall, other.getHall())) {
+                return false;
+            }
+            if (!Objects.equals(show, other.getShow())) {
+                return false;
+            }
+
+            return true;
         }
-        Performance other = (Performance) obj;
-        return Objects.equals(description, other.getDescription())
-                && Objects.equals(price, other.getPrice())
-                && Objects.equals(startDate, other.getStartDate())
-                && Objects.equals(hall, other.getHall())
-                && Objects.equals(show, other.getShow());
+        return false;
     }
 }

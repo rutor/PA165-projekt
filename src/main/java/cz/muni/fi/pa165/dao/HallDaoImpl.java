@@ -9,7 +9,7 @@ import cz.muni.fi.pa165.entity.Hall;
 
 
 /**
- * Interface of DAO for Hall entity
+ * Implementation of HallDao
  * @author xtrnkal
  */
 @Repository
@@ -31,7 +31,7 @@ public class HallDaoImpl implements HallDao {
     }
 
     public List<Hall> findAll() {
-        return em.createQuery("selecet h from Hall h", Hall.class).getResultList();
+        return em.createQuery("select h from Hall h", Hall.class).getResultList();
     }
 
     public Hall findById(Long id) {
