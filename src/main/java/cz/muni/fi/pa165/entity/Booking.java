@@ -2,6 +2,8 @@ package cz.muni.fi.pa165.entity;
 
 import cz.muni.fi.pa165.enums.PaymentStatus;
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
@@ -35,7 +37,7 @@ public class Booking {
 
     @Getter @Setter
     @NotNull
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, columnDefinition = "BINARY(16)")
     private UUID barcode;
 
     @Getter @Setter
@@ -62,13 +64,14 @@ public class Booking {
     @Column(nullable = false)
     private LocalDate updatedAt;
 
-    public Booking() {
-        // Persistence constructor
+    /** Persistence constructor */
+    private Booking() {
+        setBarcode(UUID.randomUUID());
     }
 
     public Booking(Long id) {
+        this();
         setId(id);
-        setBarcode(UUID.randomUUID());
     }
 
     @Override

@@ -44,7 +44,13 @@ public class Ticket {
     @Column(nullable = false)
     private LocalDate updatedAt;
 
+    /** Persistence constructor */
+    private Ticket () {
+        // Common constructor
+    }
+
     public Ticket (Long id) {
+        this();
         setId(id);
     }
 
