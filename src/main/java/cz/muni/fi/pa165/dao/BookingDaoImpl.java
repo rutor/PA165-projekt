@@ -3,6 +3,8 @@ package cz.muni.fi.pa165.dao;
 import cz.muni.fi.pa165.entity.*;
 import cz.muni.fi.pa165.enums.PaymentStatus;
 import org.springframework.stereotype.Repository;
+
+import javax.inject.Named;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.*;
@@ -12,6 +14,7 @@ import java.util.*;
  * @author Tomas Rudolf
  */
 @Repository
+@Named
 public class BookingDaoImpl implements BookingDao {
 
     /** Start of selection query */
