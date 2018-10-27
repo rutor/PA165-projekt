@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * Booking of seat before it becomes a ticket
@@ -34,6 +34,11 @@ public class Booking {
     private Ticket ticket;
 
     @Getter @Setter
+    @NotNull
+    @Column(nullable = false, unique = true)
+    private UUID barcode;
+
+    @Getter @Setter
     private String description;
 
     // FIXME Tomas milestone1 - Uncomment after classes are in repository
@@ -57,8 +62,13 @@ public class Booking {
     @Column(nullable = false)
     private LocalDate updatedAt;
 
+    public Booking() {
+        // Persistence constructor
+    }
+
     public Booking(Long id) {
         setId(id);
+        setBarcode(UUID.randomUUID());
     }
 
     @Override
@@ -69,6 +79,7 @@ public class Booking {
             if (!Objects.equals(this.paymentStatus, other.getPaymentStatus())) { return false; }
             if (!Objects.equals(this.ticket, other.getTicket())) { return false; }
             if (!Objects.equals(this.description, other.getDescription())) { return false; }
+            if (!Objects.equals(this.barcode, other.getBarcode())) { return false; }
             // FIXME Tomas milestone1 - Uncomment after classes are in repository
             /*if (!Objects.equals(this.performance, other.getPerformance())) { return false; }
             if (!Objects.equals(this.user, other.getUser())) { return false; }*/
@@ -82,7 +93,7 @@ public class Booking {
     @Override
     public int hashCode() {
         // FIXME Tomas milestone1 - Uncomment after classes are in repository
-        return Objects.hash(paymentStatus, ticket, description /*, performance, user */, createdAt, updatedAt);
+        return Objects.hash(paymentStatus, ticket, description, barcode /*, performance, user */, createdAt, updatedAt);
     }
 }
 

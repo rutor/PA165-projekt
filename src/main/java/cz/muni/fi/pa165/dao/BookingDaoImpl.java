@@ -5,7 +5,7 @@ import cz.muni.fi.pa165.enums.PaymentStatus;
 import org.springframework.stereotype.Repository;
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.*;
 
 /**
  * Implementation of DAO for Booking entity
@@ -42,6 +42,13 @@ public class BookingDaoImpl implements BookingDao {
     public Booking findByTicket(Ticket ticket) {
         return em.createQuery(SELECT_QUERY + " WHERE ticket = :ticket", Booking.class)
                 .setParameter("ticket", ticket)
+                .getSingleResult();
+    }
+
+    @Override
+    public Booking findByBarcode(UUID barcode) {
+        return em.createQuery(SELECT_QUERY + " WHERE barcode = :barcode", Booking.class)
+                .setParameter("barcode", barcode)
                 .getSingleResult();
     }
 
