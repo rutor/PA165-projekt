@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = ApplicationContext.class)
 public class ShowDaoTest extends AbstractTestNGSpringContextTests {
-    
+
     @PersistenceUnit
     private EntityManagerFactory emf;
 
