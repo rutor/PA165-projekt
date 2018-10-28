@@ -51,7 +51,6 @@ public class User {
     private LocalDate updatedAt;
 
 
-
     private User(){};
 
     public User(Long id) {
