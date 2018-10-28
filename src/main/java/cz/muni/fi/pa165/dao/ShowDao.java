@@ -6,7 +6,7 @@ import cz.muni.fi.pa165.entity.Genre;
 import cz.muni.fi.pa165.entity.Show;
 
 /**
- * The database access interface for . 
+ * The database access interface for shows. 
   */
 public interface ShowDao {
 /**
@@ -36,4 +36,9 @@ public interface ShowDao {
 	 * @return list of all shows belonging to this genre
 	 */
 	public List<Show> findAllByGenre(Genre genre);
+/**
+ * Does an explicit update of a show object. 
+ * @param show the show to apply the state from
+ */
+	public void update(Show show);
 }

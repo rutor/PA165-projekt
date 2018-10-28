@@ -29,4 +29,15 @@ public interface GenreDao {
  * @return the genre, or null if it does not exist
  */
 	public Genre findById(Long id);
+	/**
+	 * Finds a genre given its name, throws when it can not be found.
+	 * @param name the genre name to find
+	 * @return the genre
+	 */
+	public Genre findByName(String name);
+	/**
+	 * Updates a genre.
+	 * @param genre the genre to apply the state from
+	 */
+	public void update(Genre genre);
 }
