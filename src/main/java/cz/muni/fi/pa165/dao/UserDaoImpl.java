@@ -40,4 +40,5 @@ public class UserDaoImpl implements UserDao {
                 .setParameter("role", role)
                 .getResultList();
     }
+
 }
