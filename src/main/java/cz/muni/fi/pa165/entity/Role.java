@@ -22,13 +22,12 @@ public class Role {
 
     private String description;
 
-    /** Persistence constructor */
-    private Role() {
-        setBarcode(UUID.randomUUID());
-    }
+
+    private Role();
 
     public Role(Long id) {
         this();
+
         setId(id);
     }
 

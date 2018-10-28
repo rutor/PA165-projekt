@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.entity;
 
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.UUID;
 
@@ -22,10 +23,11 @@ public class User {
     @NotNull
     private Role role;
 
-
+    @Column(nullable = false, unique = true)
     @NotNull
     private String firstName;
 
+    @Column(nullable = false, unique = true)
     @NotNull
     private String lastName;
 
@@ -34,20 +36,20 @@ public class User {
     @NotNull
     private String email;
 
+
+    @Column(nullable = false, unique = true)
     @NotNull
     private String password;
 
-    @Temporal(TemporalType.DATE)
-    private Date createdAt;
+   // @Temporal(TemporalType.DATE)
+    private LocalDate createdAt;
 
-    @Temporal(TemporalType.DATE)
-    private Date updatedAt;
+   //@Temporal(TemporalType.DATE)
+    private LocalDate updatedAt;
 
 
-    /** Persistence constructor */
-    private User() {
-        setBarcode(UUID.randomUUID());
-    }
+
+    private User();
 
     public User(Long id) {
         this();
@@ -107,7 +109,7 @@ public class User {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(LocalDate createdAt) {
         createdAt = createdAt;
     }
 
@@ -115,7 +117,7 @@ public class User {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(LocalDate updatedAt) {
         updatedAt = updatedAt;
     }
 

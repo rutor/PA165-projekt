@@ -11,7 +11,7 @@ import cz.muni.fi.pa165.entity.Role;
  * Interface of Role dao
  * @author Robert Dudas
  */
-public interface UserDao {
+public interface RoleDao {
 
     public void create(Role role);
 
@@ -22,7 +22,5 @@ public interface UserDao {
     public List<Role> findAll();
 
     public Role findById(Long id);
-
-    public Role findByRole(Role role);
 
 }

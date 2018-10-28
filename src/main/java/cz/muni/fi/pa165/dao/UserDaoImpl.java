@@ -24,11 +24,17 @@ public class UserDaoImpl implements UserDao {
     }
 
     public List<User> findAll() {
-        return em.createQuery("select g from Genre g", User.class).getResultList();
+        return em.createQuery("select g from User g", User.class).getResultList();
     }
 
     public User findById(Long id) {
         return em.find(User.class, id);
     }
+
+    /*public User findByRole(User user ) {
+        return ;
+    }*/
+
+
 
 }

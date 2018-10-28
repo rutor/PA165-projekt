@@ -24,7 +24,7 @@ public class RoleDaoImpl implements RoleDao {
     }
 
     public List<Role> findAll() {
-        return em.createQuery("select g from Genre g", Role.class).getResultList();
+        return em.createQuery("select g from Role g", Role.class).getResultList();
     }
 
     public Role findById(Long id) {
