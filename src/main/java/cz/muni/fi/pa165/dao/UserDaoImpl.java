@@ -21,23 +21,23 @@ public class UserDaoImpl implements UserDao {
     
     @PersistenceContext
     private EntityManager em;
-
+    @Override
     public void create(User user) {
         em.persist(user);
     }
-
+    @Override
     public void remove(User user) {
         em.remove(user);
     }
-
+    @Override
     public List<User> findAll() {
         return em.createQuery("SELECT g from User g", User.class).getResultList();
     }
-
+    @Override
     public User findById(Long id) {
 		return em.find(User.class,  id);
 	}
-
+    @Override
     public List<User> findByRole(Role role) {
         return em.createQuery(SELECT_QUERY + "WHERE role = :role", User.class)
                 .setParameter("role", role)
