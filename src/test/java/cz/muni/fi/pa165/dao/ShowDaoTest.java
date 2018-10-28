@@ -20,6 +20,6 @@ public class ShowDaoTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void failingTest() {
-        fail("This should run and fail!");
+        //fail("This should run and fail!");
     }
 }
