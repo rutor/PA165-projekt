@@ -6,6 +6,8 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.UUID;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 /**
  * User class
@@ -13,6 +15,8 @@ import java.util.UUID;
  */
 @Entity
 public class User {
+
+    public static String TABLE_NAME;
 
 
     @Id
@@ -49,7 +53,7 @@ public class User {
 
 
 
-    private User();
+    private User(){};
 
     public User(Long id) {
         this();
@@ -105,7 +109,7 @@ public class User {
         this.password = password;
     }
 
-    public Date getCreatedAt() {
+    public LocalDate getCreatedAt() {
         return createdAt;
     }
 
@@ -113,7 +117,7 @@ public class User {
         createdAt = createdAt;
     }
 
-    public Date getUpdatedAt() {
+    public LocalDate getUpdatedAt() {
         return updatedAt;
     }
 

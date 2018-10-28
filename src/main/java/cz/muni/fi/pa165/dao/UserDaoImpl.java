@@ -13,6 +13,9 @@ import cz.muni.fi.pa165.entity.User;
 @Repository
 @Named
 public class UserDaoImpl implements UserDao {
+    
+      private static final String SELECT_QUERY = "SELECT g from " + User.TABLE_NAME;
+    
     @PersistenceContext
     private EntityManager em;
 
@@ -23,39 +26,18 @@ public class UserDaoImpl implements UserDao {
     public void remove(User user) {
         em.remove(user);
     }
-/*
+
     public List<User> findAll() {
-        return em.createQuery("select g from User g", User.class).getResultList();
+        return em.createQuery("SELECT g from User g", User.class).getResultList();
     }
 
     public User findById(Long id) {
 		return em.find(User.class,  id);
 	}
-*/
-    /*public User findByRole(User user ) {
-     //   return ;
-    }*/
 
-    @Override
-    public void create(Role role) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<User> findByRole(Role role) {
+        return em.createQuery(SELECT_QUERY + "WHERE role = :role", User.class)
+                .setParameter("role", role)
+                .getResultList();
     }
-
-    @Override
-    public void remove(Role role) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Role> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Role findById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-
-
 }

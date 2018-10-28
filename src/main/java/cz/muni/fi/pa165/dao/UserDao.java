@@ -1,28 +1,29 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package cz.muni.fi.pa165.dao;
 
-
-package cz.muni.fi.pa165.dao;
-
+import cz.muni.fi.pa165.entity.*;
 import java.util.List;
 
-import cz.muni.fi.pa165.entity.Role;
-
 /**
- * Interface of Role dao
- * @author Robert Dudas
+ *
+ * @author Robo
  */
 public interface UserDao {
+    
 
-    public void create(Role role);
+    public void create(User user);
 
-   // public void update(Role role);
 
-    public void remove(Role role);
+    public void remove(User user);
 
-    public List<Role> findAll();
+    public List<User> findAll();
 
-    public Role findById(Long id);
+    public User findById(Long id);
 
-  //  public Role findByRole(Role role);
-
+ 
 }
+
