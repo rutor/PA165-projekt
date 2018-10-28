@@ -79,7 +79,7 @@ public class Ticket {
     @Override
     public int hashCode() {
         // FIXME Tomas milestone1 - Uncomment after classes are in repository
-        return Objects.hash(createdAt, updatedAt /*, performance, user*/ );
+        return Objects.hash(createdAt, updatedAt, barcode /*, performance, user*/ );
     }
 
 }
