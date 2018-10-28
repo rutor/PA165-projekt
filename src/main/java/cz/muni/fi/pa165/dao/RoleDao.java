@@ -23,4 +23,6 @@ public interface RoleDao {
 
     public Role findById(Long id);
 
+    // public Role findById(Long id);
+
 }

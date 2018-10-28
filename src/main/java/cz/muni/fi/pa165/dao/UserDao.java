@@ -15,7 +15,7 @@ public interface UserDao {
 
     public void create(Role role);
 
-    public void update(Role role);
+   // public void update(Role role);
 
     public void remove(Role role);
 
@@ -23,6 +23,6 @@ public interface UserDao {
 
     public Role findById(Long id);
 
-    public Role findByRole(Role role);
+  //  public Role findByRole(Role role);
 
 }

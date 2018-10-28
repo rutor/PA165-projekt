@@ -41,10 +41,10 @@ public class User {
     @NotNull
     private String password;
 
-   // @Temporal(TemporalType.DATE)
+
     private LocalDate createdAt;
 
-   //@Temporal(TemporalType.DATE)
+
     private LocalDate updatedAt;
 
 

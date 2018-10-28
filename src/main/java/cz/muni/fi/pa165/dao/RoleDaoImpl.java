@@ -27,6 +27,7 @@ public class RoleDaoImpl implements RoleDao {
         return em.createQuery("select g from Role g", Role.class).getResultList();
     }
 
+
     public Role findById(Long id) {
         return em.find(Role.class, id);
     }
