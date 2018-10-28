@@ -48,7 +48,6 @@ public class User {
 
     private LocalDate createdAt;
 
-
     private LocalDate updatedAt;
 
 

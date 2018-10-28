@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.dao;
 
 import cz.muni.fi.pa165.entity.Role;
+import cz.muni.fi.pa165.entity.User;
 import java.util.List;
 
 import javax.inject.Named;
@@ -8,7 +9,9 @@ import javax.persistence.*;
 
 import org.springframework.stereotype.Repository;
 
-import cz.muni.fi.pa165.entity.User;
+
+
+
 
 @Repository
 @Named
