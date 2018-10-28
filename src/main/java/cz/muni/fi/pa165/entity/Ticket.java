@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.UUID;
 
 /**
  * Ticket to a specific performance
@@ -16,12 +17,17 @@ import java.util.Objects;
 public class Ticket {
 
     /** Name of table for Ticket entities */
-    public static final String TABLE_NAME = "Bookings";
+    public static final String TABLE_NAME = "Tickets";
 
     @Getter @Setter
     @NotNull
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Getter @Setter
+    @NotNull
+    @Column(nullable = false, unique = true)
+    private UUID barcode;
 
     // FIXME Tomas milestone1 - Uncomment after classes are in repository
     /*@Getter @Setter
@@ -45,7 +51,7 @@ public class Ticket {
     private LocalDate updatedAt;
 
     /** Persistence constructor */
-    private Ticket () {
+    public Ticket () {
         // Common constructor
     }
 
@@ -60,6 +66,7 @@ public class Ticket {
         if (o instanceof Ticket) {
             Ticket other = (Ticket) o;
             // FIXME Tomas milestone1 - Uncomment after classes are in repository
+            if (!Objects.equals(this.barcode, other.getBarcode())) { return false; }
             /*if (!Objects.equals(this.performance, other.getPerformance())) { return false; }
             if (!Objects.equals(this.user, other.getUser())) { return false; }*/
             if (!Objects.equals(this.createdAt, other.getCreatedAt())) { return false; }
@@ -72,7 +79,7 @@ public class Ticket {
     @Override
     public int hashCode() {
         // FIXME Tomas milestone1 - Uncomment after classes are in repository
-        return Objects.hash(createdAt, updatedAt /*, performance, user*/ );
+        return Objects.hash(createdAt, updatedAt, barcode /*, performance, user*/ );
     }
 
 }
