@@ -25,6 +25,11 @@ public class Hall {
 
     private String address;
 
+    /** Persistence constructor */
+    public Hall() {
+
+    }
+
     public Hall(String name, Long capacity) {
         this.name = name;
         this.capacity = capacity;
