@@ -16,23 +16,20 @@ import javax.validation.constraints.Pattern;
 @Entity
 public class User {
 
-    public static String TABLE_NAME;
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
+    @Column(nullable=false)
     @NotNull
     private Role role;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     @NotNull
     private String firstName;
 
-    @Column(nullable = false, unique = true)
-    @NotNull
+    @Column(nullable = false)
     private String lastName;
 
     @Column(nullable = false, unique = true)
@@ -51,7 +48,7 @@ public class User {
     private LocalDate updatedAt;
 
 
-    private User(){};
+    public User(){};
 
     public User(Long id) {
         this();

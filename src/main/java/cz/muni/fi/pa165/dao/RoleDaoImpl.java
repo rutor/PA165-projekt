@@ -38,7 +38,8 @@ public class RoleDaoImpl implements RoleDao {
 
     @Override
     public void update(Role role) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        em.merge(role);
+
     }
 
 }

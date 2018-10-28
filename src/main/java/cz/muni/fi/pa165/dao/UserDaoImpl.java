@@ -44,4 +44,10 @@ public class UserDaoImpl implements UserDao {
                 .getResultList();
     }
 
+    @Override
+    public void update(User user) {
+        em.merge(User);
+
+    }
+
 }
