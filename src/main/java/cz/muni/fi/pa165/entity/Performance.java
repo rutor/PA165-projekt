@@ -31,6 +31,11 @@ public class Performance {
     @ManyToOne(targetEntity = Hall.class)
     private Hall hall;
 
+    /** Persistence constructor */
+    public Performance() {
+
+    }
+
     public Performance(Show show, Hall hall) {
         this.show = show;
         this.hall = hall;

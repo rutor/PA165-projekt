@@ -33,12 +33,8 @@ public class Booking {
     private PaymentStatus paymentStatus;
 
     @Getter @Setter
+    @OneToOne(targetEntity = Ticket.class)
     private Ticket ticket;
-
-    @Getter @Setter
-    @NotNull
-    @Column(nullable = false, unique = true, columnDefinition = "BINARY(16)")
-    private UUID barcode;
 
     @Getter @Setter
     private String description;
@@ -65,8 +61,7 @@ public class Booking {
     private LocalDate updatedAt;
 
     /** Persistence constructor */
-    private Booking() {
-        setBarcode(UUID.randomUUID());
+    public Booking() {
     }
 
     public Booking(Long id) {
@@ -82,7 +77,6 @@ public class Booking {
             if (!Objects.equals(this.paymentStatus, other.getPaymentStatus())) { return false; }
             if (!Objects.equals(this.ticket, other.getTicket())) { return false; }
             if (!Objects.equals(this.description, other.getDescription())) { return false; }
-            if (!Objects.equals(this.barcode, other.getBarcode())) { return false; }
             // FIXME Tomas milestone1 - Uncomment after classes are in repository
             /*if (!Objects.equals(this.performance, other.getPerformance())) { return false; }
             if (!Objects.equals(this.user, other.getUser())) { return false; }*/
@@ -96,7 +90,7 @@ public class Booking {
     @Override
     public int hashCode() {
         // FIXME Tomas milestone1 - Uncomment after classes are in repository
-        return Objects.hash(paymentStatus, ticket, description, barcode /*, performance, user */, createdAt, updatedAt);
+        return Objects.hash(paymentStatus, ticket, description /*, performance, user */, createdAt, updatedAt);
     }
 }
 
