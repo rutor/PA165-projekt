@@ -39,6 +39,7 @@ public class UserDaoImpl implements UserDao {
         return em.createQuery(SELECT_QUERY + "WHERE role = :role", User.class)
                 .setParameter("role", role)
                 .getResultList();
+
     }
 
 }
