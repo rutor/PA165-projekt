@@ -66,7 +66,7 @@ public class TicketDaoImpl implements TicketDao {
     }
 
     @Override
-    public List<Ticket> findByUser(User user) {
+    public List<Ticket> findByUser(Users user) {
         return em.createQuery(SELECT_QUERY + " WHERE user = :user", Ticket.class)
                 .setParameter("user", user)
                 .getResultList();

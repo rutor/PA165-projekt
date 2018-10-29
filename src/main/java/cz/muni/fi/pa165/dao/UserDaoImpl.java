@@ -1,7 +1,7 @@
 package cz.muni.fi.pa165.dao;
 
 import cz.muni.fi.pa165.entity.Role;
-import cz.muni.fi.pa165.entity.User;
+import cz.muni.fi.pa165.entity.Users;
 import java.util.List;
 
 import javax.inject.Named;
@@ -17,32 +17,32 @@ import org.springframework.stereotype.Repository;
 @Named
 public class UserDaoImpl implements UserDao {
     
-      private static final String SELECT_QUERY = "SELECT g from " + User.TABLE_NAME;
+      private static final String SELECT_QUERY = "SELECT g from " + Users.TABLE_NAME;
     
     @PersistenceContext
     private EntityManager em;
     @Override
-    public void create(User user) {
+    public void create(Users user) {
         em.persist(user);
     }
     @Override
-    public void remove(User user) {
+    public void remove(Users user) {
         em.remove(user);
     }
     @Override
-    public List<User> findAll() {
-        return em.createQuery("SELECT g from User g", User.class).getResultList();
+    public List<Users> findAll() {
+        return em.createQuery("SELECT g from User g", Users.class).getResultList();
     }
     @Override
-    public User findById(Long id) {
-		return em.find(User.class,  id);
+    public Users findById(Long id) {
+		return em.find(Users.class,  id);
 	}
-    public List<User> findByRole(Role role) {
-        return em.createQuery(SELECT_QUERY + "WHERE role = :role", User.class)
+    public List<Users> findByRole(Role role) {
+        return em.createQuery(SELECT_QUERY + "WHERE role = :role", Users.class)
                 .setParameter("role", role)
                 .getResultList();
     }
     @Override
-    public void update(User user) {  em.merge(user);  }
+    public void update(Users user) {  em.merge(user);  }
 
 }
