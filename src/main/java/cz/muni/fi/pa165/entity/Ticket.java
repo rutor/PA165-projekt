@@ -20,7 +20,6 @@ public class Ticket {
     public static final String TABLE_NAME = "Tickets";
 
     @Getter @Setter
-    @NotNull
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
