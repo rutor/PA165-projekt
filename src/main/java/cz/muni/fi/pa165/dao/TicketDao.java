@@ -17,9 +17,8 @@ public interface TicketDao {
     public Ticket findByBarcode(UUID barcode);
     public List<Ticket> findByCreationDate(LocalDate creationDate);
     public List<Ticket> findByUpdateDate(LocalDate updateDate);
-    // FIXME Tomas milestone1 - Uncomment after classes are in repository
-    /*public List<Ticket> findByPerformance(Performance performance);
-    public List<Ticket> findByUser(User user);*/
+    public List<Ticket> findByPerformance(Performance performance);
+    public List<Ticket> findByUser(User user);
     public void update(Ticket c);
     public void delete(Ticket c);
 }
