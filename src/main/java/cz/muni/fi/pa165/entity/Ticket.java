@@ -28,16 +28,17 @@ public class Ticket {
     @Column(nullable = false, unique = true)
     private UUID barcode;
 
-    // FIXME Tomas milestone1 - Uncomment after classes are in repository
-    /*@Getter @Setter
+    @Getter @Setter
     @NotNull
-    @Column(nullable = false)
+    @JoinColumn(nullable=false)
+    @ManyToOne
     private Performance performance;
 
     @Getter @Setter
     @NotNull
-    @Column(nullable = false)
-    private User user;*/
+    @JoinColumn(nullable = false)
+    @ManyToOne
+    private Users user;
 
     @Getter @Setter
     @NotNull
@@ -64,10 +65,9 @@ public class Ticket {
         if (this == o) { return true; }
         if (o instanceof Ticket) {
             Ticket other = (Ticket) o;
-            // FIXME Tomas milestone1 - Uncomment after classes are in repository
             if (!Objects.equals(this.barcode, other.getBarcode())) { return false; }
-            /*if (!Objects.equals(this.performance, other.getPerformance())) { return false; }
-            if (!Objects.equals(this.user, other.getUser())) { return false; }*/
+            if (!Objects.equals(this.performance, other.getPerformance())) { return false; }
+            if (!Objects.equals(this.user, other.getUser())) { return false; }
             if (!Objects.equals(this.createdAt, other.getCreatedAt())) { return false; }
             if (!Objects.equals(this.updatedAt, other.getUpdatedAt())) { return false; }
             return true;
@@ -77,8 +77,7 @@ public class Ticket {
 
     @Override
     public int hashCode() {
-        // FIXME Tomas milestone1 - Uncomment after classes are in repository
-        return Objects.hash(createdAt, updatedAt, barcode /*, performance, user*/ );
+        return Objects.hash(createdAt, updatedAt, barcode, performance, user);
     }
 
 }

@@ -69,8 +69,7 @@ public class BookingDaoImpl implements BookingDao {
                 .getResultList();
     }
 
-    // FIXME Tomas milestone1 - Uncomment after classes are in repository
-    /*@Override
+    @Override
     public List<Booking> findByPerformance(Performance performance) {
         return em.createQuery(SELECT_QUERY + " WHERE performance = :performance", Booking.class)
                 .setParameter("performance", performance)
@@ -78,11 +77,11 @@ public class BookingDaoImpl implements BookingDao {
     }
 
     @Override
-    public List<Booking> findByUser(User user) {
+    public List<Booking> findByUser(Users user) {
         return em.createQuery(SELECT_QUERY + " WHERE user = :user", Booking.class)
                 .setParameter("user", user)
                 .getResultList();
-    }*/
+    }
 
     @Override
     public void update(Booking booking) {

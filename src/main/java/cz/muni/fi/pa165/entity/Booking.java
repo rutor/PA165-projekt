@@ -1,5 +1,4 @@
 package cz.muni.fi.pa165.entity;
-
 import cz.muni.fi.pa165.enums.PaymentStatus;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
@@ -38,16 +37,17 @@ public class Booking {
     @Getter @Setter
     private String description;
 
-    // FIXME Tomas milestone1 - Uncomment after classes are in repository
-    /*@Getter @Setter
+    @Getter @Setter
     @NotNull
-    @Column(nullable = false)
+    @JoinColumn(nullable = false)
+    @ManyToOne
     private Performance performance;
 
     @Getter @Setter
     @NotNull
-    @Column(nullable = false)
-    private User user;*/
+    @JoinColumn(nullable = false)
+    @ManyToOne
+    private Users user;
 
     @Getter @Setter
     @NotNull
@@ -76,9 +76,8 @@ public class Booking {
             if (!Objects.equals(this.paymentStatus, other.getPaymentStatus())) { return false; }
             if (!Objects.equals(this.ticket, other.getTicket())) { return false; }
             if (!Objects.equals(this.description, other.getDescription())) { return false; }
-            // FIXME Tomas milestone1 - Uncomment after classes are in repository
-            /*if (!Objects.equals(this.performance, other.getPerformance())) { return false; }
-            if (!Objects.equals(this.user, other.getUser())) { return false; }*/
+            if (!Objects.equals(this.performance, other.getPerformance())) { return false; }
+            if (!Objects.equals(this.user, other.getUser())) { return false; }
             if (!Objects.equals(this.createdAt, other.getCreatedAt())) { return false; }
             if (!Objects.equals(this.updatedAt, other.getUpdatedAt())) { return false; }
             return true;
@@ -88,8 +87,7 @@ public class Booking {
 
     @Override
     public int hashCode() {
-        // FIXME Tomas milestone1 - Uncomment after classes are in repository
-        return Objects.hash(paymentStatus, ticket, description /*, performance, user */, createdAt, updatedAt);
+        return Objects.hash(paymentStatus, ticket, description, performance, user, createdAt, updatedAt);
     }
 }
 
