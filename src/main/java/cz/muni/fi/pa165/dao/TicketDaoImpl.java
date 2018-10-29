@@ -26,7 +26,7 @@ public class TicketDaoImpl implements TicketDao {
 
     @Override
     public Ticket findById(Long id) {
-        return em.createQuery(" WHERE id = :id", Ticket.class)
+        return em.createQuery(SELECT_QUERY + " WHERE id = :id", Ticket.class)
                 .setParameter("id", id)
                 .getSingleResult();
     }
