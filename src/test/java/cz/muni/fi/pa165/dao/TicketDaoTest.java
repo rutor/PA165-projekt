@@ -82,21 +82,25 @@ em.persist(user);
     @Test
     public void testCreate() {
         ticketDao.create(getTicket());
+        assertEquals(em.createQuery("select count(t) from Ticket t", Long.class).getSingleResult(), new Long(1));
     }
     
     @Test
     public void testFindAll() {
-    	ticketDao.create(getTicket());
-    	ticketDao.create(getTicket());
+    	Ticket first = getTicket();
+    	Ticket second = getTicket();
+    	em.persist(first);
+    	em.persist(second);
     	List<Ticket> tickets = ticketDao.findAll();
     	assertEquals(tickets.size(), 2);
-    	assertNotEquals(tickets.get(0).getId(), tickets.get(1).getId());
+    	assertEquals(tickets.get(0), first);
+    	assertEquals(tickets.get(1), second);
     }
 
     @Test
     public void testFindById() {
     	Ticket oldTicket = getTicket();
-    	ticketDao.create(oldTicket);
+    	em.persist(oldTicket);
     	Ticket newTicket = ticketDao.findById(oldTicket.getId());
     			assertEquals(oldTicket, newTicket);
     }
@@ -104,47 +108,54 @@ em.persist(user);
     @Test
     public void testFindByBarcode() {
     	Ticket ticket = getTicket();
-    	ticketDao.create(ticket);
-    	assertNotEquals(ticketDao.findByBarcode(ticket.getBarcode()), null);    	
+    	em.persist(ticket);
+    	assertEquals(ticketDao.findByBarcode(ticket.getBarcode()), ticket);    	
     }
     
     @Test
 public void testFindByCreatedAt() {
 	Ticket ticket = getTicket();
-	ticketDao.create(ticket);
-	assertEquals(ticketDao.findByCreationDate(ticket.getCreatedAt()).size(), 1);
+	em.persist(ticket);
+	assertEquals(ticketDao.findByCreationDate(ticket.getCreatedAt()).get(0), ticket);
 }
 
 @Test
 public void testFindByUpdatedAt() {
 	Ticket ticket = getTicket();
-	ticketDao.create(ticket);
-		assertEquals(ticketDao.findByUpdateDate(ticket.getUpdatedAt()).size(), 1);
+	em.persist(ticket);
+		assertEquals(ticketDao.findByUpdateDate(ticket.getUpdatedAt()).get(0), ticket);
 }
 
 @Test
 public void testDelete() {
 	Ticket ticket = getTicket();
-	ticketDao.create(ticket);
+	em.persist(ticket);
 	ticketDao.delete(ticket);
-	assertEquals(ticketDao.findAll().size(), 0);
+	assertEquals(em.createQuery("select count(t) from Ticket t", Long.class).getSingleResult(), new Long(0));
 }
 
 @Test
 public void testUpdate() {
-	Ticket ticket = getTicket();
-	ticketDao.update(ticket);
-	assertEquals(ticketDao.findAll().size(), 1);
+	Ticket original = getTicket();
+	em.persist(original);
+	assertEquals(em.find(Ticket.class, original.getId()), original);
+	em.clear();
+	UUID newBarcode = UUID.randomUUID();
+	original.setBarcode(newBarcode);
+	ticketDao.update(original);
+	assertEquals(em.find(Ticket.class,  original.getId()), original);
 }
 @Test
 public void testFindByPerformance() {
-	em.persist(getTicket());
-	assertEquals(ticketDao.findByPerformance(performance).size(), 1);
+	Ticket ticket = getTicket();
+	em.persist(ticket);
+	assertEquals(ticketDao.findByPerformance(performance).get(0), ticket);
 }
 @Test
 public void testFindByUser() {
-	em.persist(getTicket());
-	assertEquals(ticketDao.findByUser(user).size(), 1);
+	Ticket ticket = getTicket();
+	em.persist(ticket);
+	assertEquals(ticketDao.findByUser(user).get(0), ticket);
 }
 @Test(expected=javax.validation.ConstraintViolationException.class)
 public void testCanNotSaveWithoutUser() {

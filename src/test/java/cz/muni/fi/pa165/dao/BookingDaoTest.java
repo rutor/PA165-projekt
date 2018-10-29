@@ -88,15 +88,19 @@ em.persist(user);
     @Test
 public void testCreate() {
         bookingDao.create(getBooking());
+        assertEquals(em.createQuery("select count(t) from Ticket t", Long.class).getSingleResult(), new Long(1));
     }
     
     @Test
     public void testFindAll() {
-    	em.persist(getBooking());
-    	em.persist(getBooking());
+    	Booking first = getBooking();
+    	Booking second = getBooking();
+    	em.persist(first);
+    	em.persist(second);
     	List<Booking> bookings = bookingDao.findAll();
     	assertEquals(bookings.size(), 2);
-    	assertNotEquals(bookings.get(0).getId(), bookings.get(1).getId());
+    	assertEquals(bookings.get(0), first);
+    	assertEquals(bookings.get(1), second);
     }
 
     @Test
@@ -117,14 +121,14 @@ public void testCreate() {
 public void testFindByCreatedAt() {
 	Booking booking = getBooking();
 	em.persist(booking);
-	assertEquals(bookingDao.findByCreationDate(booking.getCreatedAt()).size(), 1);
+	assertEquals(bookingDao.findByCreationDate(booking.getCreatedAt()).get(0), booking);
 }
 
 @Test
 public void testFindByUpdatedAt() {
 	Booking booking = getBooking();
 	em.persist(booking);
-	assertEquals(bookingDao.findByUpdateDate(booking.getUpdatedAt()).size(), 1);
+	assertEquals(bookingDao.findByUpdateDate(booking.getUpdatedAt()).get(0), booking);
 }
 
 @Test
@@ -132,15 +136,20 @@ public void testDelete() {
 	Booking booking = getBooking();
 	em.persist(booking);
 	bookingDao.delete(booking);
-	assertEquals(bookingDao.findAll().size(), 0);
+	assertEquals(em.createQuery("select count(b) from Booking b", Long.class).getSingleResult(), new Long(0));
 }
 
 @Test
 public void testUpdate() {
 	Booking booking = getBooking();
+	em.persist(booking);
+	assertEquals(em.find(Booking.class,  booking.getId()), booking);
+	em.clear();
+	booking.setPaymentStatus(PaymentStatus.PROCESSING);
 	bookingDao.update(booking);
-	assertEquals(bookingDao.findAll().size(), 1);
+	assertEquals(em.find(Booking.class,  booking.getId()), booking);
 }
+
 @Test(expected=javax.validation.ConstraintViolationException.class)
 public void testCanNotSaveWithoutUser() {
 	Booking booking = getBooking();
@@ -150,13 +159,15 @@ public void testCanNotSaveWithoutUser() {
 
 @Test
 public void testFindByPerformance() {
-	em.persist(getBooking());
-	assertEquals(bookingDao.findByPerformance(performance).size(), 1);
+	Booking booking = getBooking();
+	em.persist(booking);
+	assertEquals(bookingDao.findByPerformance(performance).get(0), booking);
 }
 @Test
 public void testFindByUser() {
-	em.persist(getBooking());
-	assertEquals(bookingDao.findByUser(user).size(), 1);
+	Booking booking = getBooking();
+	em.persist(booking);
+	assertEquals(bookingDao.findByUser(user).get(0), booking);
 }
 
 }
