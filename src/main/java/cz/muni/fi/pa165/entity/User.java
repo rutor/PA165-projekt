@@ -17,7 +17,7 @@ import javax.validation.constraints.Pattern;
 @Table(name = User.TABLE_NAME)
 public class User {
 
-    public static final String TABLE_NAME = "User";
+    public static final String TABLE_NAME = "Users";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
