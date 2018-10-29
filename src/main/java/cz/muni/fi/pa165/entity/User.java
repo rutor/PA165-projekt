@@ -24,7 +24,7 @@ public class User {
     private Long id;
 
     @ManyToOne
-    @Column(nullable=false)
+    //@Column(nullable=false)
     @NotNull
     private Role role;
 
@@ -33,6 +33,7 @@ public class User {
     private String firstName;
 
     @Column(nullable = false)
+    @NotNull
     private String lastName;
 
     @Column(nullable = false, unique = true)
