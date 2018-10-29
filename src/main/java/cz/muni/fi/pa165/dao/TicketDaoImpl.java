@@ -26,7 +26,7 @@ public class TicketDaoImpl implements TicketDao {
 
     @Override
     public Ticket findById(Long id) {
-        return em.createQuery(" WHERE id = :id", Ticket.class)
+        return em.createQuery(SELECT_QUERY + " WHERE id = :id", Ticket.class)
                 .setParameter("id", id)
                 .getSingleResult();
     }
@@ -38,8 +38,8 @@ public class TicketDaoImpl implements TicketDao {
     }
 
     @Override
-    public Booking findByBarcode(UUID barcode) {
-        return em.createQuery(SELECT_QUERY + " WHERE barcode = :barcode", Booking.class)
+    public Ticket findByBarcode(UUID barcode) {
+        return em.createQuery(SELECT_QUERY + " WHERE barcode = :barcode", Ticket.class)
                 .setParameter("barcode", barcode)
                 .getSingleResult();
     }

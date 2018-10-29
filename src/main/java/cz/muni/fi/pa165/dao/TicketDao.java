@@ -14,7 +14,7 @@ public interface TicketDao {
     public void create(Ticket c);
     public Ticket findById(Long id);
     public List<Ticket> findAll();
-    public Booking findByBarcode(UUID barcode);
+    public Ticket findByBarcode(UUID barcode);
     public List<Ticket> findByCreationDate(LocalDate creationDate);
     public List<Ticket> findByUpdateDate(LocalDate updateDate);
     public List<Ticket> findByPerformance(Performance performance);
