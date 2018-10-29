@@ -39,12 +39,14 @@ public class Booking {
 
     @Getter @Setter
     @NotNull
-    @Column(nullable = false)
+    @JoinColumn(nullable = false)
+    @ManyToOne
     private Performance performance;
 
     @Getter @Setter
     @NotNull
-    @Column(nullable = false)
+    @JoinColumn(nullable = false)
+    @ManyToOne
     private User user;
 
     @Getter @Setter
