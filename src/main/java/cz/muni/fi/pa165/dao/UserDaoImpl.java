@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
 @Named
 public class UserDaoImpl implements UserDao {
     
-      private static final String SELECT_QUERY = "SELECT g from " + Users.TABLE_NAME;
+      private static final String SELECT_QUERY = "SELECT g from " + Users.TABLE_NAME + " g ";
     
     @PersistenceContext
     private EntityManager em;
@@ -31,7 +31,7 @@ public class UserDaoImpl implements UserDao {
     }
     @Override
     public List<Users> findAll() {
-        return em.createQuery("SELECT g from User g", Users.class).getResultList();
+        return em.createQuery(SELECT_QUERY, Users.class).getResultList();
     }
     @Override
     public Users findById(Long id) {
