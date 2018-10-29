@@ -37,7 +37,6 @@ public class UserDaoImpl implements UserDao {
     public User findById(Long id) {
 		return em.find(User.class,  id);
 	}
-    @Override
     public List<User> findByRole(Role role) {
         return em.createQuery(SELECT_QUERY + "WHERE role = :role", User.class)
                 .setParameter("role", role)
@@ -46,7 +45,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void update(User user) {
-        em.merge(User);
+        em.merge(user);
 
     }
 
