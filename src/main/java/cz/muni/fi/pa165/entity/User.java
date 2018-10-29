@@ -17,14 +17,14 @@ import javax.validation.constraints.Pattern;
 @Table(name = User.TABLE_NAME)
 public class User {
 
-    public static final String TABLE_NAME = "User";
+    public static final String TABLE_NAME = "USER_TABLE";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
     //@Column(nullable=false)
+    @ManyToOne(fetch=FetchType.LAZY)
     @NotNull
     private Role role;
 
@@ -42,7 +42,7 @@ public class User {
     private String email;
 
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     @NotNull
     private String password;
 
@@ -113,7 +113,7 @@ public class User {
     }
 
     public void setCreatedAt(LocalDate createdAt) {
-        createdAt = createdAt;
+        this.createdAt = createdAt;
     }
 
     public LocalDate getUpdatedAt() {
@@ -121,7 +121,7 @@ public class User {
     }
 
     public void setUpdatedAt(LocalDate updatedAt) {
-        updatedAt = updatedAt;
+        this.updatedAt = updatedAt;
     }
 
     @Override
