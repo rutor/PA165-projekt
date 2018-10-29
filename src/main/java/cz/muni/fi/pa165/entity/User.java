@@ -14,9 +14,10 @@ import javax.validation.constraints.Pattern;
  * @author Robert Dudas
  */
 @Entity
+@Table(name = User.TABLE_NAME)
 public class User {
 
-    public static String TABLE_NAME;
+    public static final String TABLE_NAME = "User";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

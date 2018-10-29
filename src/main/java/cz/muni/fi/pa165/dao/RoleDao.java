@@ -11,7 +11,6 @@ import cz.muni.fi.pa165.entity.Role;
  */
 public interface RoleDao {
 
-
     public void create(Role role);
 
     public void update(Role role);

@@ -26,10 +26,7 @@ public class RoleDaoImpl implements RoleDao {
     }
 
     @Override
-    public List<Role> findAll() {
-        return em.createQuery("select g from Role g", Role.class).getResultList();
-    }
-
+    public List<Role> findAll() { return em.createQuery("select g from Role g", Role.class).getResultList();   }
 
     @Override
     public Role findById(Long id) {
@@ -37,9 +34,6 @@ public class RoleDaoImpl implements RoleDao {
     }
 
     @Override
-    public void update(Role role) {
-        em.merge(role);
-
-    }
+    public void update(Role role) { em.merge(role); }
 
 }

@@ -42,11 +42,7 @@ public class UserDaoImpl implements UserDao {
                 .setParameter("role", role)
                 .getResultList();
     }
-
     @Override
-    public void update(User user) {
-        em.merge(user);
-
-    }
+    public void update(User user) {  em.merge(user);  }
 
 }

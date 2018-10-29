@@ -22,8 +22,7 @@ public class Role {
 
     private String description;
 
-
-   public Role(){};
+    public Role(){};
 
     public Role(Long id) {
         this();
