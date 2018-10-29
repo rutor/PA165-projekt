@@ -78,7 +78,7 @@ public class HallDaoTest extends AbstractTestNGSpringContextTests {
         Assert.assertNull(em.find(Hall.class, smallHall.getId()));
 
     }
-/*
+
     @Test
     public void findAllTest() {
         Hall hall = new Hall();
@@ -91,20 +91,59 @@ public class HallDaoTest extends AbstractTestNGSpringContextTests {
 
         List<Hall> found = dao.findAll();
 
-        Assert.assertEquals(found.size(), 2);
+        Assert.assertEquals(found.size(), 3);
         for (Hall u : found) {
             if (!(u.equals(hall) ||(u.equals(bigHall))|| u.equals(smallHall))) {
                 Assert.fail("Found Hall should not exists in db.");
             }
         }
-    }*/
-    /*
-    @Test
-    public void  updateTest(){}
+    }
 
     @Test
-    public void findByIdTest(){}
-*/
+    public void findAllOnEmptyTableTest() {
+        em.remove(smallHall);
+        List<Hall> found = dao.findAll();
+        Assert.assertEquals(found.size(), 1);
+    }
+
+    @Test
+    public void findByIdTest() {
+        em.persist(smallHall);
+        Hall hall = dao.findById(smallHall.getId());
+        assertEquals(smallHall, hall);
+
+    }
+
+
+
+    @Test(expected = IllegalArgumentException.class)
+    public void findByIdWithNullTest() {
+        em.persist(smallHall);
+        Assert.assertNull(dao.findById(null));
+    }
+
+    @Test
+    public void findByIdWithNonExistingIdTest() {
+        em.persist(smallHall);
+        Long fakeId = 100L;
+        Assert.assertNull(dao.findById(fakeId));
+    }
+
+    @Test
+    public void updateTest() {
+        em.persist(smallHall);
+        Hall hall = em.find(Hall.class, smallHall.getId());
+
+       hall.setAddress("Ilkovicova");
+       hall.setCapacity(500L);
+       hall.setName("Extra_Velka_sala");
+
+
+        dao.update(smallHall);
+
+        assertEquals(em.find(Hall.class, smallHall.getId()), hall);
+    }
+
 
 
 }

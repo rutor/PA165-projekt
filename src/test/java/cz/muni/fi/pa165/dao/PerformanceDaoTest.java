@@ -88,7 +88,6 @@ public class PerformanceDaoTest extends AbstractTestNGSpringContextTests {
         Assert.assertNull(em.find(Performance.class, performance.getId()));
     }
 
-/*
 
     @Test
     public void findAllTest() {
@@ -100,8 +99,8 @@ public class PerformanceDaoTest extends AbstractTestNGSpringContextTests {
         em.persist(hall);
 
         Genre genre = new Genre();
-        genre.setName("Horror");
-        genre.setDescription("best");
+        genre.setName("Drama");
+        genre.setDescription("Good");
 
         em.persist(genre);
 
