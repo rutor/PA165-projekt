@@ -132,6 +132,36 @@ public class PerformanceDaoTest extends AbstractTestNGSpringContextTests {
         }
     }
 
+    @Test
+    public void findAllOnEmptyTableTest() {
+        em.remove(performance);
+        List<Performance> found = dao.findAll();
+        Assert.assertEquals(found.size(), 0);
+    }
+
+    @Test
+    public void findByIdTest() {
+        em.persist(performance);
+        Performance performance1 = dao.findById(performance.getId());
+        assertEquals(performance, performance1);
+
+    }
+
+
+
+    @Test(expected = IllegalArgumentException.class)
+    public void findByIdWithNullTest() {
+        em.persist(performance);
+        Assert.assertNull(dao.findById(null));
+    }
+
+    @Test
+    public void findByIdWithNonExistingIdTest() {
+        em.persist(performance);
+        Long fakeId = 100L;
+        Assert.assertNull(dao.findById(fakeId));
+    }
+
     /*
     @Test
     public void  updateTest(){}
