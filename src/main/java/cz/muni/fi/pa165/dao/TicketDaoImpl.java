@@ -5,6 +5,8 @@ import javax.inject.Named;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
+
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -12,7 +14,7 @@ import org.springframework.stereotype.Repository;
 public class TicketDaoImpl implements TicketDao {
 
     /** Start of selection query */
-    private static final String SELECT_QUERY = "SELECT t from " + Ticket.TABLE_NAME;
+    private static final String SELECT_QUERY = "SELECT t from " + Ticket.class.getSimpleName();
 
     @PersistenceContext
     private EntityManager em;
@@ -33,6 +35,13 @@ public class TicketDaoImpl implements TicketDao {
     public List<Ticket> findAll() {
         return em.createQuery(SELECT_QUERY, Ticket.class)
                 .getResultList();
+    }
+
+    @Override
+    public Booking findByBarcode(UUID barcode) {
+        return em.createQuery(SELECT_QUERY + " WHERE barcode = :barcode", Booking.class)
+                .setParameter("barcode", barcode)
+                .getSingleResult();
     }
 
     @Override
