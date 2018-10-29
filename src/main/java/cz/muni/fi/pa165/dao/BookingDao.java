@@ -15,7 +15,6 @@ public interface BookingDao {
     public Booking findById(Long id);
     public List<Booking> findAll();
     public Booking findByTicket(Ticket ticket);
-    public Booking findByBarcode(UUID barcode);
     public List<Booking> findByPaymentStatus(PaymentStatus paymentStatus);
     public List<Booking> findByCreationDate(LocalDate creationDate);
     public List<Booking> findByUpdateDate(LocalDate updateDate);

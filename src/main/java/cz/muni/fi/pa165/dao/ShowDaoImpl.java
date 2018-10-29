@@ -35,4 +35,8 @@ private EntityManager em;
 	public List<Show> findAllByGenre(Genre genre) {
 		return em.createQuery("select s from Show s where genre = :genre", Show.class).setParameter("genre",  genre).getResultList();
 	}
+@Override
+public void update(Show show) {
+	em.merge(show);
+}
 }
