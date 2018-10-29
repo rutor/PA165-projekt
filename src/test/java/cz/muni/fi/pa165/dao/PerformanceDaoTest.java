@@ -86,8 +86,6 @@ public class PerformanceDaoTest extends AbstractTestNGSpringContextTests {
         assertEquals(em.find(Performance.class, performance.getId()), performance);
         em.remove(performance);
         Assert.assertNull(em.find(Performance.class, performance.getId()));
-
-
     }
 
 /*

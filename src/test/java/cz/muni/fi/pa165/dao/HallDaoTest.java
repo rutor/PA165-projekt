@@ -77,7 +77,6 @@ public class HallDaoTest extends AbstractTestNGSpringContextTests {
         em.remove(smallHall);
         Assert.assertNull(em.find(Hall.class, smallHall.getId()));
 
-
     }
 /*
     @Test
