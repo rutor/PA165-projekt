@@ -21,7 +21,6 @@ public class Booking {
     public static final String TABLE_NAME = "Bookings";
 
     @Getter @Setter
-    @NotNull
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true)
     private Long id;
