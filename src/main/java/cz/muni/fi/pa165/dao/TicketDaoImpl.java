@@ -26,7 +26,7 @@ public class TicketDaoImpl implements TicketDao {
 
     @Override
     public Ticket findById(Long id) {
-        return em.createQuery(" WHERE id = :id", Ticket.class)
+        return em.createQuery(SELECT_QUERY + " WHERE id = :id", Ticket.class)
                 .setParameter("id", id)
                 .getSingleResult();
     }
@@ -58,8 +58,7 @@ public class TicketDaoImpl implements TicketDao {
                 .getResultList();
     }
 
-    // FIXME Tomas milestone1 - Uncomment after classes are in repository
-    /*@Override
+    @Override
     public List<Ticket> findByPerformance(Performance performance) {
         return em.createQuery(SELECT_QUERY + " WHERE performance = :performance", Ticket.class)
                 .setParameter("performance", performance)
@@ -71,7 +70,7 @@ public class TicketDaoImpl implements TicketDao {
         return em.createQuery(SELECT_QUERY + " WHERE user = :user", Ticket.class)
                 .setParameter("user", user)
                 .getResultList();
-    }*/
+    }
 
     @Override
     public void update(Ticket ticket) {
