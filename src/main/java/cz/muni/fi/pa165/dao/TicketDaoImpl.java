@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 public class TicketDaoImpl implements TicketDao {
 
     /** Start of selection query */
-    private static final String SELECT_QUERY = "SELECT t from " + Ticket.class.getSimpleName();
+    private static final String SELECT_QUERY = "SELECT t from " + Ticket.class.getSimpleName() + " t ";
 
     @PersistenceContext
     private EntityManager em;
@@ -38,8 +38,8 @@ public class TicketDaoImpl implements TicketDao {
     }
 
     @Override
-    public Booking findByBarcode(UUID barcode) {
-        return em.createQuery(SELECT_QUERY + " WHERE barcode = :barcode", Booking.class)
+    public Ticket findByBarcode(UUID barcode) {
+        return em.createQuery(SELECT_QUERY + " WHERE barcode = :barcode", Ticket.class)
                 .setParameter("barcode", barcode)
                 .getSingleResult();
     }
