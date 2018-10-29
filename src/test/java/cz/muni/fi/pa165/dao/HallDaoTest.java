@@ -35,6 +35,8 @@ public class HallDaoTest extends AbstractTestNGSpringContextTests {
     @Inject
     private HallDao dao;
 
+
+    //@Before
     @Test
     public void createTest() {
         Hall hall= new Hall();
@@ -57,5 +59,8 @@ public class HallDaoTest extends AbstractTestNGSpringContextTests {
         Hall hallFromDatabase = em.find(Hall.class,hall.getId());
         assertEquals(hall, hallFromDatabase);
     }
+
+
+
 
 }
