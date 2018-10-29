@@ -18,7 +18,7 @@ public interface TicketDao {
     public List<Ticket> findByCreationDate(LocalDate creationDate);
     public List<Ticket> findByUpdateDate(LocalDate updateDate);
     public List<Ticket> findByPerformance(Performance performance);
-    public List<Ticket> findByUser(User user);
+    public List<Ticket> findByUser(Users user);
     public void update(Ticket c);
     public void delete(Ticket c);
 }

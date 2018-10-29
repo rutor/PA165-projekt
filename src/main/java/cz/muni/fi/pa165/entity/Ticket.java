@@ -38,7 +38,7 @@ public class Ticket {
     @NotNull
     @JoinColumn(nullable = false)
     @ManyToOne
-    private User user;
+    private Users user;
 
     @Getter @Setter
     @NotNull

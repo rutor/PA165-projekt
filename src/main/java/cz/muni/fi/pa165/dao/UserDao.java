@@ -11,15 +11,15 @@ import java.util.List;
 public interface UserDao {
     
 
-    public void create(User user);
+    public void create(Users user);
 
-    public void update(User user);
+    public void update(Users user);
 
-    public void remove(User user);
+    public void remove(Users user);
 
-    public List<User> findAll();
+    public List<Users> findAll();
 
-    public User findById(Long id);
+    public Users findById(Long id);
 
  
 }
