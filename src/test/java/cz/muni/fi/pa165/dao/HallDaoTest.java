@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.*;
@@ -21,7 +22,7 @@ import static org.junit.Assert.*;
  *
  * @author Robo
  */
-//public class HallDaoTest{}
+
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -54,41 +55,53 @@ public class HallDaoTest extends AbstractTestNGSpringContextTests {
 
         em.persist(smallHall);
 
-
+      //  em.getTransaction().commit();
+       // em.close();
 
     }
+
     @Test
     public void createTest() {
         dao.create(smallHall);
         Hall hallFromDatabase = em.find(Hall.class,smallHall.getId());
         assertEquals(smallHall, hallFromDatabase);
     }
-/*
+
+
+
+
     @Test
     public void removeTest() {
         em.persist(smallHall);
-        em.getTransaction().commit();
-
+        assertEquals(em.find(Hall.class, smallHall.getId()), smallHall);
         em.remove(smallHall);
-        em.getTransaction().commit();
-
-
         Assert.assertNull(em.find(Hall.class, smallHall.getId()));
 
+
     }
+/*
+    @Test
+    public void findAllTest() {
+        Hall hall = new Hall();
+        hall.setAddress("Podjavorinska");
+        hall.setCapacity(300L);
+        hall.setName("Stredna_sala");
+
+        em.persist(hall);
+
+
+        List<Hall> found = dao.findAll();
+
+        Assert.assertEquals(found.size(), 2);
+        for (Hall u : found) {
+            if (!(u.equals(hall) ||(u.equals(bigHall))|| u.equals(smallHall))) {
+                Assert.fail("Found Hall should not exists in db.");
+            }
+        }
+    }*/
+    /*
     @Test
     public void  updateTest(){}
-
-    @Test
-    public void removeTest(){
-
-        dao.create(smallHall);
-        Hall hallFromDatabase = em.find(Hall.class,smallHall.getId());
-        assertEquals(smallHall, hallFromDatabase);
-    }
-
-    @Test
-    public void findAllTest(){}
 
     @Test
     public void findByIdTest(){}
