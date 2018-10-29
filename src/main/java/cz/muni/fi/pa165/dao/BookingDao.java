@@ -18,9 +18,8 @@ public interface BookingDao {
     public List<Booking> findByPaymentStatus(PaymentStatus paymentStatus);
     public List<Booking> findByCreationDate(LocalDate creationDate);
     public List<Booking> findByUpdateDate(LocalDate updateDate);
-    // FIXME Tomas milestone1 - Uncomment after classes are in repository
-    /*public List<Booking> findByPerformance(Performance performance);
-    public List<Booking> findByUser(User user);*/
+    public List<Booking> findByPerformance(Performance performance);
+    public List<Booking> findByUser(User user);
     public void update(Booking booking);
     public void delete(Booking booking);
 }
