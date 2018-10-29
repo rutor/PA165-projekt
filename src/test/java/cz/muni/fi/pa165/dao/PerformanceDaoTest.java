@@ -36,44 +36,55 @@ public class PerformanceDaoTest extends AbstractTestNGSpringContextTests {
     @Inject
     private PerformanceDao dao;
 
-    @Test
-    public void createTest() {
+    private Hall bigHall= new Hall();
+    private Hall smallHall= new Hall();
+    private Genre genre = new Genre();
+    private Performance performance= new Performance();
+    private Show show= new Show();
 
-        Hall hall =new Hall();
-        
-        hall.setAddress("Tajovskeho");
-        hall.setCapacity(400L);
-        hall.setName("Velka_sala");
-        
-        em.persist(hall);
-       
-        Genre genre = new Genre();
+    @Before
+    public void setup() {
+        bigHall.setAddress("Tajovskeho");
+        bigHall.setCapacity(400L);
+        bigHall.setName("Velka_sala");
+
+        em.persist(bigHall);
+
         genre.setName("Horror");
         genre.setDescription("best");
-        
+
         em.persist(genre);
-           
-        Show show= new Show();
+
         show.setGenre(genre);
         show.setName("The_Strangers_2");
         show.setDescription("best");
         show.setGenre(genre);
         show.setDuration(140);
         show.setName("The_Strangers_2");
-        
-        em.persist(show);        
-        
-        Performance performance= new Performance();
-        performance.setHall(hall);
+
+        em.persist(show);
+
+        performance.setHall(bigHall);
         performance.setPrice(250f);
         performance.setStartDate(LocalDate.now());
-       
-        //em.persist(performance);
-
-        dao.create(performance);
-
-        Performance performanceFromDatabase = em.find(Performance.class, performance.getId());
-        assertEquals(performance, performanceFromDatabase);
     }
 
+    @Test
+    public void createTest() {
+
+       dao.create(performance);
+       Performance performanceFromDatabase = em.find(Performance.class, performance.getId());
+        assertEquals(performance, performanceFromDatabase);
+    }
+    @Test
+    public void  updateTest(){}
+
+    @Test
+    public void removeTest(){}
+
+    @Test
+    public void findAllTest(){}
+
+    @Test
+    public void findByIdTest(){}
 }
