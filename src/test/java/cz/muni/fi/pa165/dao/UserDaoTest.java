@@ -5,9 +5,13 @@ import cz.muni.fi.pa165.entity.Genre;
 import cz.muni.fi.pa165.entity.Show;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceUnit;
 import static org.junit.Assert.assertEquals;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
@@ -15,6 +19,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
+import org.testng.Assert;
 
 /**
  *
@@ -25,35 +30,81 @@ import org.springframework.transaction.annotation.Transactional;
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
 public class UserDaoTest extends AbstractTestNGSpringContextTests {
+    
+    @PersistenceUnit
+    private EntityManagerFactory emf;
+    
     @PersistenceContext
     private EntityManager em;
+    
+    private Role adminRole;
+    private Role employeeRole;
+    
+    private User adminUser;
+    
+    @BeforeClass
+    public void OnlyOnce() {
+        EntityManager e = emf.createEntityManager();
+        e.getTransaction().begin();
+        
+        adminRole = new Role();
+        adminRole.setName("Admin");
+        adminRole.setDescription("Admin can do everything.");
+        e.persist(adminRole);
+        
+        employeeRole = new Role();
+        employeeRole.setName("Employee");
+        employeeRole.setDescription("Employee can use majority of the system except user and role managing.");
+        e.persist(employeeRole);
+        
+        e.getTransaction().commit();
+        e.close();
+    
+        adminUser = new User();
+        adminUser.setEmail("admin@admin.com");
+        adminUser.setFirstName("John");
+        adminUser.setLastname("Doe");
+        adminUser.setRole(adminRole);
+        
+    }
 
     @Inject
-    //private UserDao dao;
+    private UserDao userDao;
     
     @Test
     public void createTest() {
+        userDao.create(adminUser);
+        
         /*
-        Genre genre = new Genre();
-        genre.setName("Dolor");
-        genre.setDescription("Sit");
-
-        em.persist(genre);
-
-        Show show = new Show();
-        show.setName("Lorem");
-        show.setDescription("Ipsum");
-        show.setGenre(genre);
-        dao.create(show);
-
-        Show showFromDatabase = em.find(Show.class, show.getId());
-        assertEquals(show, showFromDatabase);
+        em.persist(adminUser);
+        em.getTransaction().commit();
         */
+        
+        /*
+        UserDao dao;
+        dao.create(user);
+        
+        User dbUser = em.find(User.class, user.getId());
+        assertEquals(user, dbUser);
+        */
+        
+        User dbUser = em.find(User.class, adminUser.getId());
+        assertEquals(adminUser, dbUser);
     }
+    
     
     /*also more variants */
     @Test
     public void removeTest() {
+        em.persist(adminUser);
+        em.getTransaction().commit();
+        
+        em.remove(adminUser);
+        em.getTransaction().commit();
+        
+        
+        Assert.assertNull(em.find(User.class, adminUser.getId()));
+        
     }
     
     
