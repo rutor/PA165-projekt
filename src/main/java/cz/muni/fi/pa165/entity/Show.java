@@ -22,7 +22,7 @@ private String description;
 @NotNull
 private int duration;
 
-@Column(nullable=false)
+//@Column(nullable=false)
 @ManyToOne(fetch=FetchType.LAZY)
 @NotNull
 private Genre genre;

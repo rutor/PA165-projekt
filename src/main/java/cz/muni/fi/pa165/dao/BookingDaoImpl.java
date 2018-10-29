@@ -18,7 +18,7 @@ import java.util.*;
 public class BookingDaoImpl implements BookingDao {
 
     /** Start of selection query */
-    private static final String SELECT_QUERY = "SELECT b from " + Booking.TABLE_NAME;
+    private static final String SELECT_QUERY = "SELECT b from " + Booking.class.getSimpleName();
 
     @PersistenceContext
     private EntityManager em;
@@ -45,13 +45,6 @@ public class BookingDaoImpl implements BookingDao {
     public Booking findByTicket(Ticket ticket) {
         return em.createQuery(SELECT_QUERY + " WHERE ticket = :ticket", Booking.class)
                 .setParameter("ticket", ticket)
-                .getSingleResult();
-    }
-
-    @Override
-    public Booking findByBarcode(UUID barcode) {
-        return em.createQuery(SELECT_QUERY + " WHERE barcode = :barcode", Booking.class)
-                .setParameter("barcode", barcode)
                 .getSingleResult();
     }
 
