@@ -39,7 +39,7 @@ public class BookingDaoTest extends AbstractTestNGSpringContextTests {
     private Performance performance;
     private Genre opera;
     private Ticket ticket;
-private User user;
+private Users user;
     
     @Before
     public void setup() {
@@ -60,7 +60,7 @@ private User user;
     	Role role = new Role();
     	role.setName("admin");
     	em.persist(role);
-    	user = new User();
+    	user = new Users();
     	user.setFirstName("Petr");
     	user.setLastName("Adamek");
     	user.setEmail("adamek@adamek.org");
@@ -142,7 +142,21 @@ public void testUpdate() {
 	assertEquals(bookingDao.findAll().size(), 1);
 }
 @Test(expected=javax.validation.ConstraintViolationException.class)
-public void testCanNotSaveWithNullFields() {
-	bookingDao.create(new Booking());
+public void testCanNotSaveWithoutUser() {
+	Booking booking = getBooking();
+	booking.setUser(null);
+	bookingDao.create(booking);
 }
+
+@Test
+public void testFindByPerformance() {
+	em.persist(getBooking());
+	assertEquals(bookingDao.findByPerformance(performance).size(), 1);
+}
+@Test
+public void testFindByUser() {
+	em.persist(getBooking());
+	assertEquals(bookingDao.findByUser(user).size(), 1);
+}
+
 }

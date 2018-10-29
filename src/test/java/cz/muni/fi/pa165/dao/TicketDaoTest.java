@@ -39,6 +39,7 @@ public class TicketDaoTest extends AbstractTestNGSpringContextTests {
     private Show show;
     private Performance performance;
     private Genre opera;
+    private Users user;
         
     @Before
     public void setup() {
@@ -56,6 +57,16 @@ public class TicketDaoTest extends AbstractTestNGSpringContextTests {
     	performance.setShow(show);
     	performance.setStartDate(LocalDate.now());
     	em.persist(performance);
+    	Role role = new Role();
+    	role.setName("admin");
+    	em.persist(role);
+    	user = new Users();
+    	user.setFirstName("Petr");
+    	user.setLastName("Adamek");
+    	user.setEmail("adamek@adamek.org");
+    	user.setPassword("sha256_hash?");
+    	user.setRole(role);
+em.persist(user);    
     }
     
     private Ticket getTicket() {
@@ -63,6 +74,8 @@ public class TicketDaoTest extends AbstractTestNGSpringContextTests {
     	ticket.setCreatedAt(LocalDate.now());
     	ticket.setUpdatedAt(LocalDate.now());
     	ticket.setBarcode(UUID.randomUUID());
+    	ticket.setPerformance(performance);
+    	ticket.setUser(user);
     	return ticket;
     }
     
@@ -123,4 +136,21 @@ public void testUpdate() {
 	ticketDao.update(ticket);
 	assertEquals(ticketDao.findAll().size(), 1);
 }
+@Test
+public void testFindByPerformance() {
+	em.persist(getTicket());
+	assertEquals(ticketDao.findByPerformance(performance).size(), 1);
+}
+@Test
+public void testFindByUser() {
+	em.persist(getTicket());
+	assertEquals(ticketDao.findByUser(user).size(), 1);
+}
+@Test(expected=javax.validation.ConstraintViolationException.class)
+public void testCanNotSaveWithoutUser() {
+	Ticket ticket = getTicket();
+	ticket.setUser(null);
+	ticketDao.create(ticket);
+}
+
 }
