@@ -62,7 +62,7 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests {
     public void removeTest() {
         em.persist(adminUser);
         assertEquals(em.find(Users.class, adminUser.getId()), adminUser);        
-        em.remove(adminUser);
+        userDao.remove(adminUser);
         Assert.assertNull(em.find(Users.class, adminUser.getId()));
     }
     
