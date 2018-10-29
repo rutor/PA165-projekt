@@ -16,6 +16,8 @@ import javax.validation.constraints.Pattern;
 @Entity
 public class User {
 
+    public static String TABLE_NAME;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
