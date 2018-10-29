@@ -2,8 +2,6 @@ package cz.muni.fi.pa165.dao;
 
 import cz.muni.fi.pa165.ApplicationContext;
 import cz.muni.fi.pa165.entity.*;
-import java.time.LocalDate;
-import java.util.UUID;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.*;
@@ -33,10 +31,9 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests {
     @Inject
     private UserDao userDao;
     
-    private User adminUser;
+    private Users adminUser;
     private Role adminRole;
      
-    
     @Before
     public void setup() {
         adminRole = new Role();
@@ -45,34 +42,29 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests {
         
         em.persist(adminRole);
 
-        adminUser = new User();
+        adminUser = new Users();
         adminUser.setEmail("admin@admin.com");
         adminUser.setFirstName("John");
         adminUser.setLastName("Doe");
         adminUser.setPassword("12345");
         adminUser.setRole(adminRole);
         em.persist(adminUser);
-        
     }
    
     @Test
     public void testCreate() {
         userDao.create(adminUser);
-        User dbUser = em.find(User.class, adminUser.getId());
+        Users dbUser = em.find(Users.class, adminUser.getId());
         assertEquals(adminUser, dbUser);
     }
-    
     
     @Test
     public void removeTest() {
         em.persist(adminUser);
-        assertEquals(em.find(User.class, adminUser.getId()), adminUser);        
+        assertEquals(em.find(Users.class, adminUser.getId()), adminUser);        
         em.remove(adminUser);
-        Assert.assertNull(em.find(User.class, adminUser.getId()));
+        Assert.assertNull(em.find(Users.class, adminUser.getId()));
     }
-    
-    
-    /*on empty table, on table with more rows*/
     
     @Test
     public void findAllTest() {
@@ -81,7 +73,7 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests {
         role.setDescription("Employee cant do everything.");
         em.persist(role);
         
-        User user = new User();
+        Users user = new Users();
         user.setEmail("e@e.com");
         user.setFirstName("Johny");
         user.setLastName("Doee");
@@ -89,10 +81,10 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests {
         user.setRole(role);
         em.persist(user);
         
-        List<User> found = userDao.findAll();
+        List<Users> found = userDao.findAll();
         
         Assert.assertEquals(found.size(), 2);
-        for (User u : found) {
+        for (Users u : found) {
             if (!(u.equals(user) || u.equals(adminUser))) {
                 Assert.fail("Found user should not exists in db.");
             }
@@ -102,17 +94,57 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests {
     @Test
     public void findAllOnEmptyTableTest() {
         em.remove(adminUser);
-        List<User> found = userDao.findAll();
-        //assertNull(found);
+        List<Users> found = userDao.findAll();
         Assert.assertEquals(found.size(), 0);
     }
     
-    
-    /* more examples - with null value, with non existing value, with existing value*/
-    /*
     @Test
     public void findByIdTest() {
+        em.persist(adminUser);
+        Users user = userDao.findById(adminUser.getId());
+        assertEquals(adminUser, user);
     }
-   
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void findByIdWithNullTest() {
+        em.persist(adminUser);
+        Assert.assertNull(userDao.findById(null));
+    }
+    
+    @Test
+    public void findByIdWithNonExistingIdTest() {
+        em.persist(adminUser);
+        Long fakeId = 100L;
+        Assert.assertNull(userDao.findById(fakeId));
+    }
+    
+    @Test
+    public void updateTest() {
+        em.persist(adminUser);
+        Users u = em.find(Users.class, adminUser.getId());
+        
+        String name = "George";
+        u.setFirstName(name);
+        adminUser.setFirstName(name);
+        userDao.update(adminUser);
+        
+        assertEquals(em.find(Users.class, adminUser.getId()), u);
+    }
+    
+    /*
+    @Test
+    public void findByRoleTest() {
+        em.persist(adminUser);
+        List<Users> found = userDao.findByRole(adminRole);
+        
+        Assert.assertEquals(found.size(), 1);
+        for (Users u : found) {
+            if (!(u.equals(adminUser))) {
+                Assert.fail("Found user should not exists in db.");
+            } else {
+                assertEquals(adminUser, u);
+            }
+        } 
+    }
     */
 }
