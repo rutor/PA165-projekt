@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 public class TicketDaoImpl implements TicketDao {
 
     /** Start of selection query */
-    private static final String SELECT_QUERY = "SELECT t from " + Ticket.class.getSimpleName();
+    private static final String SELECT_QUERY = "SELECT t from " + Ticket.class.getSimpleName() + " t ";
 
     @PersistenceContext
     private EntityManager em;

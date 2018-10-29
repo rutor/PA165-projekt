@@ -18,7 +18,7 @@ import java.util.*;
 public class BookingDaoImpl implements BookingDao {
 
     /** Start of selection query */
-    private static final String SELECT_QUERY = "SELECT b from " + Booking.class.getSimpleName();
+    private static final String SELECT_QUERY = "SELECT b from " + Booking.class.getSimpleName() + " b ";
 
     @PersistenceContext
     private EntityManager em;
