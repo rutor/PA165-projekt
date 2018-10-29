@@ -99,6 +99,14 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests {
         }
     }
     
+    @Test
+    public void findAllOnEmptyTableTest() {
+        em.remove(adminUser);
+        List<User> found = userDao.findAll();
+        //assertNull(found);
+        Assert.assertEquals(found.size(), 0);
+    }
+    
     
     /* more examples - with null value, with non existing value, with existing value*/
     /*
