@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.*;
@@ -48,7 +49,7 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests {
         adminUser.setEmail("admin@admin.com");
         adminUser.setFirstName("John");
         adminUser.setLastName("Doe");
-        adminUser.setPassword("ahoj");
+        adminUser.setPassword("12345");
         adminUser.setRole(adminRole);
         em.persist(adminUser);
         
@@ -62,29 +63,43 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests {
     }
     
     
-    /*also more variants */
-    /*
     @Test
     public void removeTest() {
         em.persist(adminUser);
-        em.getTransaction().commit();
-        
+        assertEquals(em.find(User.class, adminUser.getId()), adminUser);        
         em.remove(adminUser);
-        em.getTransaction().commit();
-        
-        
         Assert.assertNull(em.find(User.class, adminUser.getId()));
-        
     }
-    */
+    
     
     /*on empty table, on table with more rows*/
-    /*
+    
     @Test
     public void findAllTest() {
+        Role role = new Role();
+        role.setName("Employee");
+        role.setDescription("Employee cant do everything.");
+        em.persist(role);
+        
+        User user = new User();
+        user.setEmail("e@e.com");
+        user.setFirstName("Johny");
+        user.setLastName("Doee");
+        user.setPassword("abcde");
+        user.setRole(role);
+        em.persist(user);
+        
+        List<User> found = userDao.findAll();
+        
+        Assert.assertEquals(found.size(), 2);
+        for (User u : found) {
+            if (!(u.equals(user) || u.equals(adminUser))) {
+                Assert.fail("Found user should not exists in db.");
+            }
+        }
     }
     
-    */
+    
     /* more examples - with null value, with non existing value, with existing value*/
     /*
     @Test
