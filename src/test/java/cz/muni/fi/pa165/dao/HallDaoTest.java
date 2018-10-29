@@ -33,31 +33,38 @@ public class HallDaoTest extends AbstractTestNGSpringContextTests {
     private EntityManager em;
 
     @Inject
-    private HallDao dao;
+    private HallDao hallDao;
+
+    private Hall bigHall ;
+    private Hall smallHall;
 
 
-    //@Before
+    @Before
+    public void setup() {
+
+        bigHall.setAddress("Tajovskeho");
+        bigHall.setCapacity(400L);
+        bigHall.setName("Velka_sala");
+
+        em.persist(bigHall);
+
+
+        smallHall.setAddress("Sladkovicova");
+        smallHall.setCapacity(200L);
+        smallHall.setName("Mala_sala");
+
+        em.persist(smallHall);
+
+
+    }
+
     @Test
     public void createTest() {
-        Hall hall= new Hall();
-        hall.setAddress("Tajovskeho");
-        hall.setCapacity(400L);
-        hall.setName("Velka_sala");
-        
-        em.persist(hall);
 
-        Hall hall1= new Hall();
-        hall1.setAddress("Sladkovicova");
-        hall1.setCapacity(200L);
-        hall1.setName("Mala_sala");
-        
-        em.persist(hall1);
-        
-        dao.create(hall);
-        
-        
-        Hall hallFromDatabase = em.find(Hall.class,hall.getId());
-        assertEquals(hall, hallFromDatabase);
+        hallDao.create(smallHall);
+        Hall hallFromDatabase = em.find(Hall.class,smallHall.getId());
+        assertEquals(smallHall, hallFromDatabase);
+
     }
 
 
