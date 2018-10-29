@@ -19,7 +19,7 @@ public interface BookingDao {
     public List<Booking> findByCreationDate(LocalDate creationDate);
     public List<Booking> findByUpdateDate(LocalDate updateDate);
     public List<Booking> findByPerformance(Performance performance);
-    public List<Booking> findByUser(User user);
+    public List<Booking> findByUser(Users user);
     public void update(Booking booking);
     public void delete(Booking booking);
 }

@@ -14,10 +14,10 @@ import javax.validation.constraints.Pattern;
  * @author Robert Dudas
  */
 @Entity
-@Table(name = User.TABLE_NAME)
-public class User {
+@Table(name = Users.TABLE_NAME)
+public class Users {
 
-    public static final String TABLE_NAME = "User";
+    public static final String TABLE_NAME = "Users";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,9 +52,9 @@ public class User {
     private LocalDate updatedAt;
 
 
-    public User(){};
+    public Users(){};
 
-    public User(Long id) {
+    public Users(Long id) {
         this();
         setId(id);
     }
@@ -129,8 +129,8 @@ public class User {
         if (this == obj) {
             return true;
         }
-        if (obj instanceof User) {
-            User other = (User) obj;
+        if (obj instanceof Users) {
+            Users other = (Users) obj;
             if (!Objects.equals(firstName, other.getFirstName())) {
                 return false;
             }
