@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.entity;
 
+import cz.muni.fi.pa165.enums.TicketStatus;
 import lombok.*;
 
 import javax.persistence.*;
@@ -29,6 +30,9 @@ public class Ticket {
     private UUID barcode;
 
     @Getter @Setter
+    private TicketStatus status;
+
+    @Getter @Setter
     @NotNull
     @JoinColumn(nullable=false)
     @ManyToOne
@@ -53,6 +57,8 @@ public class Ticket {
     /** Persistence constructor */
     public Ticket () {
         // Common constructor
+        setCreatedAt(LocalDate.now());
+        setUpdatedAt(LocalDate.now());
     }
 
     public Ticket (Long id) {
@@ -78,6 +84,13 @@ public class Ticket {
     @Override
     public int hashCode() {
         return Objects.hash(createdAt, updatedAt, barcode, performance, user);
+    }
+
+    public static Ticket createFromBooking(Booking booking) {
+        Ticket ticket = new Ticket();
+        ticket.setUser(booking.getUser());
+        ticket.setPerformance(booking.getPerformance());
+        return ticket;
     }
 
 }
