@@ -45,11 +45,11 @@ public class TicketDaoTest extends AbstractTestNGSpringContextTests {
     public void setup() {
     	opera = new Genre();
     	opera.setName("Opera");
-    	opera.setDescription("Kdo nem· r·d operu?");
+    	opera.setDescription("Kdo nem√° r√°d operu?");
     	em.persist(opera);
     	show = new Show();
-    	show.setName("HubiËka");
-    	show.setDescription("Smetana, vöak vÌte.");
+    	show.setName("Hubi√®ka");
+    	show.setDescription("Smetana, v≈°ak v√≠te.");
     	show.setDuration(217);
     	show.setGenre(opera);
     	em.persist(show);
