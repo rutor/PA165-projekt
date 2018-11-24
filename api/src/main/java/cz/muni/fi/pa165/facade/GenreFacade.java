@@ -34,9 +34,9 @@ public interface GenreFacade {
 	public GenreDTO getGenreByName(String name);
 /**
  * Removes a genre.
- * @param genre a genre to remove
+ * @param genreId the id of the genre to remove
  */
-	public void removeGenre(GenreDTO genre);
+	public void removeGenre(Long genreId);
 /**
  * Performs a genre update.
  * @param genre a description of the new state of an existing genre

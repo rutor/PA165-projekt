@@ -47,9 +47,8 @@ Genre genre = genreService.findById(genreId);
 	}
 
 	@Override
-	public void removeShow(ShowDTO show) {
-
-showService.remove(mappingService.mapTo(show,  Show.class));
+	public void removeShow(Long showId) {
+showService.remove(showService.findById(showId));
 	}
 
 	@Override

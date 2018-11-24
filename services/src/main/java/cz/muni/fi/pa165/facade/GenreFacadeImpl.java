@@ -46,8 +46,8 @@ public class GenreFacadeImpl implements GenreFacade {
 	}
 
 	@Override
-	public void removeGenre(GenreDTO genre) {
-		genreService.remove(mappingService.mapTo(genre, Genre.class));
+	public void removeGenre(Long genreId) {
+		genreService.remove(genreService.findById(genreId));
 	}
 
 	@Override
