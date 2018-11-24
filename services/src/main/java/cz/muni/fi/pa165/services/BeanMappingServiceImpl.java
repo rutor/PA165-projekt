@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BeanMappingServiceImpl implements BeanMappingService {
-	
-	@Autowired
+
+    @Autowired
     private Mapper dozer;
 
     public  <T> List<T> mapTo(Collection<?> objects, Class<T> mapToClass) {
@@ -26,8 +26,8 @@ public class BeanMappingServiceImpl implements BeanMappingService {
     {
         return dozer.map(u,mapToClass);
     }
-    
+
     public Mapper getMapper(){
-    	return dozer;
+        return dozer;
     }
 }
