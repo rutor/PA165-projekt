@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.facade;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 import cz.muni.fi.pa165.services.BeanMappingService;
 import cz.muni.fi.pa165.dto.CreateGenreDTO;
@@ -12,10 +13,9 @@ import cz.muni.fi.pa165.services.GenreService;
 
 /**
  * Implementation of the genre facade.
- * 
  * @author tyrylu
- *
  */
+@Transactional
 public class GenreFacadeImpl implements GenreFacade {
 	@Inject
 	private GenreService genreService;
