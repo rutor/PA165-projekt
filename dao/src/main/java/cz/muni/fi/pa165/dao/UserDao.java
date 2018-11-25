@@ -21,6 +21,7 @@ public interface UserDao {
 
     public Users findById(Long id);
 
+    public Users findByName(String name);
  
 }
 

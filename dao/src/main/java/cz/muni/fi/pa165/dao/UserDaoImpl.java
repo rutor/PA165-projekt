@@ -45,4 +45,9 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void update(Users user) {  em.merge(user);  }
 
+    @Override
+    public Users findByName(String name) {
+        return em.createQuery("select u from Users where name = :name", Users.class).setParameter("name",  name).getSingleResult();
+    }
+
 }
