@@ -70,7 +70,7 @@ public class GenreDTO {
 	 */
 	@Override
 	public int hashCode() {
-		return Objects.hash(name);
+		return Objects.hash(id, name, description);
 	}
 
 	/*
@@ -87,6 +87,7 @@ public class GenreDTO {
 			return false;
 		}
 		GenreDTO other = (GenreDTO) obj;
-		return Objects.equals(name, other.getName());
+		return Objects.equals(id, other.getId()) && Objects.equals(name, other.getName())
+				&& Objects.equals(description, other.getDescription());
 	}
 }
