@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.facade;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 import cz.muni.fi.pa165.dto.CreateShowDTO;
 import cz.muni.fi.pa165.dto.ShowDTO;
@@ -11,7 +12,11 @@ import cz.muni.fi.pa165.entity.Show;
 import cz.muni.fi.pa165.services.BeanMappingService;
 import cz.muni.fi.pa165.services.GenreService;
 import cz.muni.fi.pa165.services.ShowService;
-
+/**
+ * Implementation of the show facade.
+ * @author tyrylu
+  */
+@Transactional
 public class ShowFacadeImpl implements ShowFacade {
 
 	@Inject
@@ -47,9 +52,8 @@ Genre genre = genreService.findById(genreId);
 	}
 
 	@Override
-	public void removeShow(ShowDTO show) {
-
-showService.remove(mappingService.mapTo(show,  Show.class));
+	public void removeShow(Long showId) {
+showService.remove(showService.findById(showId));
 	}
 
 	@Override
