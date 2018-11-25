@@ -55,7 +55,7 @@ public class CreateGenreDTO {
 	 */
 	@Override
 	public int hashCode() {
-		return Objects.hash(name);
+		return Objects.hash(name, description);
 	}
 
 	/*
@@ -72,6 +72,6 @@ public class CreateGenreDTO {
 			return false;
 		}
 		CreateGenreDTO other = (CreateGenreDTO) obj;
-		return Objects.equals(name, other.getName());
+		return Objects.equals(name, other.getName()) && Objects.equals(description, other.getDescription());
 	}
 }

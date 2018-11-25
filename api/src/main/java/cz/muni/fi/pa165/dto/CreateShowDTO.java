@@ -87,7 +87,7 @@ public void setGenreId(Long genreId) {
  */
 @Override
 public int hashCode() {
-	return Objects.hash(name);
+	return Objects.hash(name, description, duration, genreId);
 }
 
 /* (non-Javadoc)
@@ -102,6 +102,9 @@ public boolean equals(Object obj) {
 		return false;
 	}
 	CreateShowDTO other = (CreateShowDTO) obj;
-	return Objects.equals(name,  other.getName());
+	return Objects.equals(name,  other.getName())
+			&& Objects.equals(description,  other.getDescription())
+			&& Objects.equals(duration, other.getDuration())
+			&& Objects.equals(genreId,  other.getGenreId());
 }
 }
