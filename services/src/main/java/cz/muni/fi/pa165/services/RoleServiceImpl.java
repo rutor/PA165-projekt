@@ -9,11 +9,17 @@ import org.springframework.stereotype.Service;
 import cz.muni.fi.pa165.dao.RoleDao;
 import cz.muni.fi.pa165.entity.Role;
 
+
+
+
 @Service
 public class RoleServiceImpl implements RoleService {
+    @Inject
+    private RoleService roleService;
 
     @Inject
     private RoleDao roleDao;
+
 
     @Override
     public Long create(Role role) {
@@ -40,6 +46,7 @@ public class RoleServiceImpl implements RoleService {
     public void remove(Role role) {
         roleDao.remove(role);
     }
+
 
     @Override
     public void update(Role role) {

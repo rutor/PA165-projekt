@@ -111,7 +111,7 @@ public class UserDTO {
             if (!Objects.equals(role, other.getRole())) {
                 return false;
             }
-            if (!Objects.equals(updatedAt, other.updatedAt())) {
+            if (!Objects.equals(updatedAt, other.getUpdatedAt())) {
                 return false;
             }
 

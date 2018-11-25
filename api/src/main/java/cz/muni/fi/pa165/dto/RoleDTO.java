@@ -47,7 +47,7 @@ public class RoleDTO {
             if (!Objects.equals(name, other.getName())) {
                 return false;
             }
-            if (!Objects.equals(description other.getDescription())) {
+            if (!Objects.equals(description, other.getDescription())) {
                 return false;
             }
 

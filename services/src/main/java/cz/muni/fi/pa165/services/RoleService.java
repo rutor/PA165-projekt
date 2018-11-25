@@ -9,6 +9,6 @@ public interface RoleService {
     public Role findById(Long id);
     public List<Role> findAll();
     public Role findByName(String name);
-    public void remove(Role role);
     public void update(Role role);
+    public void remove(Role role);
 }

@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.facade;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 import cz.muni.fi.pa165.services.BeanMappingService;
 import cz.muni.fi.pa165.dto.CreateRoleDTO;
@@ -10,7 +11,7 @@ import cz.muni.fi.pa165.dto.RoleDTO;
 import cz.muni.fi.pa165.entity.Role;
 import cz.muni.fi.pa165.services.RoleService;
 
-
+@Transactional
 public class RoleFacadeImpl implements RoleFacade {
     @Inject
     private RoleService roleService;
@@ -25,6 +26,8 @@ public class RoleFacadeImpl implements RoleFacade {
         return mappedRole.getId();
     }
 
+
+
     @Override
     public List<RoleDTO> getAllRole() {
         return mappingService.mapTo(roleService.findAll(), RoleDTO.class);
@@ -34,15 +37,24 @@ public class RoleFacadeImpl implements RoleFacade {
     public RoleDTO getRoleById(Long id) {
         return mappingService.mapTo(roleService.findById(id), RoleDTO.class);
     }
-/*
+
     @Override
     public RoleDTO getRoleByName(String name) {
         return mappingService.mapTo(roleService.findByName(name), RoleDTO.class);
+    }
+/*
+    @Override
+    public void removeRole(Long id) {
+        roleService.remove(mappingService.mapTo(roleService.findById(id), RoleDTO.class));
+
+
     }*/
 
     @Override
-    public void removeRole(RoleDTO role) {
-        roleService.remove(mappingService.mapTo(role, Role.class));
+    public void removeRole(Long id) {
+        roleService.remove(roleService.findById(id));
+
+
     }
 
     @Override

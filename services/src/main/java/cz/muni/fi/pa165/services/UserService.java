@@ -9,6 +9,7 @@ public interface UserService {
     public Users findById(Long id);
     public List<Users> findAll();
     public Users findByName(String name);
+    public Users findByEmail(String email);
     public void remove(Users user);
     public void update(Users user);
 }
