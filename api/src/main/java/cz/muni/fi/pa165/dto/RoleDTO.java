@@ -34,7 +34,7 @@ public class RoleDTO {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(name,description);
     }
 
     @Override
@@ -45,6 +45,9 @@ public class RoleDTO {
         if (obj instanceof RoleDTO) {
             RoleDTO other = (RoleDTO) obj;
             if (!Objects.equals(name, other.getName())) {
+                return false;
+            }
+            if (!Objects.equals(description other.getDescription())) {
                 return false;
             }
 

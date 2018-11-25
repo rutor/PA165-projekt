@@ -72,7 +72,7 @@ public class CreateUserDTO {
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName ,email,createdAt,roleId);
+        return Objects.hash(firstName, lastName ,password,email,createdAt);
     }
 
     @Override
@@ -94,7 +94,7 @@ public class CreateUserDTO {
             if (!Objects.equals(createdAt, other.getCreatedAt())) {
                 return false;
             }
-            if (!Objects.equals(roleId, other.getRoleId())) {
+            if (!Objects.equals(password, other.getPassword())) {
                 return false;
             }
 

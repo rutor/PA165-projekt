@@ -83,7 +83,7 @@ public class UserDTO {
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName ,email,createdAt,role);
+        return Objects.hash(firstName, lastName ,password,email,createdAt,updatedAt,role);
     }
 
     @Override
@@ -99,6 +99,9 @@ public class UserDTO {
             if (!Objects.equals(lastName, other.getLastName())) {
                 return false;
             }
+            if (!Objects.equals(password, other.getPassword())) {
+                return false;
+            }
             if (!Objects.equals(email, other.getEmail())) {
                 return false;
             }
@@ -106,6 +109,9 @@ public class UserDTO {
                 return false;
             }
             if (!Objects.equals(role, other.getRole())) {
+                return false;
+            }
+            if (!Objects.equals(updatedAt, other.updatedAt())) {
                 return false;
             }
 
