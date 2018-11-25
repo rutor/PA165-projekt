@@ -36,4 +36,8 @@ public class RoleDaoImpl implements RoleDao {
     @Override
     public void update(Role role) { em.merge(role); }
 
+    @Override
+    public Role findByName(String name) {
+        return em.createQuery("select u from Role where name = :name", Role.class).setParameter("name",  name).getSingleResult();
+    }
 }
