@@ -36,6 +36,7 @@ public class CreateRoleDTO {
         if (this == obj) {
             return true;
         }
+
         if (obj instanceof CreateRoleDTO) {
             CreateRoleDTO other = (CreateRoleDTO) obj;
             if (!Objects.equals(name, other.getName())) {
