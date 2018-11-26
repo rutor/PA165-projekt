@@ -11,7 +11,7 @@ public interface BookingService {
 
     Booking getById(Long id);
 
-    void create(Booking booking);
+    Long create(Booking booking);
 
     Ticket pay(Booking booking);
 }
