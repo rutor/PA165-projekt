@@ -5,6 +5,8 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
+import org.springframework.stereotype.Service;
+
 import cz.muni.fi.pa165.services.BeanMappingService;
 import cz.muni.fi.pa165.dto.CreateGenreDTO;
 import cz.muni.fi.pa165.dto.GenreDTO;
@@ -15,6 +17,7 @@ import cz.muni.fi.pa165.services.GenreService;
  * Implementation of the genre facade.
  * @author tyrylu
  */
+@Service
 @Transactional
 public class GenreFacadeImpl implements GenreFacade {
 	@Inject
