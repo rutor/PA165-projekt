@@ -8,10 +8,14 @@ import cz.muni.fi.pa165.entity.Booking;
 import cz.muni.fi.pa165.entity.Ticket;
 import cz.muni.fi.pa165.services.BeanMappingService;
 import cz.muni.fi.pa165.services.BookingService;
+import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Service
+@Transactional
 public class BookingFacadeImpl implements BookingFacade{
 
     @Inject
