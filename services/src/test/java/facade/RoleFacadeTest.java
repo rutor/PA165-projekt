@@ -122,4 +122,5 @@ public class RoleFacadeTest extends AbstractTestNGSpringContextTests {
         assertEquals(entity.getName(), dto.getName());
         assertEquals(entity.getDescription(), dto.getDescription());
     }
+
 }
