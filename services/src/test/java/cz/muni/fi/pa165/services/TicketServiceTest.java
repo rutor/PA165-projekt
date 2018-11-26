@@ -69,7 +69,7 @@ public class TicketServiceTest extends AbstractTestNGSpringContextTests {
     @Test
     public void createTest() {
         doAnswer((Answer) invocation -> {invocation.getArgumentAt(0, Ticket.class).setId(10l);return null;})
-                .when(ticketDao).create(ticket1);
+                .when(ticketDao).create(any(Ticket.class));
         assertEquals(Long.valueOf(10), ticketService.create(ticket1));
         verify(ticketDao).create(ticket1);
     }
