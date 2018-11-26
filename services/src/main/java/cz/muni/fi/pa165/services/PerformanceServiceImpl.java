@@ -6,11 +6,13 @@ import cz.muni.fi.pa165.entity.Performance;
 import cz.muni.fi.pa165.entity.Show;
 import java.util.List;
 import javax.inject.Inject;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author xtrnkal
  */
+@Service
 public class PerformanceServiceImpl implements PerformanceService {
 
     @Inject

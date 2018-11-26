@@ -11,11 +11,15 @@ import cz.muni.fi.pa165.entity.Performance;
 import cz.muni.fi.pa165.services.BeanMappingService;
 import cz.muni.fi.pa165.services.HallService;
 import cz.muni.fi.pa165.services.PerformanceService;
+import org.springframework.stereotype.Service;
+import javax.transaction.Transactional;
 
 /**
  *
  * @author xtrnkal
  */
+@Service
+@Transactional
 public class PerformanceFacadeImpl implements PerformanceFacade {
 
     @Inject
@@ -46,8 +50,8 @@ public class PerformanceFacadeImpl implements PerformanceFacade {
     }
 
     @Override
-    public void removePerformance(PerformanceDTO performance) {
-        performanceService.remove(mappingService.mapTo(performance, Performance.class));
+    public void removePerformance(Long id) {
+        performanceService.remove(performanceService.findById(id));
     }
 
     @Override

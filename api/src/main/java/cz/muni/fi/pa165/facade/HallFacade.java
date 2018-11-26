@@ -15,7 +15,7 @@ public interface HallFacade {
 
     public HallDTO getHallById(Long id);
 
-    public void removeHall(HallDTO hall);
+    public void removeHall(Long id);
 
     public void updateHall(HallDTO hall);
 }

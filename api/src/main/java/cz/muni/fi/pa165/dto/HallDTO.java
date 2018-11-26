@@ -43,7 +43,7 @@ public class HallDTO {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, capacity);
+        return Objects.hash(name, capacity, address);
     }
 
     @Override
@@ -55,6 +55,6 @@ public class HallDTO {
             return false;
         }
         HallDTO other = (HallDTO) obj;
-        return Objects.equals(name, other.getName()) && Objects.equals(capacity, other.getCapacity());
+        return Objects.equals(name, other.getName()) && Objects.equals(capacity, other.getCapacity()) && Objects.equals(address, other.getAddress());
     }
 }

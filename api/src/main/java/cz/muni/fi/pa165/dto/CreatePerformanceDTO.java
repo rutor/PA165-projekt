@@ -9,14 +9,8 @@ import javax.validation.constraints.NotNull;
  * @author xtrnkal
  */
 public class CreatePerformanceDTO {
-
-    @NotNull
     private LocalDate startDate;
-
-    @NotNull
     private Long showId;
-
-    @NotNull
     private Long hallId;
 
     public LocalDate getStartDate() {

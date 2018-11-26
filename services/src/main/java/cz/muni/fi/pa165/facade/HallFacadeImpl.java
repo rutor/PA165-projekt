@@ -6,11 +6,15 @@ import cz.muni.fi.pa165.services.BeanMappingService;
 import cz.muni.fi.pa165.services.HallService;
 import java.util.List;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author xtrnkal
  */
+@Service
+@Transactional
 public class HallFacadeImpl implements HallFacade {
 
     @Inject
@@ -37,8 +41,8 @@ public class HallFacadeImpl implements HallFacade {
     }
 
     @Override
-    public void removeHall(HallDTO hall) {
-        hallService.remove(mappingService.mapTo(hall, Hall.class));
+    public void removeHall(Long id) {
+        hallService.remove(hallService.findById(id));
     }
 
     @Override
