@@ -3,6 +3,7 @@ package cz.muni.fi.pa165;
 import cz.muni.fi.pa165.dao.*;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.*;
+import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.instrument.classloading.*;
 import org.springframework.jdbc.datasource.embedded.*;
@@ -54,4 +55,13 @@ public class ApplicationContext {
         EmbeddedDatabase db = builder.setType(EmbeddedDatabaseType.DERBY).build();
         return db;
     }
+    /**
+     * Enables automatic translation of exceptions to DataAccessExceptions.
+     */
+    @Bean
+    public PersistenceExceptionTranslationPostProcessor postProcessor() {
+        return new PersistenceExceptionTranslationPostProcessor();
+    }
+
 }
+
