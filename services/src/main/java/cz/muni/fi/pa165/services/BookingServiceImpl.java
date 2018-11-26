@@ -14,10 +14,10 @@ import java.util.List;
 public class BookingServiceImpl implements BookingService{
 
     @Inject
-    BookingDao bookingDao;
+    private BookingDao bookingDao;
 
     @Inject
-    TicketDao ticketDao;
+    private TicketService ticketService;
 
     @Override
     public List<Booking> getAll() {
@@ -30,16 +30,17 @@ public class BookingServiceImpl implements BookingService{
     }
 
     @Override
-    public void create(Booking booking) {
+    public Long create(Booking booking) {
         bookingDao.create(booking);
+        return booking.getId();
     }
 
     @Override
     public Ticket pay(Booking booking) {
         Ticket ticket = Ticket.createFromBooking(booking);
+        ticketService.create(ticket);
         booking.setPaymentStatus(PaymentStatus.PAYED);
         bookingDao.update(booking);
-        ticketDao.create(ticket);
         return ticket;
     }
 }
