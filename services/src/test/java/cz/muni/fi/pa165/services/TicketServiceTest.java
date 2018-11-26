@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.stubbing.Answer;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -65,11 +66,11 @@ public class TicketServiceTest extends AbstractTestNGSpringContextTests {
         ticket2 = createTicket(performance2, user);
     }
 
-    //@Test
-    // FIXME Tomas milestone2 Ticket with null ID fails test in service layer
+    @Test
     public void createTest() {
-        ticket1.setId(null);
-        assertEquals(Long.valueOf(1), ticketService.create(ticket1));
+        doAnswer((Answer) invocation -> {invocation.getArgumentAt(0, Ticket.class).setId(10l);return null;})
+                .when(ticketDao).create(ticket1);
+        assertEquals(Long.valueOf(10), ticketService.create(ticket1));
         verify(ticketDao).create(ticket1);
     }
 

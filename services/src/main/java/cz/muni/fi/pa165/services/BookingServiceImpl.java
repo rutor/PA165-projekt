@@ -40,6 +40,7 @@ public class BookingServiceImpl implements BookingService{
         Ticket ticket = Ticket.createFromBooking(booking);
         ticketService.create(ticket);
         booking.setPaymentStatus(PaymentStatus.PAYED);
+        booking.setTicket(ticket);
         bookingDao.update(booking);
         return ticket;
     }
