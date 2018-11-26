@@ -46,13 +46,13 @@ public class UserDaoImpl implements UserDao {
     public void update(Users user) {  em.merge(user);  }
 
     @Override
-    public Users findByName(String name) {
-        return em.createQuery("select u from Users where name = :name", Users.class).setParameter("name",  name).getSingleResult();
+    public Users findByName(String lastName) {
+        return em.createQuery("select u from Users where lastName = :lastName", Users.class).setParameter("lastName",  lastName).getSingleResult();
     }
 
     @Override
     public Users findByEmail(String email) {
-        return em.createQuery("select u from Users where email = :eamil", Users.class).setParameter("email",  email).getSingleResult();
+        return em.createQuery("select u from Users where email = :email", Users.class).setParameter("email",  email).getSingleResult();
     }
 
 
