@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import org.springframework.stereotype.Service;
 
 import cz.muni.fi.pa165.services.BeanMappingService;
 import cz.muni.fi.pa165.dto.CreateUserDTO;
@@ -13,6 +14,7 @@ import cz.muni.fi.pa165.services.RoleService;
 
 import cz.muni.fi.pa165.services.UserService;
 
+@Service
 @Transactional
 public class UserFacadeImpl implements UserFacade {
     @Inject
