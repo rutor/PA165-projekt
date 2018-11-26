@@ -109,6 +109,5 @@ public class UserFacadeTest extends AbstractTestNGSpringContextTests {
         user.setPassword(Password);
         userService.create(user);
         return user;
-
     }
 }
