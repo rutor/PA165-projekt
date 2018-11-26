@@ -93,4 +93,5 @@ public class RoleServiceTest extends AbstractTestNGSpringContextTests {
         when(dao.findByName("Admin1")).thenReturn(admin);
         assertEquals(service.findByName("Admin1"), admin);
     }
+
 }

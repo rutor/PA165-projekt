@@ -114,7 +114,6 @@ public class UserServiceTest extends AbstractTestNGSpringContextTests {
         verify(dao).update(user_new_customer);
     }
 
-
     @Test
     public void findByName() {
        when(dao.findByName("Rudolf")).thenReturn(user_admin);
