@@ -5,6 +5,8 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
+import org.springframework.stereotype.Service;
+
 import cz.muni.fi.pa165.dto.CreateShowDTO;
 import cz.muni.fi.pa165.dto.ShowDTO;
 import cz.muni.fi.pa165.entity.Genre;
@@ -16,6 +18,7 @@ import cz.muni.fi.pa165.services.ShowService;
  * Implementation of the show facade.
  * @author tyrylu
   */
+@Service
 @Transactional
 public class ShowFacadeImpl implements ShowFacade {
 
