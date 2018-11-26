@@ -18,4 +18,6 @@ public interface HallFacade {
     public void removeHall(Long id);
 
     public void updateHall(HallDTO hall);
+    
+    public HallDTO getHallByName(String name);
 }

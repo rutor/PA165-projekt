@@ -18,4 +18,6 @@ public interface HallService {
     public void remove(Hall hall);
 
     public void update(Hall hall);
+    
+    public Hall findByName(String name);
 }

@@ -49,4 +49,9 @@ public class HallFacadeImpl implements HallFacade {
     public void updateHall(HallDTO hall) {
         hallService.update(mappingService.mapTo(hall, Hall.class));
     }
+    
+    @Override
+    public HallDTO getHallByName(String name) {
+        return mappingService.mapTo(hallService.findByName(name), HallDTO.class);
+    }
 }
