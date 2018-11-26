@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.services;
 
 import cz.muni.fi.pa165.entity.*;
+import cz.muni.fi.pa165.enums.PaymentStatus;
 import cz.muni.fi.pa165.enums.TicketStatus;
 
 import javax.validation.constraints.NotNull;
@@ -17,6 +18,21 @@ public class TestUtils {
         ticket.setCreatedAt(LocalDate.now());
         ticket.setUpdatedAt(LocalDate.now());
         return ticket;
+    }
+
+    public static Booking createBooking(@NotNull Users user, @NotNull String description,
+                                        @NotNull PaymentStatus paymentStatus, @NotNull Performance performance,
+                                        @NotNull LocalDate createdaAt, @NotNull LocalDate updatedAt) {
+        Booking booking = new Booking();
+        booking.setId((long)Math.random()*1000);
+        booking.setUser(user);
+        booking.setDescription(description);
+        booking.setPaymentStatus(paymentStatus);
+        booking.setPerformance(performance);
+        booking.setCreatedAt(createdaAt);
+        booking.setUpdatedAt(updatedAt);
+        booking.setTicket(null);
+        return booking;
     }
 
     public static Performance createPerformance(@NotNull String description, @NotNull Float price, @NotNull Hall hall, @NotNull Show show, @NotNull LocalDate startDate) {
