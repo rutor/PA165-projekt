@@ -13,10 +13,6 @@ import cz.muni.fi.pa165.services.TestUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import static org.mockito.Mockito.*;
 import org.springframework.test.context.*;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -41,8 +37,7 @@ public class GenreFacadeTest extends AbstractTestNGSpringContextTests {
 private GenreService service;
         
         private CreateGenreDTO newOpera;
-        private CreateGenreDTO newComedy;
-    public CreateGenreDTO getCreateGenreDTO(String name, String description) {
+        public CreateGenreDTO getCreateGenreDTO(String name, String description) {
         CreateGenreDTO cg = new CreateGenreDTO();
         cg.setName(name);
         cg.setDescription(description);
@@ -52,7 +47,7 @@ private GenreService service;
     @Before
     public void setup() {
     	newOpera = getCreateGenreDTO("Opera", "V�ak v�te.");
-    	newComedy = getCreateGenreDTO("Komedie", "Byla, je a bude");
+    	getCreateGenreDTO("Komedie", "Byla, je a bude");
     }
     @Test
     public void testCreateGenre() {

@@ -14,13 +14,8 @@ import cz.muni.fi.pa165.services.GenreService;
 import cz.muni.fi.pa165.services.ShowService;
 import cz.muni.fi.pa165.services.TestUtils;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import static org.mockito.Mockito.*;
 import org.springframework.test.context.*;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -29,7 +24,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;
