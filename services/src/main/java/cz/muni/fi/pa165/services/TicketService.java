@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.UUID;
 
 public interface TicketService {
+    Long create(Ticket ticket);
+
     List<Ticket> getAll();
 
     Ticket getById(Long id);

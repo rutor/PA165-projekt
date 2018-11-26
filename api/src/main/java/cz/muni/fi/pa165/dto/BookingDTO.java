@@ -21,10 +21,10 @@ public class BookingDTO {
 
     // FIXME Tomas milestone2 Uncomment when DTO classes are in repository
     /*@Getter @Setter
-    private PerformanceDTO performance;
+    private PerformanceDTO performance;*/
 
     @Getter @Setter
-    private UsersDTO user;*/
+    private UserDTO user;
 
     @Getter @Setter
     private LocalDate createdAt;
