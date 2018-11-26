@@ -1,0 +1,125 @@
+package cz.muni.fi.pa165.facade;
+
+import cz.muni.fi.pa165.ApplicationContext;
+import cz.muni.fi.pa165.ServicesContext;
+import cz.muni.fi.pa165.dao.RoleDao;
+import cz.muni.fi.pa165.dto.CreateRoleDTO;
+import cz.muni.fi.pa165.dto.RoleDTO;
+import cz.muni.fi.pa165.entity.Role;
+import cz.muni.fi.pa165.facade.RoleFacade;
+import cz.muni.fi.pa165.services.RoleService;
+import cz.muni.fi.pa165.services.TestUtils;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import static org.mockito.Mockito.*;
+import org.springframework.test.context.*;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
+import org.springframework.transaction.annotation.Transactional;
+import javax.inject.Inject;
+import java.util.Arrays;
+import java.util.List;
+import static org.junit.Assert.*;
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = ServicesContext.class)
+@TestExecutionListeners(TransactionalTestExecutionListener.class)
+@Transactional
+public class RoleFacadeTest extends AbstractTestNGSpringContextTests {
+    @Inject
+    private RoleFacade facade;
+    @Inject
+    private RoleService service;
+
+    private CreateRoleDTO admin;
+    private CreateRoleDTO oldCustomer;
+    private CreateRoleDTO newCustomer;
+
+
+    public CreateRoleDTO getCreateRoleDTO(String name, String description) {
+        CreateRoleDTO createRole = new CreateRoleDTO();
+        createRole.setName(name);
+        createRole.setDescription(description);
+        return createRole;
+    }
+    @Before
+    public void setup() {
+        admin = getCreateRoleDTO( "Admin1", "Hlavny admin");
+        oldCustomer =getCreateRoleDTO("Customer", "Zakaznik");
+        newCustomer = getCreateRoleDTO( "Customer", "Zakaznik dnes registrovany");
+
+    }
+    @Test
+    public void testCreateGenre() {
+        Long id = facade.createRole(admin);
+        assertNotNull(id);
+        Role adminFromDb = service.findById(id);
+        assertEquals(admin.getName(), adminFromDb.getName());
+        assertEquals(admin.getDescription(), adminFromDb.getDescription());
+
+    }
+
+    @Test
+    public void testGetById() {
+        Role test = TestUtils.createRole("Admin",  "administrator");
+        test.setId(null);
+        Long id = service.create(test);
+        RoleDTO roleFromDb = facade.getRoleById(id);
+        assertDTOAndEntityEquals(roleFromDb, test);
+    }
+    @Test
+    public void testGetAll() {
+        Role testAll = TestUtils.createRole("Admin",  "administrator");
+        testAll.setId(null);
+        service.create(testAll);
+        Role test2 = TestUtils.createRole("Customer",  "customer");
+        test2.setId(null);
+        service.create(test2);
+        List<RoleDTO> genres = facade.getAllRole();
+        assertEquals(2, genres.size());
+        assertDTOAndEntityEquals(genres.get(0), testAll);
+        assertDTOAndEntityEquals(genres.get(1), test2);
+    }
+    @Test
+    public void testGetByName() {
+        Role test = TestUtils.createRole("Admin",  "administrator");
+        test.setId(null);
+        service.create(test);
+        RoleDTO testFromDb = facade.getRoleByName(test.getName());
+        assertDTOAndEntityEquals(testFromDb, test);
+    }
+    @Test
+    public void testRemove() {
+        Role test1 = TestUtils.createRole("Admin",  "administrator");
+        test1.setId(null);
+        service.create(test1);
+        Role test2 = TestUtils.createRole("Customer",  "old_customer");
+        test2.setId(null);
+        service.create(test2);
+        facade.removeRole(test2.getId());
+        List<Role> roles = service.findAll();
+        assertEquals(roles.size(), 1);
+        assertEquals(test1, roles.get(0));
+    }
+    @Test
+    public void testUpdate() {
+        Role test2 = TestUtils.createRole("Customer",  "old_customer");
+        test2.setId(null);
+        service.create(test2);
+        RoleDTO newTest1 = new RoleDTO();
+        newTest1.setName(test2.getName());
+        newTest1.setId(test2.getId());
+        newTest1.setDescription("Admin");
+        facade.updateRole(newTest1);
+        assertDTOAndEntityEquals(newTest1, service.findById(newTest1.getId()));
+    }
+    private void assertDTOAndEntityEquals(RoleDTO dto, Role entity) {
+        assertEquals(entity.getId(), dto.getId());
+        assertEquals(entity.getName(), dto.getName());
+        assertEquals(entity.getDescription(), dto.getDescription());
+    }
+}
