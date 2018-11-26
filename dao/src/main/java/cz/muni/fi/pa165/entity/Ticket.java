@@ -30,6 +30,8 @@ public class Ticket {
     private UUID barcode;
 
     @Getter @Setter
+    @NotNull
+    @Column(nullable = false)
     private TicketStatus status;
 
     @Getter @Setter
@@ -56,9 +58,10 @@ public class Ticket {
 
     /** Persistence constructor */
     public Ticket () {
-        // Common constructor
         setCreatedAt(LocalDate.now());
         setUpdatedAt(LocalDate.now());
+        setBarcode(UUID.randomUUID());
+        setStatus(TicketStatus.NOT_USED);
     }
 
     public Ticket (Long id) {
