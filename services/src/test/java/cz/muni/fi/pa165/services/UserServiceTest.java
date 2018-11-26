@@ -18,12 +18,16 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lambdaworks.crypto.SCryptUtil;
+
 import javax.inject.Inject;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.time.LocalDate;
+
+import cz.muni.fi.pa165.entity.Users;
 
 import static org.junit.Assert.*;
 
@@ -42,6 +46,7 @@ public class UserServiceTest extends AbstractTestNGSpringContextTests {
     private Role oldCustomer;
     private Role newCustomer;
     private Users userAdmin;
+    private Users userAdmin1;
     private Users userOldCustomer;
     private Users userNewCustomer;
 
@@ -52,6 +57,11 @@ public class UserServiceTest extends AbstractTestNGSpringContextTests {
         role.setDescription(description);
         return role;
     }
+/*
+    public boolean validatePassword(Users user){
+        Users userFromDao=dao.findById(user.getId());
+        return SCryptUtil.check(userFromDao.getPassword(), user.getPassword());
+    }*/
 
     private Users createUser(Long id, String firstName, String lastName,String email, String password, LocalDate createdAt, LocalDate updatedAt,Role role) {
         Users user = new Users();
@@ -74,6 +84,7 @@ public class UserServiceTest extends AbstractTestNGSpringContextTests {
         newCustomer = createRole(3l, "Customer", "Zakaznik dnes registrovany");
 
         userAdmin = createUser(1l,"Tomas","Rudolf","tomas@gmail.com","admin123",LocalDate.now(),LocalDate.now(),admin);
+        userAdmin1 = createUser(1l,"Tomas","Rudolf","tomas@gmail.com","admin321",LocalDate.now(),LocalDate.now(),admin);
         userOldCustomer =createUser(2l,"Robert","Dudas","robo@gmail.com","robo123",LocalDate.now().minusYears( 5 ),LocalDate.now(), oldCustomer);
         userNewCustomer = createUser(3l,"Lukas","Tyrychtr","lukas@gmail.com","lukas123",LocalDate.now().minusDays( 1 ),LocalDate.now(), newCustomer);
 
@@ -124,7 +135,19 @@ public class UserServiceTest extends AbstractTestNGSpringContextTests {
     @Test
     public void findByEmail() {
         when(dao.findByEmail("tomas@gmail.com")).thenReturn(userAdmin);
-        assertEquals(userAdmin,service.findByEmail("tomas@gmail.com"));
+        assertEquals(userAdmin, service.findByEmail("tomas@gmail.com"));
 
     }
+
+    @Test
+    public void testValidatePassword() {
+        when(dao.findById(1l)).thenReturn(userAdmin);
+        Users userTest = service.findById(1l);
+        //FIXME the same user.getPassword(),userFromDao.getPassword()
+         //  assertTrue(service.validatePassword(userTest));
+        //  "$s0$41010$Gxbn9LQ4I+fZ/kt0glnZgQ==$X+dRy9oLJz1JaNm1xscUl7EmUFHIILT1ktYB5DQ3fZs="=====hashPassword
+        userTest.setPassword("$s0$41010$Gxbn9LQ4I+fZ/kt0glnZgQ==$X+dRy9oLJz1JaNm1xscUl7EmUFHIILT1ktYB5DQ3fZs=");
+        assertFalse(service.validatePassword(userTest));
+    }
+
 }

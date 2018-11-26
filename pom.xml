@@ -153,11 +153,11 @@
 		  <scope>test</scope>
 	  </dependency>
 
-	  <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-crypto -->
+	  <!-- security-SCrypt -->
 	  <dependency>
-		  <groupId>org.springframework.security</groupId>
-		  <artifactId>spring-security-crypto</artifactId>
-		  <version>3.1.0.RELEASE</version>
+		  <groupId>com.lambdaworks</groupId>
+		  <artifactId>scrypt</artifactId>
+		  <version>1.4.0</version>
 	  </dependency>
 
 
