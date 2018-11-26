@@ -41,5 +41,9 @@ public class HallServiceImpl implements HallService {
     public void update(Hall hall) {
         hallDao.update(hall);
     }
-
+    
+    @Override
+    public Hall findByName(String name) {
+        return hallDao.findByName(name);
+    }
 }

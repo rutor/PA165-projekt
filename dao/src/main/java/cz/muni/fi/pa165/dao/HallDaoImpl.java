@@ -38,4 +38,7 @@ public class HallDaoImpl implements HallDao {
         return em.find(Hall.class, id);
     }
     
+    public Hall findByName(String name) {
+        return em.createQuery("select h from Hall h where name = :name", Hall.class).setParameter("name",  name).getSingleResult();
+    }
 }

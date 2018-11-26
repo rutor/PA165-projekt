@@ -20,4 +20,5 @@ public interface HallDao {
 
     public Hall findById(Long id);
     
+    public Hall findByName(String name);
 }
