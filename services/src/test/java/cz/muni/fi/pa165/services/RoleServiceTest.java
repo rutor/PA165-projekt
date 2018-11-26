@@ -37,8 +37,8 @@ public class RoleServiceTest extends AbstractTestNGSpringContextTests {
     private RoleService service;
 
     private Role admin;
-    private Role old_customer;
-    private Role new_customer;
+    private Role oldCustomer;
+    private Role newCustomer;
 
     public Role createRole(Long id, String name, String description) {
         Role role = new Role();
@@ -52,8 +52,8 @@ public class RoleServiceTest extends AbstractTestNGSpringContextTests {
     public void setup() {
         MockitoAnnotations.initMocks(this);
         admin = createRole(1l, "Admin1", "Hlavny admin");
-        old_customer = createRole(2l, "Customer", "Zakaznik");
-        new_customer = createRole(3l, "Customer", "Zakaznik dnes registrovany");
+        oldCustomer = createRole(2l, "Customer", "Zakaznik");
+        newCustomer = createRole(3l, "Customer", "Zakaznik dnes registrovany");
     }
 
     @Test
@@ -64,7 +64,7 @@ public class RoleServiceTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void testFindAll() {
-        List<Role> roles = Arrays.asList(admin, old_customer,new_customer);
+        List<Role> roles = Arrays.asList(admin, oldCustomer, newCustomer);
         when(dao.findAll()).thenReturn(roles);
         List<Role> result = service.findAll();
         assertEquals(result.size(), 3);
@@ -79,8 +79,8 @@ public class RoleServiceTest extends AbstractTestNGSpringContextTests {
     }
     @Test
     public void testRemove() {
-        service.remove(old_customer);
-        verify(dao).remove(old_customer);
+        service.remove(oldCustomer);
+        verify(dao).remove(oldCustomer);
     }
     @Test
     public void testUpdate() {

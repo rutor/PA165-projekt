@@ -39,11 +39,11 @@ public class UserServiceTest extends AbstractTestNGSpringContextTests {
     private UserService service;
 
     private Role admin;
-    private Role old_customer;
-    private Role new_customer;
-    private Users user_admin;
-    private Users user_old_customer;
-    private Users user_new_customer;
+    private Role oldCustomer;
+    private Role newCustomer;
+    private Users userAdmin;
+    private Users userOldCustomer;
+    private Users userNewCustomer;
 
     public Role createRole(Long id, String name, String description) {
         Role role = new Role();
@@ -70,60 +70,61 @@ public class UserServiceTest extends AbstractTestNGSpringContextTests {
     public void setup() {
         MockitoAnnotations.initMocks(this);
         admin = createRole(1l, "Admin1", "Hlavny admin");
-        old_customer = createRole(2l, "Customer", "Zakaznik");
-        new_customer = createRole(3l, "Customer", "Zakaznik dnes registrovany");
+        oldCustomer = createRole(2l, "Customer", "Zakaznik");
+        newCustomer = createRole(3l, "Customer", "Zakaznik dnes registrovany");
 
-        user_admin = createUser(1l,"Tomas","Rudolf","tomas@gmail.com","admin123",LocalDate.now(),LocalDate.now(),admin);
-        user_old_customer =createUser(2l,"Robert","Dudas","robo@gmail.com","robo123",LocalDate.now().minusYears( 5 ),LocalDate.now(),old_customer);
-        user_new_customer = createUser(3l,"Lukas","Tyrychtr","lukas@gmail.com","lukas123",LocalDate.now().minusDays( 1 ),LocalDate.now(),new_customer);
+        userAdmin = createUser(1l,"Tomas","Rudolf","tomas@gmail.com","admin123",LocalDate.now(),LocalDate.now(),admin);
+        userOldCustomer =createUser(2l,"Robert","Dudas","robo@gmail.com","robo123",LocalDate.now().minusYears( 5 ),LocalDate.now(), oldCustomer);
+        userNewCustomer = createUser(3l,"Lukas","Tyrychtr","lukas@gmail.com","lukas123",LocalDate.now().minusDays( 1 ),LocalDate.now(), newCustomer);
 
 
     }
 
     @Test
     public void testFindById() {
-        when(dao.findById(1l)).thenReturn(user_admin);
-        assertEquals(service.findById(1l), user_admin);
+        when(dao.findById(1l)).thenReturn(userAdmin);
+        assertEquals(service.findById(1l), userAdmin);
+
     }
 
     @Test
     public void testFindAll() {
-        when(dao.findAll()).thenReturn(Arrays.asList(user_admin,  user_old_customer,user_new_customer));
+        when(dao.findAll()).thenReturn(Arrays.asList(userAdmin, userOldCustomer, userNewCustomer));
         List<Users> result = service.findAll();
         assertEquals(result.size(), 3);
-        assertEquals(user_admin, result.get(0));
-        assertEquals(user_old_customer, result.get(1));
-        assertEquals(user_new_customer, result.get(2));
+        assertEquals(userAdmin, result.get(0));
+        assertEquals(userOldCustomer, result.get(1));
+        assertEquals(userNewCustomer, result.get(2));
     }
 
     @Test
     public void testCreate() {
-        assertEquals(service.create(user_admin), new Long(1));
-        verify(dao).create(user_admin);
+        assertEquals(service.create(userAdmin), new Long(1));
+        verify(dao).create(userAdmin);
     }
 
     @Test
     public void testRemove() {
-        service.remove(user_old_customer);
-        verify(dao).remove(user_old_customer);
+        service.remove(userOldCustomer);
+        verify(dao).remove(userOldCustomer);
     }
 
     @Test
     public void testUpdate() {
-        service.update(user_new_customer);
-        verify(dao).update(user_new_customer);
+        service.update(userNewCustomer);
+        verify(dao).update(userNewCustomer);
     }
 
     @Test
     public void findByName() {
-       when(dao.findByName("Rudolf")).thenReturn(user_admin);
-        assertEquals(service.findByName("Rudolf"), user_admin);
+        when(dao.findByName("Rudolf")).thenReturn(userAdmin);
+        assertEquals(service.findByName("Rudolf"), userAdmin);
     }
 
     @Test
     public void findByEmail() {
-        when(dao.findByEmail("tomas@gmail.com")).thenReturn(user_admin);
-        assertEquals(service.findByEmail("tomas@gmail.com"), user_admin);
+        when(dao.findByEmail("tomas@gmail.com")).thenReturn(userAdmin);
+        assertEquals(service.findByEmail("tomas@gmail.com"), userAdmin);
 
     }
 }
