@@ -83,7 +83,7 @@ public class UserServiceTest extends AbstractTestNGSpringContextTests {
     @Test
     public void testFindById() {
         when(dao.findById(1l)).thenReturn(userAdmin);
-        assertEquals(service.findById(1l), userAdmin);
+        assertEquals(userAdmin,service.findById(1l));
 
     }
 
@@ -118,13 +118,13 @@ public class UserServiceTest extends AbstractTestNGSpringContextTests {
     @Test
     public void findByName() {
         when(dao.findByName("Rudolf")).thenReturn(userAdmin);
-        assertEquals(service.findByName("Rudolf"), userAdmin);
+        assertEquals(userAdmin,service.findByName("Rudolf"));
     }
 
     @Test
     public void findByEmail() {
         when(dao.findByEmail("tomas@gmail.com")).thenReturn(userAdmin);
-        assertEquals(service.findByEmail("tomas@gmail.com"), userAdmin);
+        assertEquals(userAdmin,service.findByEmail("tomas@gmail.com"));
 
     }
 }

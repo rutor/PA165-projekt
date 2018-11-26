@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import org.springframework.stereotype.Service;
 
 import cz.muni.fi.pa165.services.BeanMappingService;
 import cz.muni.fi.pa165.dto.CreateRoleDTO;
@@ -11,6 +12,7 @@ import cz.muni.fi.pa165.dto.RoleDTO;
 import cz.muni.fi.pa165.entity.Role;
 import cz.muni.fi.pa165.services.RoleService;
 
+@Service
 @Transactional
 public class RoleFacadeImpl implements RoleFacade {
     @Inject
@@ -39,23 +41,11 @@ public class RoleFacadeImpl implements RoleFacade {
     }
 
     @Override
-    public RoleDTO getRoleByName(String name) {
-        return mappingService.mapTo(roleService.findByName(name), RoleDTO.class);
+    public RoleDTO getRoleByName(String name) { return mappingService.mapTo(roleService.findByName(name), RoleDTO.class);
     }
-/*
-    @Override
-    public void removeRole(Long id) {
-        roleService.remove(mappingService.mapTo(roleService.findById(id), RoleDTO.class));
-
-
-    }*/
 
     @Override
-    public void removeRole(Long id) {
-        roleService.remove(roleService.findById(id));
-
-
-    }
+    public void removeRole(Long id) { roleService.remove(roleService.findById(id));}
 
     @Override
     public void updateRole(RoleDTO role) {

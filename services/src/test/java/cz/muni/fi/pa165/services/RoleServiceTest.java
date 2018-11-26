@@ -59,7 +59,7 @@ public class RoleServiceTest extends AbstractTestNGSpringContextTests {
     @Test
     public void testFindById() {
         when(dao.findById(1l)).thenReturn(admin);
-        assertEquals(service.findById(1l), admin);
+        assertEquals(admin,service.findById(1l));
     }
 
     @Test
@@ -91,7 +91,7 @@ public class RoleServiceTest extends AbstractTestNGSpringContextTests {
     @Test
     public void testFindByName() {
         when(dao.findByName("Admin1")).thenReturn(admin);
-        assertEquals(service.findByName("Admin1"), admin);
+        assertEquals(admin,service.findByName("Admin1"));
     }
 
 }
