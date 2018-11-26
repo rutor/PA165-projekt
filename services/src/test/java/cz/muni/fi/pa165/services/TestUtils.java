@@ -21,6 +21,7 @@ public class TestUtils {
 
     public static Performance createPerformance(@NotNull String description, @NotNull Float price, @NotNull Hall hall, @NotNull Show show, @NotNull LocalDate startDate) {
         Performance performance = new Performance();
+        performance.setId((long)Math.random()*1000);
         performance.setDescription(description);
         performance.setPrice(price);
         performance.setHall(hall);
@@ -31,6 +32,7 @@ public class TestUtils {
 
     public static Hall createHall(@NotNull String name, @NotNull String address, @NotNull Long capacity) {
         Hall hall = new Hall();
+        hall.setId((long)Math.random()*1000);
         hall.setName(name);
         hall.setAddress(address);
         hall.setCapacity(capacity);
@@ -56,6 +58,7 @@ public class TestUtils {
 
     public static Users createUser(@NotNull String firstName, @NotNull String lastName, @NotNull String email, @NotNull String password, @NotNull Role role, @NotNull LocalDate createdAt, @NotNull LocalDate updatedAt) {
         Users user = new Users();
+        user.setId((long)Math.random()*1000);
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setEmail(email);
