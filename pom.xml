@@ -172,6 +172,7 @@
 		    <version>2.19.1</version>
 		    <configuration>
 	          <useSystemClassLoader>false</useSystemClassLoader>
+	          <runOrder>alphabetical</runOrder>
 	        </configuration>
 		    <dependencies>
 		        <dependency>

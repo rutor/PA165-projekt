@@ -33,96 +33,99 @@ import static org.junit.Assert.*;
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
 public class GenreFacadeTest extends AbstractTestNGSpringContextTests {
-        @Inject
-    private GenreFacade facade;
-@Inject
-private GenreService service;
-        
-@PersistenceContext
-private EntityManager em;
-private CreateGenreDTO newOpera;
-        public CreateGenreDTO getCreateGenreDTO(String name, String description) {
-        CreateGenreDTO cg = new CreateGenreDTO();
-        cg.setName(name);
-        cg.setDescription(description);
-        return cg;
-    }
+	@Inject
+	private GenreFacade facade;
+	@Inject
+	private GenreService service;
 
-    @Before
-    public void setup() {
-    	newOpera = getCreateGenreDTO("Opera", "Však víte.");
-    }
-    @Test
-    public void testCreateGenre() {
-    	Long id = facade.createGenre(newOpera);
-    	System.out.println(service.findById(1l));
-    	System.out.println(id);
-    	assertNotNull(id);
-    	Genre operaFromDb = service.findById(id);
-assertEquals(newOpera.getName(), operaFromDb.getName());
-assertEquals(newOpera.getDescription(), operaFromDb.getDescription());
-    }
-    
-    @Test
-    public void testGetById() {
-    	Genre test = TestUtils.createGenre("This is",  "a test");
-    	test.setId(null);
-    	Long id = service.create(test);
-    	GenreDTO genreFromDb = facade.getGenreById(id);
-assertDTOAndEntityEquals(genreFromDb, test);
-    }
-@Test
-public void testGetAll() {
-    	Genre test1 = TestUtils.createGenre("This is",  "a test");
-    	test1.setId(null);
-service.create(test1);
-    	Genre test2 = TestUtils.createGenre("This is also", "a test");
-    	test2.setId(null);
-service.create(test2);
-List<GenreDTO> genres = facade.getAllGenres();
-assertEquals(2, genres.size());
-assertDTOAndEntityEquals(genres.get(0), test1);
-assertDTOAndEntityEquals(genres.get(1), test2);
-}
-@Test
-public void testGetByName() {
-Genre test = TestUtils.createGenre("opera", "Dávná");
-test.setId(null);
-service.create(test);
-GenreDTO testFromDb = facade.getGenreByName(test.getName());
-assertDTOAndEntityEquals(testFromDb, test);
-}
+	@PersistenceContext
+	private EntityManager em;
+	private CreateGenreDTO newOpera;
 
-@Test
-public void testRemove() {
-    	Genre test1 = TestUtils.createGenre("This is",  "a test");
-    	test1.setId(null);
-service.create(test1);
-    	Genre test2 = TestUtils.createGenre("This is also", "a test");
-    	test2.setId(null);
-service.create(test2);
-facade.removeGenre(test2.getId());
-List<Genre> genres = service.findAll();
-assertEquals(genres.size(), 1);
-assertEquals(test1, genres.get(0));
-}
+	public CreateGenreDTO getCreateGenreDTO(String name, String description) {
+		CreateGenreDTO cg = new CreateGenreDTO();
+		cg.setName(name);
+		cg.setDescription(description);
+		return cg;
+	}
 
-@Test
-public void testUpdate() {
-    	Genre test1 = TestUtils.createGenre("This is",  "a test");
-    	test1.setId(null);
-service.create(test1);
-GenreDTO newTest1 = new GenreDTO();
-newTest1.setName(test1.getName());
-newTest1.setId(test1.getId());
-newTest1.setDescription("We're describing you differently.");
-facade.updateGenre(newTest1);
-assertDTOAndEntityEquals(newTest1, service.findById(newTest1.getId()));
-}
-private void assertDTOAndEntityEquals(GenreDTO dto, Genre entity) {
-assertEquals(entity.getId(), dto.getId());
-assertEquals(entity.getName(), dto.getName());
-assertEquals(entity.getDescription(), dto.getDescription());
-}
+	@Before
+	public void setup() {
+		newOpera = getCreateGenreDTO("Opera", "Však víte.");
+	}
+
+	@Test
+	public void testCreateGenre() {
+		Long id = facade.createGenre(newOpera);
+		assertNotNull(id);
+		Genre operaFromDb = service.findById(id);
+		assertEquals(newOpera.getName(), operaFromDb.getName());
+		assertEquals(newOpera.getDescription(), operaFromDb.getDescription());
+	}
+
+	@Test
+	public void testGetById() {
+		Genre test = TestUtils.createGenre("This is", "a test");
+		test.setId(null);
+		Long id = service.create(test);
+		GenreDTO genreFromDb = facade.getGenreById(id);
+		assertDTOAndEntityEquals(genreFromDb, test);
+	}
+
+	@Test
+	public void testGetAll() {
+		Genre test1 = TestUtils.createGenre("This is", "a test");
+		test1.setId(null);
+		service.create(test1);
+		Genre test2 = TestUtils.createGenre("This is also", "a test");
+		test2.setId(null);
+		service.create(test2);
+		List<GenreDTO> genres = facade.getAllGenres();
+		assertEquals(2, genres.size());
+		assertDTOAndEntityEquals(genres.get(0), test1);
+		assertDTOAndEntityEquals(genres.get(1), test2);
+	}
+
+	@Test
+	public void testGetByName() {
+		Genre test = TestUtils.createGenre("opera", "Dávná");
+		test.setId(null);
+		service.create(test);
+		GenreDTO testFromDb = facade.getGenreByName(test.getName());
+		assertDTOAndEntityEquals(testFromDb, test);
+	}
+
+	@Test
+	public void testRemove() {
+		Genre test1 = TestUtils.createGenre("This is", "a test");
+		test1.setId(null);
+		service.create(test1);
+		Genre test2 = TestUtils.createGenre("This is also", "a test");
+		test2.setId(null);
+		service.create(test2);
+		facade.removeGenre(test2.getId());
+		List<Genre> genres = service.findAll();
+		assertEquals(genres.size(), 1);
+		assertEquals(test1, genres.get(0));
+	}
+
+	@Test
+	public void testUpdate() {
+		Genre test1 = TestUtils.createGenre("This is", "a test");
+		test1.setId(null);
+		service.create(test1);
+		GenreDTO newTest1 = new GenreDTO();
+		newTest1.setName(test1.getName());
+		newTest1.setId(test1.getId());
+		newTest1.setDescription("We're describing you differently.");
+		facade.updateGenre(newTest1);
+		assertDTOAndEntityEquals(newTest1, service.findById(newTest1.getId()));
+	}
+
+	private void assertDTOAndEntityEquals(GenreDTO dto, Genre entity) {
+		assertEquals(entity.getId(), dto.getId());
+		assertEquals(entity.getName(), dto.getName());
+		assertEquals(entity.getDescription(), dto.getDescription());
+	}
 
 }
