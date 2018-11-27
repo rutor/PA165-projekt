@@ -2,6 +2,8 @@ package cz.muni.fi.pa165.dao;
 
 import cz.muni.fi.pa165.entity.Role;
 import cz.muni.fi.pa165.entity.Users;
+
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.inject.Named;
@@ -46,7 +48,8 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void update(Users user) {  em.merge(user);  }
+    public void update(Users user) {
+        em.merge(user);  }
 
     @Override
     public Users findByName(String lastName) {
