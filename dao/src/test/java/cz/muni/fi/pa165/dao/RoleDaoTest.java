@@ -4,6 +4,7 @@ import cz.muni.fi.pa165.ApplicationContext;
 import cz.muni.fi.pa165.entity.*;
 import org.junit.*;
 import org.junit.runner.RunWith;
+import org.springframework.dao.DataAccessException;
 import org.springframework.test.context.*;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -101,7 +102,7 @@ public class RoleDaoTest extends AbstractTestNGSpringContextTests {
         assertEquals(adminRole, role);
     }
     
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = DataAccessException.class)
     public void findByIdWithNullTest() {
         em.persist(adminRole);
         Assert.assertNull(roleDao.findById(null));
