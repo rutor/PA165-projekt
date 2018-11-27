@@ -46,12 +46,13 @@ private GenreService service;
 
     @Before
     public void setup() {
-    	newOpera = getCreateGenreDTO("Opera", "V�ak v�te.");
-    	getCreateGenreDTO("Komedie", "Byla, je a bude");
+    	newOpera = getCreateGenreDTO("Opera", "Však víte.");
     }
     @Test
     public void testCreateGenre() {
     	Long id = facade.createGenre(newOpera);
+    	System.out.println("Hopeless - start");
+    	System.out.println(facade);
     	assertNotNull(id);
     	Genre operaFromDb = service.findById(id);
 assertEquals(newOpera.getName(), operaFromDb.getName());
