@@ -11,6 +11,7 @@ import cz.muni.fi.pa165.entity.Performance;
 import cz.muni.fi.pa165.services.BeanMappingService;
 import cz.muni.fi.pa165.services.HallService;
 import cz.muni.fi.pa165.services.PerformanceService;
+import cz.muni.fi.pa165.services.ShowService;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 
@@ -27,6 +28,9 @@ public class PerformanceFacadeImpl implements PerformanceFacade {
 
     @Inject
     private HallService hallService;
+    @Inject
+    private ShowService showService;
+
 
     @Inject
     private BeanMappingService mappingService;
@@ -35,6 +39,7 @@ public class PerformanceFacadeImpl implements PerformanceFacade {
     public Long createPerformance(CreatePerformanceDTO newPerformance) {
         Performance mappedPerformance = mappingService.mapTo(newPerformance, Performance.class);
         mappedPerformance.setHall(hallService.findById(newPerformance.getHallId()));
+        mappedPerformance.setShow(showService.findById(newPerformance.getShowId()));
         performanceService.create(mappedPerformance);
         return mappedPerformance.getId();
     }
