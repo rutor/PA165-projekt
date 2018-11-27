@@ -54,9 +54,8 @@ private CreateGenreDTO newOpera;
     }
     @Test
     public void testCreateGenre() {
-    	System.out.println(em);
     	Long id = facade.createGenre(newOpera);
-    	System.out.println("Id from create");
+    	System.out.println(service.findById(1l));
     	System.out.println(id);
     	assertNotNull(id);
     	Genre operaFromDb = service.findById(id);
