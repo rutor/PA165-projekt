@@ -35,7 +35,8 @@ public class GenreFacadeTest extends AbstractTestNGSpringContextTests {
     private GenreFacade facade;
 @Inject
 private GenreService service;
-        
+@Inject
+private GenreDao genreDao;
         private CreateGenreDTO newOpera;
         public CreateGenreDTO getCreateGenreDTO(String name, String description) {
         CreateGenreDTO cg = new CreateGenreDTO();
@@ -53,6 +54,8 @@ private GenreService service;
     	Long id = facade.createGenre(newOpera);
     	System.out.println("Hopeless - start");
     	System.out.println(facade);
+    	System.out.println(service);
+    	System.out.println(genreDao);
     	assertNotNull(id);
     	Genre operaFromDb = service.findById(id);
 assertEquals(newOpera.getName(), operaFromDb.getName());
