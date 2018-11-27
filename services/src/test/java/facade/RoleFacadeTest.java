@@ -66,6 +66,8 @@ public class RoleFacadeTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void testGetById() {
+
+
         Role test = TestUtils.createRole("Admin",  "administrator");
         test.setId(null);
         Long id = service.create(test);
@@ -123,4 +125,5 @@ public class RoleFacadeTest extends AbstractTestNGSpringContextTests {
         assertEquals(entity.getName(), dto.getName());
         assertEquals(entity.getDescription(), dto.getDescription());
     }
+
 }

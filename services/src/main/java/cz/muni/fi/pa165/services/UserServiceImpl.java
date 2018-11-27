@@ -28,7 +28,6 @@ public class UserServiceImpl implements UserService{
 
     private final Pattern PASSWORD_PATTERN = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$");
 
-
     @Inject
     private UserService userService;
 
@@ -96,6 +95,7 @@ public class UserServiceImpl implements UserService{
         userDao.update(user);
 
     }
+
     @Override
     public boolean validatePassword(Users user) {
         Users userFromDao=userDao.findById(user.getId());

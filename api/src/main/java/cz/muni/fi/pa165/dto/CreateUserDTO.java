@@ -20,6 +20,7 @@ public class CreateUserDTO {
     private String password;
 
 
+
     public Long getRoleId() {
         return roleId;
     }
@@ -59,6 +60,7 @@ public class CreateUserDTO {
     public void setPassword(String password) {
         this.password = password;
     }
+
 
 
     @Override

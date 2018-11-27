@@ -17,6 +17,7 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 import javax.inject.Inject;
+import java.time.LocalDate;
 import java.util.List;
 import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -56,6 +57,21 @@ public class UserFacadeTest extends AbstractTestNGSpringContextTests {
         assertDTOAndEntityEquals(testFromDb, test);
     }
 
+    public void testGetByName() {
+
+        Users test = newUser("Dudas", "Robert","robo@robo.com","robo123","Customer","new_custome");
+        UserDTO testFromDb = facade.getUserByName(test.getLastName());
+        assertDTOAndEntityEquals(testFromDb, test);
+    }
+
+    public void testGetByEmail() {
+
+        Users test = newUser("Dudas", "Robert","robo@robo.com","robo123","Customer","new_custome");
+        UserDTO testFromDb = facade.findByEmail(test.getEmail());
+        assertDTOAndEntityEquals(testFromDb, test);
+    }
+
+
     @Test
     public void testGetAll() {
         Users test = newUser("Dudas", "Robert","robo@robo.com","robo123","Customer","new_custome");
@@ -75,10 +91,10 @@ public class UserFacadeTest extends AbstractTestNGSpringContextTests {
         assertEquals(users.size(), 1);
         assertEquals(test, users.get(0));
     }
-    /*
+/*
     @Test
     public void testUpdate() {
-        Users test = newUser("Dudas", "Robert","robo@robo.com","robo123","Customer","new_custome");
+        Users test = newUser("Dudas", "Juro","robo@robo.com","RobOaa123","Customer","new_custome");
         RoleDTO role = new RoleDTO();
         UserDTO s = new UserDTO();
         role.setName(test.getRole().getName());
@@ -101,7 +117,7 @@ public class UserFacadeTest extends AbstractTestNGSpringContextTests {
         assertEquals(entity.getEmail(), dto.getEmail());
         assertDTOAndEntityEquals(dto.getRole(), entity.getRole());
     }
-    private Users newUser(String LastName, String FirstName,String Email,String Password, String roleName, String description) {
+    private Users newUser(String LastName, String FirstName, String Email, String Password, String roleName, String description) {
         Role  role = new Role();
         role.setName(roleName);
         role.setDescription(description);
