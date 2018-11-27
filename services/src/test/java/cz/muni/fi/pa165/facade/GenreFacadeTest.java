@@ -1,8 +1,6 @@
 package cz.muni.fi.pa165.facade;
 
-import cz.muni.fi.pa165.ApplicationContext;
 import cz.muni.fi.pa165.ServicesContext;
-import cz.muni.fi.pa165.dao.GenreDao;
 import cz.muni.fi.pa165.dto.CreateGenreDTO;
 import cz.muni.fi.pa165.dto.GenreDTO;
 import cz.muni.fi.pa165.entity.Genre;
