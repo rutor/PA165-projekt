@@ -40,6 +40,7 @@ public class RoleFacadeTest extends AbstractTestNGSpringContextTests {
     private CreateRoleDTO newCustomer;
 
 
+
     public CreateRoleDTO getCreateRoleDTO(String name, String description) {
         CreateRoleDTO createRole = new CreateRoleDTO();
         createRole.setName(name);
@@ -118,6 +119,7 @@ public class RoleFacadeTest extends AbstractTestNGSpringContextTests {
         assertDTOAndEntityEquals(newTest1, service.findById(newTest1.getId()));
     }
     private void assertDTOAndEntityEquals(RoleDTO dto, Role entity) {
+
         assertEquals(entity.getId(), dto.getId());
         assertEquals(entity.getName(), dto.getName());
         assertEquals(entity.getDescription(), dto.getDescription());

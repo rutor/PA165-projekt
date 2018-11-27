@@ -24,6 +24,8 @@ public interface UserDao {
     public Users findByName(String name);
 
     public Users findByEmail(String email);
+
+    public  List<Users> findByRole(Role role);
  
 }
 
