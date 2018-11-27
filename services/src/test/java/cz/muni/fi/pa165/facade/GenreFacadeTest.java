@@ -20,6 +20,8 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import java.util.Arrays;
 import java.util.List;
@@ -36,6 +38,8 @@ public class GenreFacadeTest extends AbstractTestNGSpringContextTests {
 @Inject
 private GenreService service;
         
+@PersistenceContext
+private EntityManager em;
 private CreateGenreDTO newOpera;
         public CreateGenreDTO getCreateGenreDTO(String name, String description) {
         CreateGenreDTO cg = new CreateGenreDTO();
@@ -50,6 +54,7 @@ private CreateGenreDTO newOpera;
     }
     @Test
     public void testCreateGenre() {
+    	System.out.println(em);
     	Long id = facade.createGenre(newOpera);
     	System.out.println("Id from create");
     	System.out.println(id);
