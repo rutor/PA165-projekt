@@ -5,12 +5,14 @@ import cz.muni.fi.pa165.dao.BookingDao;
 import cz.muni.fi.pa165.dao.TicketDao;
 import cz.muni.fi.pa165.entity.*;
 import cz.muni.fi.pa165.enums.PaymentStatus;
+import cz.muni.fi.pa165.enums.TicketStatus;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.stubbing.Answer;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -25,9 +27,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 import static cz.muni.fi.pa165.services.TestUtils.*;
+import static org.mockito.Mockito.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ServicesContext.class)
@@ -36,6 +37,13 @@ import static cz.muni.fi.pa165.services.TestUtils.*;
 public class BookingServiceTest extends AbstractTestNGSpringContextTests {
     @Mock
     private BookingDao bookingDao;
+
+    @Mock
+    private TicketDao ticketDao;
+
+    @Inject
+    @InjectMocks
+    private TicketService ticketService;
 
     @Inject
     @InjectMocks
@@ -82,12 +90,14 @@ public class BookingServiceTest extends AbstractTestNGSpringContextTests {
         verify(bookingDao).create(booking1);
     }
 
-    //@Test
-    // FIXME Tomas milestone2 This test fails because of null ID of ticket
+    @Test
     public void payTest() {
+        doAnswer((Answer) invocation -> {invocation.getArgumentAt(0, Ticket.class).setId(10l);return null;})
+                .when(ticketDao).create(any(Ticket.class));
+        bookingService.create(booking1);
         when(bookingDao.findById(booking1.getId())).thenReturn(booking1);
         Ticket ticket = bookingService.pay(booking1);
         assertEquals(ticket, booking1.getTicket());
-        assertEquals(PaymentStatus.PAYED, ticket.getStatus());
+        assertEquals(TicketStatus.NOT_USED, ticket.getStatus());
     }
 }
