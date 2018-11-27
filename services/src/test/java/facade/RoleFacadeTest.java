@@ -66,8 +66,6 @@ public class RoleFacadeTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void testGetById() {
-
-
         Role test = TestUtils.createRole("Admin",  "administrator");
         test.setId(null);
         Long id = service.create(test);
@@ -82,10 +80,10 @@ public class RoleFacadeTest extends AbstractTestNGSpringContextTests {
         Role test2 = TestUtils.createRole("Customer",  "customer");
         test2.setId(null);
         service.create(test2);
-        List<RoleDTO> genres = facade.getAllRole();
-        assertEquals(2, genres.size());
-        assertDTOAndEntityEquals(genres.get(0), testAll);
-        assertDTOAndEntityEquals(genres.get(1), test2);
+        List<RoleDTO> roles = facade.getAllRole();
+        assertEquals(2, roles.size());
+        assertDTOAndEntityEquals(roles.get(0), testAll);
+        assertDTOAndEntityEquals(roles.get(1), test2);
     }
     @Test
     public void testGetByName() {

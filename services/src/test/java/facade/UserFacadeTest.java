@@ -76,10 +76,10 @@ public class UserFacadeTest extends AbstractTestNGSpringContextTests {
     public void testGetAll() {
         Users test = newUser("Dudas", "Robert","robo@robo.com","robo123","Customer","new_custome");
         Users test2 = newUser("Rudolf", "Tomas","tomas@rudolf.com","rudolf123","Admin","new_custome");
-        List<UserDTO> shows = facade.getAllUser();
-        assertEquals(2, shows.size());
-        assertDTOAndEntityEquals(shows.get(0), test);
-        assertDTOAndEntityEquals(shows.get(1), test2);
+        List<UserDTO> users = facade.getAllUser();
+        assertEquals(2, users.size());
+        assertDTOAndEntityEquals(users.get(0), test);
+        assertDTOAndEntityEquals(users.get(1), test2);
     }
 
     @Test
