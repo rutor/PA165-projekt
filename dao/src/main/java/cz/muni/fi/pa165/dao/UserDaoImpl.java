@@ -33,6 +33,7 @@ public class UserDaoImpl implements UserDao {
     public List<Users> findAll() {
         return em.createQuery(SELECT_QUERY, Users.class).getResultList();
     }
+
     @Override
     public Users findById(Long id) {
 		return em.find(Users.class,  id);
@@ -43,6 +44,7 @@ public class UserDaoImpl implements UserDao {
                 .setParameter("role", role)
                 .getResultList();
     }
+
     @Override
     public void update(Users user) {  em.merge(user);  }
 

@@ -41,7 +41,6 @@ public class Users {
     @NotNull
     private String email;
 
-
     @Column(nullable = false, unique = true)
     @NotNull
     private String password;

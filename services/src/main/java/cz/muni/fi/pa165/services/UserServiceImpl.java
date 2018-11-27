@@ -96,7 +96,6 @@ public class UserServiceImpl implements UserService{
         userDao.update(user);
 
     }
-
     @Override
     public boolean validatePassword(Users user) {
         Users userFromDao=userDao.findById(user.getId());

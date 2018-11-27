@@ -119,7 +119,6 @@ public class RoleFacadeTest extends AbstractTestNGSpringContextTests {
         assertDTOAndEntityEquals(newTest1, service.findById(newTest1.getId()));
     }
     private void assertDTOAndEntityEquals(RoleDTO dto, Role entity) {
-
         assertEquals(entity.getId(), dto.getId());
         assertEquals(entity.getName(), dto.getName());
         assertEquals(entity.getDescription(), dto.getDescription());
