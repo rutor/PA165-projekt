@@ -55,7 +55,7 @@ public class RoleFacadeTest extends AbstractTestNGSpringContextTests {
 
     }
     @Test
-    public void testCreateGenre() {
+    public void testCreateRole() {
         Long id = facade.createRole(admin);
         assertNotNull(id);
         Role adminFromDb = service.findById(id);
