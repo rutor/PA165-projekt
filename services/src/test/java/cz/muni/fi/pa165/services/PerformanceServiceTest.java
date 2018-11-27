@@ -146,4 +146,10 @@ public class PerformanceServiceTest extends AbstractTestNGSpringContextTests {
         assertEquals(performances.size(), 1);
         assertEquals(performances.get(0), performance1);
     }
+    
+    @Test
+    public void findAllByHallNull() {
+        when(dao.findAllByHall(null)).thenReturn(Collections.EMPTY_LIST);
+        assertEquals(dao.findAllByHall(null).size(), 0);
+    }
 }
