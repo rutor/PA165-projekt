@@ -125,7 +125,7 @@ public class PerformanceFacadeImplTest extends AbstractTestNGSpringContextTests 
         facade.removePerformance(performance1.getId());
         List<Performance> performances = service.findAll();
         assertEquals(performances.size(), 1);
-        assertEquals(performance1, performances.get(0));
+        assertEquals(performance2, performances.get(0));
     }
 
     @Test
