@@ -35,9 +35,6 @@ public class UserFacadeImpl implements UserFacade {
 
     }
 
-
-
-
     @Override
     public List<UserDTO> getAllUser() {
         return mappingService.mapTo(userService.findAll(), UserDTO.class);
@@ -68,5 +65,7 @@ public class UserFacadeImpl implements UserFacade {
     public void updateUser(UserDTO user) {
         userService.update(mappingService.mapTo(user, Users.class));
     }
+
+
 
 }

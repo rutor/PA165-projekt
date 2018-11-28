@@ -9,7 +9,6 @@ import java.util.List;
  * @author Robo
  */
 public interface UserDao {
-    
 
     public void create(Users user);
 
@@ -24,6 +23,8 @@ public interface UserDao {
     public Users findByName(String name);
 
     public Users findByEmail(String email);
+
+    public  List<Users> findByRole(Role role);
  
 }
 
