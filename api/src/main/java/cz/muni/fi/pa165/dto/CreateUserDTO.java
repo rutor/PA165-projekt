@@ -18,8 +18,7 @@ public class CreateUserDTO {
     private String  email;
     @NotNull
     private String password;
-    @NotNull
-    private LocalDate createdAt;
+
 
 
     public Long getRoleId() {
@@ -62,17 +61,11 @@ public class CreateUserDTO {
         this.password = password;
     }
 
-    public LocalDate getCreatedAt() {
-        return createdAt;
-    }
 
-    public void setCreatedAt(LocalDate createdAt) {
-        this.createdAt = createdAt;
-    }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName ,password,email,createdAt);
+        return Objects.hash(firstName, lastName ,password,email);
     }
 
     @Override
@@ -91,9 +84,7 @@ public class CreateUserDTO {
             if (!Objects.equals(email, other.getEmail())) {
                 return false;
             }
-            if (!Objects.equals(createdAt, other.getCreatedAt())) {
-                return false;
-            }
+
             if (!Objects.equals(password, other.getPassword())) {
                 return false;
             }
