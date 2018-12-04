@@ -31,3 +31,4 @@ hs_err_pid*
 # Maven build fragments
 
 target
+/web/nb-configuration.xml
