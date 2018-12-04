@@ -140,11 +140,6 @@
 		  <version>1.7.12</version>
 	  </dependency>
 	  <!-- Bean mapping -->
-	  <!--<dependency>
-		  <groupId>net.sf.dozer</groupId>
-		  <artifactId>dozer</artifactId>
-		  <version>5.5.1</version>
-	  </dependency>-->
 	  <dependency>
 		  <groupId>com.github.dozermapper</groupId>
 		  <artifactId>dozer-core</artifactId>
