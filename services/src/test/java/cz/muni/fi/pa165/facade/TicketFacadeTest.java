@@ -1,15 +1,11 @@
 package cz.muni.fi.pa165.facade;
 
-import cz.muni.fi.pa165.ServicesContext;
 import cz.muni.fi.pa165.dto.TicketDTO;
 import cz.muni.fi.pa165.entity.*;
-import cz.muni.fi.pa165.services.BeanMappingService;
 import cz.muni.fi.pa165.services.TicketService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
@@ -26,19 +22,15 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = ServicesContext.class)
+@ContextConfiguration(classes = FacadesContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
 public class TicketFacadeTest extends AbstractTestNGSpringContextTests {
 
-    @Mock
+    @Inject
     private TicketService ticketService;
 
-    @Mock
-    private BeanMappingService beanMappingService;
-
     @Inject
-    //@InjectMocks
     private TicketFacade ticketFacade;
 
     private Ticket ticket1;
