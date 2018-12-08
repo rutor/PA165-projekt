@@ -2,18 +2,14 @@ package cz.muni.fi.pa165.dao;
 
 import cz.muni.fi.pa165.ApplicationContext;
 import cz.muni.fi.pa165.entity.*;
-import cz.muni.fi.pa165.enums.PaymentStatus;
 
 import org.junit.*;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.*;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
 
 import javax.inject.Inject;
 import javax.persistence.*;
