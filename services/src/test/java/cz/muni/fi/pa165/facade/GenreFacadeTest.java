@@ -4,7 +4,6 @@ import cz.muni.fi.pa165.ServicesContext;
 import cz.muni.fi.pa165.dto.CreateGenreDTO;
 import cz.muni.fi.pa165.dto.GenreDTO;
 import cz.muni.fi.pa165.entity.Genre;
-import cz.muni.fi.pa165.facade.GenreFacade;
 import cz.muni.fi.pa165.services.GenreService;
 import cz.muni.fi.pa165.services.TestUtils;
 
@@ -21,7 +20,6 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;

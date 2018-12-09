@@ -1,28 +1,20 @@
 package cz.muni.fi.pa165.facade;
 
-import cz.muni.fi.pa165.ApplicationContext;
 import cz.muni.fi.pa165.ServicesContext;
-import cz.muni.fi.pa165.dao.RoleDao;
 import cz.muni.fi.pa165.dto.CreateRoleDTO;
 import cz.muni.fi.pa165.dto.RoleDTO;
 import cz.muni.fi.pa165.entity.Role;
-import cz.muni.fi.pa165.facade.RoleFacade;
 import cz.muni.fi.pa165.services.RoleService;
 import cz.muni.fi.pa165.services.TestUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import static org.mockito.Mockito.*;
 import org.springframework.test.context.*;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 import javax.inject.Inject;
-import java.util.Arrays;
 import java.util.List;
 import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)

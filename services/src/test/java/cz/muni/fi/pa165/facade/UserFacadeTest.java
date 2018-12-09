@@ -17,7 +17,6 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 import javax.inject.Inject;
-import java.time.LocalDate;
 import java.util.List;
 import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
