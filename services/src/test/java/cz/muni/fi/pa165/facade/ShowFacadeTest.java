@@ -98,7 +98,7 @@ public class ShowFacadeTest extends AbstractTestNGSpringContextTests {
 		assertEquals(test1, shows.get(0));
 	}
 
-	@Test
+	@Test @Ignore
 	public void testUpdate() {
 		Show test = insertShow("Co stalo se před půlnocí", "Příběh ne úplně vydařeného školního projektu", 144,
 				"Tragikomedie", "I tak to někdy dopadá");
