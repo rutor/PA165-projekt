@@ -55,6 +55,8 @@ public class GenreFacadeTest extends AbstractTestNGSpringContextTests {
 		Long id = facade.createGenre(newOpera);
 		assertNotNull(id);
 		Genre operaFromDb = service.findById(id);
+		System.out.println(newOpera);
+		System.out.println(operaFromDb);
 		assertEquals(newOpera.getName(), operaFromDb.getName());
 		assertEquals(newOpera.getDescription(), operaFromDb.getDescription());
 	}
