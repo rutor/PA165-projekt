@@ -137,7 +137,7 @@
 
     <build>
         <defaultGoal>clean install</defaultGoal>
-        <finalName>PA165 - project</finalName>
+        <finalName>pa165</finalName>
         <pluginManagement>
             <plugins>
                 <plugin>
