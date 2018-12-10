@@ -28,7 +28,7 @@ public class Booking {
     @Enumerated(EnumType.ORDINAL)
     @NotNull
     @Column(nullable = false)
-    private PaymentStatus paymentStatus;
+    private PaymentStatus paymentStatus = PaymentStatus.NOT_PAYED;
 
     @Getter @Setter
     @OneToOne(targetEntity = Ticket.class)
@@ -52,12 +52,12 @@ public class Booking {
     @Getter @Setter
     @NotNull
     @Column(nullable = false)
-    private LocalDate createdAt;
+    private LocalDate createdAt = LocalDate.now();
 
     @Getter @Setter
     @NotNull
     @Column(nullable = false)
-    private LocalDate updatedAt;
+    private LocalDate updatedAt = LocalDate.now();
 
     /** Persistence constructor */
     public Booking() {
