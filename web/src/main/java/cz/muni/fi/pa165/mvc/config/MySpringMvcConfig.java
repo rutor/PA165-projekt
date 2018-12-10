@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.mvc.config;
 
+import cz.muni.fi.pa165.sample.SampleDataContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
@@ -29,8 +30,7 @@ import javax.validation.Validator;
 
 @EnableWebMvc
 @Configuration
-// FIXME Tomas milestone3 Import sample data
-//@Import({EshopWithSampleDataConfiguration.class})
+@Import({SampleDataContext.class})
 @ComponentScan(basePackages = "cz.muni.fi.pa165.mvc.controllers")
 public class MySpringMvcConfig implements WebMvcConfigurer {
 
