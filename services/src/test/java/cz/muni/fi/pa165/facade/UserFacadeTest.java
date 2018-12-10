@@ -35,8 +35,7 @@ public class UserFacadeTest extends AbstractTestNGSpringContextTests {
 
     @Test @Ignore
     public void testCreate() {
-        Role role = EntityUtils.createRole("Admin",  "administrator");
-        role.setId(null);
+        Role role = EntityUtils.createRole(null, "Admin",  "administrator");
         roleService.create(role);
         CreateUserDTO user = new CreateUserDTO();
         user.setFirstName("Robo");
