@@ -1,4 +1,4 @@
-package cz.muni.fi.pa165.services;
+package cz.muni.fi.pa165;
 
 import cz.muni.fi.pa165.entity.*;
 import cz.muni.fi.pa165.enums.PaymentStatus;
@@ -7,7 +7,7 @@ import cz.muni.fi.pa165.enums.TicketStatus;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-public class TestUtils {
+public class EntityUtils {
 
     public static Ticket createTicket(@NotNull Performance performance, @NotNull Users user) {
         Ticket ticket = new Ticket();
