@@ -4,11 +4,15 @@ import static cz.muni.fi.pa165.EntityUtils.*;
 
 import cz.muni.fi.pa165.entity.*;
 import cz.muni.fi.pa165.services.*;
+import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 
 
+@Service
+@Transactional
 public class InsertSampleDataImpl implements InsertSampleData {
 
     @Inject
@@ -37,23 +41,23 @@ public class InsertSampleDataImpl implements InsertSampleData {
 
     @Override
     public void insertData() {
-        Role userRole = createRole("User", "User of system");
-        Role adminRole = createRole("Admin", "Administrator");
-        Users userUser = createUser("Robert", "Dudas", "rober@dudas.cz", "123456789", userRole, LocalDate.now(), LocalDate.now());
-        Users userAdmin = createUser("Tomas", "Rudolf", "tomas@rudolf.cz", "Passw0rd", adminRole, LocalDate.now(), LocalDate.now());
+        Role userRole = createRole(null, "User", "User of system");
+        Role adminRole = createRole(null, "Admin", "Administrator");
+        Users userUser = createUser(null,"Robert", "Dudas", "rober@dudas.cz", "123456789", userRole, LocalDate.now(), LocalDate.now());
+        Users userAdmin = createUser(null,"Tomas", "Rudolf", "tomas@rudolf.cz", "Passw0rd", adminRole, LocalDate.now(), LocalDate.now());
 
-        Genre genreDrama = createGenre("Drama", "Drama");
-        Genre genreComedy = createGenre("Comedy", "Comedy");
-        Show show1 = createShow("Show1", "Show1Description", genreDrama, 63);
-        Show show2 = createShow("Show2", "Show2Description", genreDrama, 42);
-        Show show3 = createShow("Show3", "Show3Description", genreComedy, 38);
-        Show show4 = createShow("Show4", "Show4Description", genreComedy, 54);
+        Genre genreDrama = createGenre(null,"Drama", "Drama");
+        Genre genreComedy = createGenre(null,"Comedy", "Comedy");
+        Show show1 = createShow(null,"Show1", "Show1Description", genreDrama, 63);
+        Show show2 = createShow(null,"Show2", "Show2Description", genreDrama, 42);
+        Show show3 = createShow(null,"Show3", "Show3Description", genreComedy, 38);
+        Show show4 = createShow(null,"Show4", "Show4Description", genreComedy, 54);
 
-        Hall hall1 = createHall("Hall1", "Hall1Description", 103l);
-        Hall hall2 = createHall("Hall2", "Hall2Description", 40l);
-        Hall hall3 = createHall("Hall3", "Hall3Description", 65l);
+        Hall hall1 = createHall(null,"Hall1", "Hall1Description", 103l);
+        Hall hall2 = createHall(null,"Hall2", "Hall2Description", 40l);
+        Hall hall3 = createHall(null,"Hall3", "Hall3Description", 65l);
 
-        Performance performance = createPerformance("The only chance to see", 15.0f, hall1, show1, LocalDate.now());
+        Performance performance = createPerformance(null, "The only chance to see", 15.0f, hall1, show1, LocalDate.now());
 
         roleService.create(userRole);
         roleService.create(adminRole);
