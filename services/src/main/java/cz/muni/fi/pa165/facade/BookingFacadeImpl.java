@@ -8,10 +8,14 @@ import cz.muni.fi.pa165.entity.Booking;
 import cz.muni.fi.pa165.entity.Ticket;
 import cz.muni.fi.pa165.services.BeanMappingService;
 import cz.muni.fi.pa165.services.BookingService;
+import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Service
+@Transactional
 public class BookingFacadeImpl implements BookingFacade{
 
     @Inject
@@ -31,11 +35,12 @@ public class BookingFacadeImpl implements BookingFacade{
     }
 
     @Override
-    public void create(CreateBookingDTO dto) {
-        Booking booking = new Booking();
+    public Long create(CreateBookingDTO dto) {
+        /*Booking booking = new Booking();
         booking.setDescription(dto.getDescription());
-        // FIXME Tomas milestone2 Add all missing setters after DTOs are implemented
-        bookingService.create(booking);
+        // FIXME Tomas milestone2 Add all missing setters after DTOs are implemented*/
+        Booking booking = beanMappingService.mapTo(dto, Booking.class);
+        return bookingService.create(booking);
     }
 
     @Override

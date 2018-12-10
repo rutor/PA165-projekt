@@ -8,10 +8,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
-@ComponentScan
+@ComponentScan(basePackages = {"cz.muni.fi.pa165.services", "cz.muni.fi.pa165.facade"})
 @Import(ApplicationContext.class)
 public class ServicesContext {
-@Bean
-public Mapper mapper() {
-	return new DozerBeanMapper();}
+	@Bean
+	public Mapper mapper() {
+		return new DozerBeanMapper();
+	}
 }
