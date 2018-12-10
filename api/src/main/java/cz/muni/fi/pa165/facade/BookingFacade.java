@@ -10,7 +10,7 @@ public interface BookingFacade {
 
     public BookingDTO getById(Long id);
 
-    public void create(CreateBookingDTO dto);
+    public Long create(CreateBookingDTO dto);
 
     public TicketDTO pay(PayBookingDTO dto);
 }
