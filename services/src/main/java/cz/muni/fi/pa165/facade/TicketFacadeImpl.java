@@ -7,11 +7,14 @@ import cz.muni.fi.pa165.entity.Ticket;
 import cz.muni.fi.pa165.enums.TicketStatus;
 import cz.muni.fi.pa165.services.BeanMappingService;
 import cz.muni.fi.pa165.services.TicketService;
+import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.util.List;
-import java.util.UUID;
 
+@Service
+@Transactional
 public class TicketFacadeImpl implements TicketFacade{
 
     @Inject
