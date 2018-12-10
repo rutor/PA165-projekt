@@ -25,7 +25,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
-import static cz.muni.fi.pa165.services.TestUtils.*;
+import static cz.muni.fi.pa165.EntityUtils.*;
 import static org.mockito.Mockito.*;
 import static org.testng.AssertJUnit.*;
 

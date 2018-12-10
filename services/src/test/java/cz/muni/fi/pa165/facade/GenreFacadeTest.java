@@ -1,11 +1,11 @@
 package cz.muni.fi.pa165.facade;
 
+import cz.muni.fi.pa165.EntityUtils;
 import cz.muni.fi.pa165.ServicesContext;
 import cz.muni.fi.pa165.dto.CreateGenreDTO;
 import cz.muni.fi.pa165.dto.GenreDTO;
 import cz.muni.fi.pa165.entity.Genre;
 import cz.muni.fi.pa165.services.GenreService;
-import cz.muni.fi.pa165.services.TestUtils;
 
 import org.junit.Before;
 import org.junit.Ignore;
@@ -64,7 +64,7 @@ public class GenreFacadeTest extends AbstractTestNGSpringContextTests {
 
 	@Test @Ignore
 	public void testGetById() {
-		Genre test = TestUtils.createGenre("This is", "a test");
+		Genre test = EntityUtils.createGenre("This is", "a test");
 		test.setId(null);
 		Long id = service.create(test);
 		GenreDTO genreFromDb = facade.getGenreById(id);
@@ -73,10 +73,10 @@ public class GenreFacadeTest extends AbstractTestNGSpringContextTests {
 
 	@Test @Ignore
 	public void testGetAll() {
-		Genre test1 = TestUtils.createGenre("This is", "a test");
+		Genre test1 = EntityUtils.createGenre("This is", "a test");
 		test1.setId(null);
 		service.create(test1);
-		Genre test2 = TestUtils.createGenre("This is also", "a test");
+		Genre test2 = EntityUtils.createGenre("This is also", "a test");
 		test2.setId(null);
 		service.create(test2);
 		List<GenreDTO> genres = facade.getAllGenres();
@@ -87,7 +87,7 @@ public class GenreFacadeTest extends AbstractTestNGSpringContextTests {
 
 	@Test @Ignore
 	public void testGetByName() {
-		Genre test = TestUtils.createGenre("opera", "Dávná");
+		Genre test = EntityUtils.createGenre("opera", "Dávná");
 		test.setId(null);
 		service.create(test);
 		GenreDTO testFromDb = facade.getGenreByName(test.getName());
@@ -96,10 +96,10 @@ public class GenreFacadeTest extends AbstractTestNGSpringContextTests {
 
 	@Test @Ignore
 	public void testRemove() {
-		Genre test1 = TestUtils.createGenre("This is", "a test");
+		Genre test1 = EntityUtils.createGenre("This is", "a test");
 		test1.setId(null);
 		service.create(test1);
-		Genre test2 = TestUtils.createGenre("This is also", "a test");
+		Genre test2 = EntityUtils.createGenre("This is also", "a test");
 		test2.setId(null);
 		service.create(test2);
 		facade.removeGenre(test2.getId());
@@ -110,7 +110,7 @@ public class GenreFacadeTest extends AbstractTestNGSpringContextTests {
 
 	@Test @Ignore
 	public void testUpdate() {
-		Genre test1 = TestUtils.createGenre("This is", "a test");
+		Genre test1 = EntityUtils.createGenre("This is", "a test");
 		test1.setId(null);
 		service.create(test1);
 		GenreDTO newTest1 = new GenreDTO();

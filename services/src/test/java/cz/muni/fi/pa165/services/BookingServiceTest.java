@@ -26,8 +26,8 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
+import static cz.muni.fi.pa165.EntityUtils.*;
 import static org.junit.Assert.*;
-import static cz.muni.fi.pa165.services.TestUtils.*;
 import static org.mockito.Mockito.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
