@@ -24,8 +24,9 @@ import javax.inject.Inject;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
-import static cz.muni.fi.pa165.services.TestUtils.*;
+import static cz.muni.fi.pa165.EntityUtils.*;
 import static org.mockito.Mockito.*;
 import static org.testng.AssertJUnit.*;
 
@@ -54,16 +55,17 @@ public class TicketServiceTest extends AbstractTestNGSpringContextTests {
 
     @Before
     public void setup() {
+        Random random = new Random();
         MockitoAnnotations.initMocks(this);
-        Hall hall = createHall("Hall1", "Address1", 100l);
-        Genre genre = createGenre("Genre", "GenreDescription");
-        Show show = createShow("Show1", "Description1", genre, 100);
-        Performance performance1 = createPerformance("PerformanceDescription1", 42.42f, hall, show, LocalDate.now());
-        Performance performance2 = createPerformance("PerformanceDescription2", 3.14f, hall, show, LocalDate.now());
-        Role role = createRole("Role", "RoleDescription");
-        user = createUser("First", "User", "some@email.com", "Pass", role, LocalDate.now(), LocalDate.now());
-        ticket1 = createTicket(performance1, user);
-        ticket2 = createTicket(performance2, user);
+        Hall hall = createHall(random.nextLong(), "Hall1", "Address1", 100l);
+        Genre genre = createGenre(random.nextLong(), "Genre", "GenreDescription");
+        Show show = createShow(random.nextLong(), "Show1", "Description1", genre, 100);
+        Performance performance1 = createPerformance(random.nextLong(), "PerformanceDescription1", 42.42f, hall, show, LocalDate.now());
+        Performance performance2 = createPerformance(random.nextLong(), "PerformanceDescription2", 3.14f, hall, show, LocalDate.now());
+        Role role = createRole(random.nextLong(), "Role", "RoleDescription");
+        user = createUser(random.nextLong(), "First", "User", "some@email.com", "Pass", role, LocalDate.now(), LocalDate.now());
+        ticket1 = createTicket(random.nextLong(), performance1, user);
+        ticket2 = createTicket(random.nextLong(), performance2, user);
     }
 
     @Test

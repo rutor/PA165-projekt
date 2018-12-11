@@ -1,13 +1,12 @@
 package cz.muni.fi.pa165.mvc.controllers;
 
-import cz.muni.fi.pa165.dto.*;
-import cz.muni.fi.pa165.entity.Role;
-import cz.muni.fi.pa165.entity.Users;
+import cz.muni.fi.pa165.dto.BookingDTO;
+import cz.muni.fi.pa165.dto.CreateBookingDTO;
+import cz.muni.fi.pa165.dto.PerformanceDTO;
 import cz.muni.fi.pa165.facade.BookingFacade;
 import cz.muni.fi.pa165.facade.PerformanceFacade;
 import cz.muni.fi.pa165.facade.UserFacade;
 import cz.muni.fi.pa165.services.BeanMappingService;
-import org.dozer.Mapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
@@ -26,6 +25,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Bookings controller
@@ -65,7 +65,7 @@ public class BookingController {
     public String createForm(Model model) {
         log.info("/createForm requested");
         List<PerformanceDTO> allPerformances = performanceFacade.getAllPerformances();
-        model.addAttribute("performances", allPerformances);
+        model.addAttribute("performances", allPerformances.stream().map(performance -> performance.getShow().getName() + " at " + performance.getStartDate().toString()).collect(Collectors.toList()));
         model.addAttribute("bookingCreate", new CreateBookingDTO());
         return "booking/create_form";
     }
@@ -78,8 +78,7 @@ public class BookingController {
             handleErrorInValidation(bindingResult, model);
             return "booking/create_form";
         }
-        // FIXME Tomas milestone3 use sample user
-        // dto.setUser(userDto);
+        //FIXME Tomas milestone3 use currently logged-in user
         Long id = bookingFacade.create(dto);
         redirectAttributes.addFlashAttribute("alert_success", "Booking with id " + id + " was created");
         return "redirect:" + uriBuilder.path("/booking/list").toUriString();

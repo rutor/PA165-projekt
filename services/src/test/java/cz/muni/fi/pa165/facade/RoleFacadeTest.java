@@ -1,11 +1,11 @@
 package cz.muni.fi.pa165.facade;
 
+import cz.muni.fi.pa165.EntityUtils;
 import cz.muni.fi.pa165.ServicesContext;
 import cz.muni.fi.pa165.dto.CreateRoleDTO;
 import cz.muni.fi.pa165.dto.RoleDTO;
 import cz.muni.fi.pa165.entity.Role;
 import cz.muni.fi.pa165.services.RoleService;
-import cz.muni.fi.pa165.services.TestUtils;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -59,19 +59,16 @@ public class RoleFacadeTest extends AbstractTestNGSpringContextTests {
 
     @Test @Ignore
     public void testGetById() {
-        Role test = TestUtils.createRole("Admin",  "administrator");
-        test.setId(null);
+        Role test = EntityUtils.createRole(null, "Admin",  "administrator");
         Long id = service.create(test);
         RoleDTO roleFromDb = facade.getRoleById(id);
         assertDTOAndEntityEquals(roleFromDb, test);
     }
     @Test @Ignore
     public void testGetAll() {
-        Role testAll = TestUtils.createRole("Admin",  "administrator");
-        testAll.setId(null);
+        Role testAll = EntityUtils.createRole(null, "Admin",  "administrator");
         service.create(testAll);
-        Role test2 = TestUtils.createRole("Customer",  "customer");
-        test2.setId(null);
+        Role test2 = EntityUtils.createRole(null, "Customer",  "customer");
         service.create(test2);
         List<RoleDTO> roles = facade.getAllRole();
         assertEquals(2, roles.size());
@@ -80,19 +77,16 @@ public class RoleFacadeTest extends AbstractTestNGSpringContextTests {
     }
     @Test @Ignore
     public void testGetByName() {
-        Role test = TestUtils.createRole("Admin",  "administrator");
-        test.setId(null);
+        Role test = EntityUtils.createRole(null, "Admin",  "administrator");
         service.create(test);
         RoleDTO testFromDb = facade.getRoleByName(test.getName());
         assertDTOAndEntityEquals(testFromDb, test);
     }
     @Test @Ignore
     public void testRemove() {
-        Role test1 = TestUtils.createRole("Admin",  "administrator");
-        test1.setId(null);
+        Role test1 = EntityUtils.createRole(null, "Admin",  "administrator");
         service.create(test1);
-        Role test2 = TestUtils.createRole("Customer",  "old_customer");
-        test2.setId(null);
+        Role test2 = EntityUtils.createRole(null, "Customer",  "old_customer");
         service.create(test2);
         facade.removeRole(test2.getId());
         List<Role> roles = service.findAll();
@@ -101,8 +95,7 @@ public class RoleFacadeTest extends AbstractTestNGSpringContextTests {
     }
     @Test @Ignore
     public void testUpdate() {
-        Role test2 = TestUtils.createRole("Customer",  "old_customer");
-        test2.setId(null);
+        Role test2 = EntityUtils.createRole(null, "Customer",  "old_customer");
         service.create(test2);
         RoleDTO newTest1 = new RoleDTO();
         newTest1.setName(test2.getName());

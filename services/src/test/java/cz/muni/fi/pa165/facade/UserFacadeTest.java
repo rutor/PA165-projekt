@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.facade;
 
+import cz.muni.fi.pa165.EntityUtils;
 import cz.muni.fi.pa165.dto.CreateUserDTO;
 import cz.muni.fi.pa165.dto.UserDTO;
 import cz.muni.fi.pa165.dto.RoleDTO;
@@ -8,7 +9,6 @@ import cz.muni.fi.pa165.entity.Users;
 import cz.muni.fi.pa165.ServicesContext;
 import cz.muni.fi.pa165.services.RoleService;
 import cz.muni.fi.pa165.services.UserService;
-import cz.muni.fi.pa165.services.TestUtils;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,8 +35,7 @@ public class UserFacadeTest extends AbstractTestNGSpringContextTests {
 
     @Test @Ignore
     public void testCreate() {
-        Role role = TestUtils.createRole("Admin",  "administrator");
-        role.setId(null);
+        Role role = EntityUtils.createRole(null, "Admin",  "administrator");
         roleService.create(role);
         CreateUserDTO user = new CreateUserDTO();
         user.setFirstName("Robo");

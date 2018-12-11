@@ -1,4 +1,4 @@
-package cz.muni.fi.pa165.services;
+package cz.muni.fi.pa165;
 
 import cz.muni.fi.pa165.entity.*;
 import cz.muni.fi.pa165.enums.PaymentStatus;
@@ -7,11 +7,11 @@ import cz.muni.fi.pa165.enums.TicketStatus;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-public class TestUtils {
+public class EntityUtils {
 
-    public static Ticket createTicket(@NotNull Performance performance, @NotNull Users user) {
+    public static Ticket createTicket(Long id, @NotNull Performance performance, @NotNull Users user) {
         Ticket ticket = new Ticket();
-        ticket.setId((long)Math.random()*1000);
+        ticket.setId(id);
         ticket.setPerformance(performance);
         ticket.setStatus(TicketStatus.NOT_USED);
         ticket.setUser(user);
@@ -20,11 +20,11 @@ public class TestUtils {
         return ticket;
     }
 
-    public static Booking createBooking(@NotNull Users user, @NotNull String description,
+    public static Booking createBooking(Long id, @NotNull Users user, @NotNull String description,
                                         @NotNull PaymentStatus paymentStatus, @NotNull Performance performance,
                                         @NotNull LocalDate createdaAt, @NotNull LocalDate updatedAt) {
         Booking booking = new Booking();
-        booking.setId((long)Math.random()*1000);
+        booking.setId(id);
         booking.setUser(user);
         booking.setDescription(description);
         booking.setPaymentStatus(paymentStatus);
@@ -35,9 +35,10 @@ public class TestUtils {
         return booking;
     }
 
-    public static Performance createPerformance(@NotNull String description, @NotNull Float price, @NotNull Hall hall, @NotNull Show show, @NotNull LocalDate startDate) {
+    public static Performance createPerformance(Long id, @NotNull String description, @NotNull Float price,
+                                                @NotNull Hall hall, @NotNull Show show, @NotNull LocalDate startDate) {
         Performance performance = new Performance();
-        performance.setId((long)Math.random()*1000);
+        performance.setId(id);
         performance.setDescription(description);
         performance.setPrice(price);
         performance.setHall(hall);
@@ -46,35 +47,37 @@ public class TestUtils {
         return performance;
     }
 
-    public static Hall createHall(@NotNull String name, @NotNull String address, @NotNull Long capacity) {
+    public static Hall createHall(Long id, @NotNull String name, @NotNull String address, @NotNull Long capacity) {
         Hall hall = new Hall();
-        hall.setId((long)Math.random()*1000);
+        hall.setId(id);
         hall.setName(name);
         hall.setAddress(address);
         hall.setCapacity(capacity);
         return hall;
     }
 
-    public static Show createShow(@NotNull String name, @NotNull String description, @NotNull Genre genre, @NotNull Integer duration) {
+    public static Show createShow(Long id, @NotNull String name, @NotNull String description, @NotNull Genre genre, @NotNull Integer duration) {
         Show show = new Show();
-        show.setId((long)Math.random()*1000);
+        show.setId(id);
         show.setName(name);
         show.setDescription(description);
         show.setGenre(genre);
         show.setDuration(duration);
         return show;
     }
-    public static Genre createGenre(String name, String description) {
+    public static Genre createGenre(Long id, @NotNull String name, @NotNull String description) {
         Genre genre = new Genre();
-        genre.setId((long)Math.random()*1000);
+        genre.setId(id);
         genre.setName(name);
         genre.setDescription(description);
         return genre;
     }
 
-    public static Users createUser(@NotNull String firstName, @NotNull String lastName, @NotNull String email, @NotNull String password, @NotNull Role role, @NotNull LocalDate createdAt, @NotNull LocalDate updatedAt) {
+    public static Users createUser(Long id, @NotNull String firstName, @NotNull String lastName, @NotNull String email,
+                                   @NotNull String password, @NotNull Role role, @NotNull LocalDate createdAt,
+                                   @NotNull LocalDate updatedAt) {
         Users user = new Users();
-        user.setId((long)Math.random()*1000);
+        user.setId(id);
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setEmail(email);
@@ -85,9 +88,9 @@ public class TestUtils {
         return user;
     }
 
-    public static Role createRole(@NotNull String name, @NotNull String description) {
+    public static Role createRole(Long id, @NotNull String name, @NotNull String description) {
         Role role = new Role();
-        role.setId((long)Math.random()*1000);
+        role.setId(id);
         role.setName(name);
         role.setDescription(description);
         return role;

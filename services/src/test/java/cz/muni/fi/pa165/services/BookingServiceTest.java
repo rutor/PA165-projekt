@@ -25,9 +25,10 @@ import javax.inject.Inject;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
+import static cz.muni.fi.pa165.EntityUtils.*;
 import static org.junit.Assert.*;
-import static cz.muni.fi.pa165.services.TestUtils.*;
 import static org.mockito.Mockito.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -56,15 +57,16 @@ public class BookingServiceTest extends AbstractTestNGSpringContextTests {
 
     @Before
     public void setup() {
+        Random random = new Random();
         MockitoAnnotations.initMocks(this);
-        Role role = createRole("Role1", "RoleDescription");
-        user = createUser("FirstName", "LastName", "some@email.com", "pass", role, LocalDate.now(), LocalDate.now());
-        Hall hall = createHall("Hall1", "Address1", 100l);
-        Genre genre = createGenre("Genre1", "GenreDescription");
-        Show show = createShow("Show1", "ShowDescription", genre, 120);
-        performance = createPerformance("PerformanceDescription", 42.42f, hall, show, LocalDate.now());
-        booking1 = createBooking(user, "description", PaymentStatus.PAYED, performance, LocalDate.now(), LocalDate.now());
-        booking2 = createBooking(user, "descriptionDiffers", PaymentStatus.PAYED, performance, LocalDate.now(), LocalDate.now());
+        Role role = createRole(random.nextLong(), "Role1", "RoleDescription");
+        user = createUser(random.nextLong(), "FirstName", "LastName", "some@email.com", "pass", role, LocalDate.now(), LocalDate.now());
+        Hall hall = createHall(random.nextLong(), "Hall1", "Address1", 100l);
+        Genre genre = createGenre(random.nextLong(), "Genre1", "GenreDescription");
+        Show show = createShow(random.nextLong(), "Show1", "ShowDescription", genre, 120);
+        performance = createPerformance(random.nextLong(), "PerformanceDescription", 42.42f, hall, show, LocalDate.now());
+        booking1 = createBooking(random.nextLong(), user, "description", PaymentStatus.PAYED, performance, LocalDate.now(), LocalDate.now());
+        booking2 = createBooking(random.nextLong(), user, "descriptionDiffers", PaymentStatus.PAYED, performance, LocalDate.now(), LocalDate.now());
     }
 
     @Test

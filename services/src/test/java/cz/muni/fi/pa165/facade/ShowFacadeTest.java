@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.facade;
 
+import cz.muni.fi.pa165.EntityUtils;
 import cz.muni.fi.pa165.ServicesContext;
 import cz.muni.fi.pa165.dto.CreateShowDTO;
 import cz.muni.fi.pa165.dto.GenreDTO;
@@ -8,7 +9,6 @@ import cz.muni.fi.pa165.entity.Genre;
 import cz.muni.fi.pa165.entity.Show;
 import cz.muni.fi.pa165.services.GenreService;
 import cz.muni.fi.pa165.services.ShowService;
-import cz.muni.fi.pa165.services.TestUtils;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -39,8 +39,7 @@ public class ShowFacadeTest extends AbstractTestNGSpringContextTests {
 
 	@Test @Ignore
 	public void testCreate() {
-		Genre g = TestUtils.createGenre("Smuteční píseň", "Byly, jsou, a asi budou");
-		g.setId(null);
+		Genre g = EntityUtils.createGenre(null, "Smuteční píseň", "Byly, jsou, a asi budou");
 		genreService.create(g);
 		CreateShowDTO s = new CreateShowDTO();
 		s.setName("Píseň studenta");
@@ -74,10 +73,8 @@ public class ShowFacadeTest extends AbstractTestNGSpringContextTests {
 	public void testGetAllByGenre() {
 		Show test = insertShow("O škole a lidech", "Pravdivá, i když děsivá upřímná", 123, "Horor",
 				"Po půlnoci nedívat");
-		Show test2 = TestUtils.createShow("Ve větru", "I tam se dějí věci",
-				TestUtils.createGenre("Komedie", "Je, byla, bude"), 123);
-		test2.setId(null);
-		;
+		Show test2 = EntityUtils.createShow(null, "Ve větru", "I tam se dějí věci",
+				EntityUtils.createGenre(null, "Komedie", "Je, byla, bude"), 123);
 		test2.getGenre().setId(test.getGenre().getId());
 		showService.create(test2);
 		insertShow("Pro poslední naději", "Zbyly jen vzpomínky", 221, "Horor a katastrofické", "Radši odejděte");

@@ -26,15 +26,16 @@
         <module>services</module>
         <module>dao</module>
         <module>web</module>
+        <module>sample-data</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
+            <!--<dependency>
                 <groupId>net.sf.dozer</groupId>
                 <artifactId>dozer</artifactId>
                 <version>5.5.1</version>
-            </dependency>
+            </dependency>-->
             <dependency>
                 <groupId>org.testng</groupId>
                 <artifactId>testng</artifactId>
@@ -126,7 +127,17 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.7.12</version>
         </dependency>
-
+        <!-- Bean mapping -->
+        <dependency>
+            <groupId>com.github.dozermapper</groupId>
+            <artifactId>dozer-core</artifactId>
+            <version>6.4.1</version>
+        </dependency>
+        <dependency>
+            <groupId>io.craftsman</groupId>
+            <artifactId>dozer-jdk8-support</artifactId>
+            <version>1.0.3</version>
+        </dependency>
         <!-- security-SCrypt -->
         <dependency>
             <groupId>com.lambdaworks</groupId>
