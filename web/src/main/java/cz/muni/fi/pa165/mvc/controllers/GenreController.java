@@ -26,7 +26,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping(value = "/genre")
-public class GenresController {
+public class GenreController {
 
 	@Inject
 	private GenreFacade genreFacade;
