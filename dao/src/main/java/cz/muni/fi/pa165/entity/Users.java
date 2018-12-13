@@ -113,7 +113,7 @@ public class Users {
     }
 
     public void setCreatedAt(LocalDate createdAt) {
-        createdAt = createdAt;
+        this.createdAt = createdAt;
     }
 
     public LocalDate getUpdatedAt() {
@@ -121,7 +121,7 @@ public class Users {
     }
 
     public void setUpdatedAt(LocalDate updatedAt) {
-        updatedAt = updatedAt;
+        this.updatedAt = updatedAt;
     }
 
     @Override

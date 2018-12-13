@@ -45,7 +45,7 @@ public interface ShowFacade {
 	/**
 	 * Removes a show.
 	 * 
-	 * @param show a show to remove
+	 * @param showId an id of show to remove
 	 */
 	public void removeShow(Long showId);
 
