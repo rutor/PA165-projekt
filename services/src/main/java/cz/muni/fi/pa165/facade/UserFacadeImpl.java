@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import cz.muni.fi.pa165.services.BeanMappingService;
 import cz.muni.fi.pa165.dto.CreateUserDTO;
 import cz.muni.fi.pa165.dto.UserDTO;
+import cz.muni.fi.pa165.dto.UserAuthenticateDTO;
 import cz.muni.fi.pa165.entity.Users;
+import cz.muni.fi.pa165.entity.Role;
 import cz.muni.fi.pa165.services.RoleService;
 
 import cz.muni.fi.pa165.services.UserService;
@@ -36,6 +38,15 @@ public class UserFacadeImpl implements UserFacade {
     }
 
     @Override
+    public Long createUser(CreateUserDTO newUser, String plainPassword) {
+        Users mappedUser = mappingService.mapTo(newUser, Users.class);
+        mappedUser.setRole(roleService.findById(newUser.getRoleId()));
+        userService.create(mappedUser,plainPassword);
+        return mappedUser.getId() ;
+
+    }
+
+    @Override
     public List<UserDTO> getAllUser() {
         return mappingService.mapTo(userService.findAll(), UserDTO.class);
     }
@@ -55,6 +66,11 @@ public class UserFacadeImpl implements UserFacade {
         return mappingService.mapTo(userService.findByEmail(email), UserDTO.class);
     }
 
+    @Override
+    public List<UserDTO> getAllUsersByRoleId(Long roleId) {
+        Role role = roleService.findById(roleId);
+        return mappingService.mapTo(userService.findAllByRole(role),  UserDTO.class);
+    }
 
     @Override
     public void removeUser(Long id) {
@@ -66,6 +82,24 @@ public class UserFacadeImpl implements UserFacade {
         userService.update(mappingService.mapTo(user, Users.class));
     }
 
+    @Override
+    public Boolean isAdmin(UserDTO user) {
+        return userService.isAdmin(mappingService.mapTo(user, Users.class));
+    }
+
+
+
+    @Override
+    public boolean authenticateUser(UserDTO user, String plainPassword) {
+        if (user == null) {
+            throw new NullPointerException("User cannot be null");
+        }
+        Users u = userService.findByName(user.getLastName());
+        if (u == null) {
+            throw new IllegalArgumentException("User with given login doesnt exist");
+        }
+        return userService.authenticate(u, plainPassword);
+    }
 
 
 }

@@ -4,9 +4,10 @@ import java.util.List;
 
 
 import cz.muni.fi.pa165.dto.CreateUserDTO;
+
 import cz.muni.fi.pa165.dto.UserDTO;
 
-
+import cz.muni.fi.pa165.dto.UserAuthenticateDTO;
 
 public interface UserFacade {
 
@@ -24,6 +25,18 @@ public interface UserFacade {
     public UserDTO findByEmail(String email);
 
     public void updateUser(UserDTO role);
+
+    public List<UserDTO> getAllUsersByRoleId(Long roleId);
+
+    public boolean authenticateUser(UserDTO user, String plainPassword);
+
+    public Boolean isAdmin(UserDTO user);
+
+    public Long createUser(CreateUserDTO newUser, String plainPassword);
+
+
+
+
 
 
 }

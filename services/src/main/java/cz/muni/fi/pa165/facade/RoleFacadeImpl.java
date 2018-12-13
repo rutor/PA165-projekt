@@ -39,7 +39,7 @@ public class RoleFacadeImpl implements RoleFacade {
     public RoleDTO getRoleById(Long id) {
         return mappingService.mapTo(roleService.findById(id), RoleDTO.class);
     }
-
+    
     @Override
     public RoleDTO getRoleByName(String name) { return mappingService.mapTo(roleService.findByName(name), RoleDTO.class);
     }
