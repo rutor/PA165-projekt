@@ -22,13 +22,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableWebMvc
 @Configuration
 @Import({SampleDataContext.class})
-@ComponentScan(basePackages = {"cz.muni.fi.pa165.rest.controllers", "cz.muni.fi.pa165.rest.assemblers"})
+@ComponentScan(basePackages = {"cz.muni.fi.pa165.rest.controllers"})
 public class RootWebContext extends WebMvcConfigurerAdapter {
-
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        //registry.addInterceptor(new AllowOriginInterceptor());
-    }
 
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
@@ -44,8 +39,6 @@ public class RootWebContext extends WebMvcConfigurerAdapter {
 
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH));
-
-        //objectMapper.addMixIn(ProductDTO.class, ProductDTOMixin.class);
 
         jsonConverter.setObjectMapper(objectMapper);
         return jsonConverter;
