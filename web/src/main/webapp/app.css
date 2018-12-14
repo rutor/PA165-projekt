@@ -1,9 +1,22 @@
+/*
 .navbar {
     background-color: #0e0e0e;
+    position: fixed;
+    width: 100%;
+    padding: .5rem 1rem;
+        margin-bottom: 20px;
 }
 
 .navbar-brand {
     color: aliceblue;
+}
+
+.navbar-header {
+    display: contents;
+}
+
+.navbar-brand:hover {
+    color: darkgrey;
 }
 
 .navbar .container {
@@ -27,6 +40,22 @@
     border: solid;
     border-style: inset;
     border-top: none;
+    padding-top: 4rem;
+}
+*/
+
+body {
+    width: 100%;
+    background-image: url("pictures/dark-theatre.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #e0e0e0;
+}
+
+.container.page {
+    max-width: 1280px;
+    margin: auto;
+    background: #000;
 }
 
 .current-shows-container {
@@ -50,8 +79,8 @@
     margin: 2px;
     border: black;
     border-style: solid;
-    border-width: thick;
-    border-radius: 10px;
+    /*border-width: thick;
+    border-radius: 10px;*/
 }
 
 .img {
