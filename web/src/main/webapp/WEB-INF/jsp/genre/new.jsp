@@ -5,8 +5,8 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:pagetemplate title="Add a new genre">
-<jsp:attribute name="body">
+<my:administrationTemplate subtitle="Add a new genre">
+<jsp:attribute name="body_area">
     <form:form method="post" action="${pageContext.request.contextPath}/genre/new"
                modelAttribute="genreCreate" cssClass="form-horizontal">
         <div class="form-group">
@@ -28,4 +28,4 @@
     </form:form>
 
 </jsp:attribute>
-</my:pagetemplate>
+</my:administrationTemplate>

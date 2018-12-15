@@ -5,8 +5,8 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:pagetemplate title="List of bookings">
-<jsp:attribute name="body">
+<my:administrationTemplate subtitle="List of bookings">
+<jsp:attribute name="body_area">
 
     <table class="table table-bordered">
       <tbody>
@@ -17,4 +17,4 @@
     </table>
 
 </jsp:attribute>
-</my:pagetemplate>
+</my:administrationTemplate>
