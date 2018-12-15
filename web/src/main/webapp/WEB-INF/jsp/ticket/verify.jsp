@@ -5,8 +5,8 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:pagetemplate title="Booking payment">
-<jsp:attribute name="body">
+<my:administrationTemplate subtitle="Booking payment">
+<jsp:attribute name="body_area">
 
     <form:form method="post" action="${pageContext.request.contextPath}/ticket/verify"
                modelAttribute="validationDTO" cssClass="form-horizontal">
@@ -32,4 +32,4 @@
     </form:form>
 
 </jsp:attribute>
-</my:pagetemplate>
+</my:administrationTemplate>

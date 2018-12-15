@@ -5,8 +5,8 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:pagetemplate title="Booking deletion">
-<jsp:attribute name="body">
+<my:administrationTemplate subtitle="Booking deletion">
+<jsp:attribute name="body_area">
 
     <form:form method="post" action="${pageContext.request.contextPath}/booking/delete/${id}" cssClass="form-horizontal">
         <p>Are you sure that you want to delete booking with id: <c:out value="${id}"/></p>
@@ -14,4 +14,4 @@
     </form:form>
 
 </jsp:attribute>
-</my:pagetemplate>
+</my:administrationTemplate>

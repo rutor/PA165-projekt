@@ -5,8 +5,8 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:pagetemplate title="Ticket returning">
-<jsp:attribute name="body">
+<my:administrationTemplate subtitle="Ticket returning">
+<jsp:attribute name="body_area">
 
     <form:form method="post" action="${pageContext.request.contextPath}/ticket/return/${barcode}" cssClass="form-horizontal">
         <p>Are you sure that you want to return ticket with barcode: <c:out value="${barcode}"/></p>
@@ -14,4 +14,4 @@
     </form:form>
 
 </jsp:attribute>
-</my:pagetemplate>
+</my:administrationTemplate>
