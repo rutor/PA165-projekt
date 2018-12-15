@@ -70,7 +70,7 @@
 
             <!-- page title -->
             <c:if test="${not empty title}">
-                <div class="page-header">
+                <div><!-- class="page-header"-->
                     <h1><c:out value="${title}"/></h1>
                 </div>
             </c:if>

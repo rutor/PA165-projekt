@@ -5,11 +5,11 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:pagetemplate title="Genre detail">
-<jsp:attribute name="body">
+<my:administrationTemplate subtitle="Genre detail">
+<jsp:attribute name="body_area">
 <h1>Detail for <c:out value="${genre.name}"/></h1>
 <p><c:out value="${genre.description}"/></p>
 <h2>Shows of this genre</h2>
 
 </jsp:attribute>
-</my:pagetemplate>
+</my:administrationTemplate>
