@@ -16,12 +16,12 @@
 <my:pagetemplate title="Administration">
     <jsp:attribute name="body">
         <div class="btn-group btn-group-justified">
-            <a href="/web/show/" class="btn btn-primary">Shows</a>
-            <a href="/web/performance/" class="btn btn-primary">Performances</a>
-            <a href="/web/booking/" class="btn btn-primary">Bookings</a>
-            <a href="/web/genre/" class="btn btn-primary">Genres</a>
-            <a href="/web/hall/" class="btn btn-primary">Halls</a>
-            <a href="/web/user/" class="btn btn-primary">Users</a>
+            <a href="${pageContext.request.contextPath}/show/" class="btn btn-primary">Shows</a>
+            <a href="${pageContext.request.contextPath}/performance/" class="btn btn-primary">Performances</a>
+            <a href="${pageContext.request.contextPath}/booking/" class="btn btn-primary">Bookings</a>
+            <a href="${pageContext.request.contextPath}/genre/" class="btn btn-primary">Genres</a>
+            <a href="${pageContext.request.contextPath}/hall/" class="btn btn-primary">Halls</a>
+            <a href="${pageContext.request.contextPath}/user/" class="btn btn-primary">Users</a>
         </div>
         <!-- page title -->
             <c:if test="${not empty subtitle}">
