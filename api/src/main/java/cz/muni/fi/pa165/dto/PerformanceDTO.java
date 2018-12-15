@@ -20,6 +20,10 @@ public class PerformanceDTO {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -91,5 +95,10 @@ public class PerformanceDTO {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return getShow().getName() + " at " + getStartDate().toString();
     }
 }
