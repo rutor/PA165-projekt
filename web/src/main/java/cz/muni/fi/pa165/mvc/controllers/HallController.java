@@ -110,7 +110,7 @@ public class HallController {
             redirectAttributes.addFlashAttribute("alert_success", "Hall \"" + hall.getName() + "\" was deleted.");
         } catch (Exception ex) {
             redirectAttributes.addFlashAttribute("alert_danger",
-                    "Genre \"" + hall.getName() + "\" cannot be deleted, it might be used for a show.");
+                    "Hall \"" + hall.getName() + "\" cannot be deleted, it might be used for a show.");
         }
         return "redirect:" + uriBuilder.path("/hall/").toUriString();
     }
