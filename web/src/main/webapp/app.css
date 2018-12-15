@@ -1,9 +1,22 @@
+/*
 .navbar {
     background-color: #0e0e0e;
+    position: fixed;
+    width: 100%;
+    padding: .5rem 1rem;
+        margin-bottom: 20px;
 }
 
 .navbar-brand {
     color: aliceblue;
+}
+
+.navbar-header {
+    display: contents;
+}
+
+.navbar-brand:hover {
+    color: darkgrey;
 }
 
 .navbar .container {
@@ -27,6 +40,44 @@
     border: solid;
     border-style: inset;
     border-top: none;
+    padding-top: 4rem;
+}
+*/
+
+body {
+    background: url(pictures/blured.png) center center fixed;
+    background-size: 100% 100%;
+    color: #e0e0e0;
+}
+
+
+a {
+    color: #e0e0e0;
+}
+
+a:hover, a:focus, .btn:hover, .btn:focus{
+    color:#8a7769;
+}
+
+.btn-primary {
+    background-image: linear-gradient(to bottom,#724218 0,#5c3515 100%);
+    border-color: #ffffff;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+    background-image: linear-gradient(to bottom,#724218 0,#5c3515 100%);
+    border-color: #ffffff;
+}
+
+.navbar {
+    background-image: -webkit-linear-gradient(top,#0c0704 40%,#382419 100%);
+
+}
+
+.container.page {
+    max-width: 1280px;
+    margin: auto;
+    background: #000;
 }
 
 .current-shows-container {
@@ -50,8 +101,8 @@
     margin: 2px;
     border: black;
     border-style: solid;
-    border-width: thick;
-    border-radius: 10px;
+    /*border-width: thick;
+    border-radius: 10px;*/
 }
 
 .img {

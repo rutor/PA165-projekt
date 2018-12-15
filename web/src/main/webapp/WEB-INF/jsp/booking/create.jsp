@@ -5,8 +5,8 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:pagetemplate title="Booking detail">
-<jsp:attribute name="body">
+<my:administrationTemplate subtitle="Booking detail">
+<jsp:attribute name="body_area">
 
     <form:form method="post" action="${pageContext.request.contextPath}/booking/create"
                modelAttribute="bookingCreate" cssClass="form-horizontal">
@@ -34,4 +34,4 @@
     </form:form>
 
 </jsp:attribute>
-</my:pagetemplate>
+</my:administrationTemplate>

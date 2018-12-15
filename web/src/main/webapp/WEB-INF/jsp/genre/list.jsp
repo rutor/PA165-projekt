@@ -5,8 +5,8 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:pagetemplate title="Genre listing">
-    <jsp:attribute name="body">
+<my:administrationTemplate subtitle="Genre listing">
+    <jsp:attribute name="body_area">
         <!-- TODO: Show for admins only -->
         <my:a href="/genre/new" class="btn btn-primary">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -37,4 +37,4 @@
             </tbody>
         </table>
     </jsp:attribute>
-</my:pagetemplate>
+</my:administrationTemplate>

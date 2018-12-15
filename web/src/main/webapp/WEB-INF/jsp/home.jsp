@@ -6,24 +6,31 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <my:pagetemplate>
-<jsp:attribute name="body">
+    <jsp:attribute name="body">
 
-    <div class="jumbotron">
-        <h1>Welcome to SpringMVC !</h1>
-        <p class="lead">In this seminar, the mysteries of Spring MVC will be revealed to you. </p>
-        <p><a class="btn btn-lg btn-success" href="${pageContext.request.contextPath}/example/foo/1/platypus55?b=42"
-              role="button">Call ExampleController</a></p>
-        <p><a class="btn btn-lg btn-success" href="${pageContext.request.contextPath}/shopping/show"
-              role="button">Go shopping</a></p>
-    </div>
-
-    <div class="row">
-        <c:forEach begin="1" end="12" var="i">
-            <div class="col-xs-12 col-sm-6 col-md-2 col-lg-1">
-                <p><button class="btn btn-default">Button ${i}</button></p>
+        <div class="current-shows-container">
+            <div class="current-shows-panel row up-to-large-5">
+                <div class="img-container column">
+                    <img class="img" src="pictures/ballet.png">
+                </div>
+                <div class="img-container column">
+                    <img class="img" src="pictures/smetana.jpg">
+                </div>
+                <div class="img-container column">
+                    <img class="img" src="pictures/zelary.jpg">
+                </div>
+                <div class="img-container column">
+                    <img class="img" src="pictures/ballet.png">
+                </div>
+                <div class="img-container column">
+                    <img class="img" src="pictures/smetana.jpg">
+                </div>
             </div>
-        </c:forEach>
-    </div>
+        </div>
 
-</jsp:attribute>
+        <div>
+            Shows
+            Zde bude vypis aktualnich shows s kratkym popisem, obrazkem a odkazem na detail a koupi vstupenek
+        </div>
+    </jsp:attribute>
 </my:pagetemplate>
