@@ -30,57 +30,89 @@ public class BookingDaoImpl implements BookingDao {
 
     @Override
     public Booking findById(Long id) {
-        return em.createQuery(SELECT_QUERY + " where id = :id", Booking.class)
-                .setParameter("id", id)
-                .getSingleResult();
+        try {
+            return em.createQuery(SELECT_QUERY + " where id = :id", Booking.class)
+                    .setParameter("id", id)
+                    .getSingleResult();
+        } catch (NoResultException ex) {
+            return null;
+        }
     }
 
     @Override
     public List<Booking> findAll() {
-        return em.createQuery(SELECT_QUERY, Booking.class)
-                .getResultList();
+        try {
+            return em.createQuery(SELECT_QUERY, Booking.class)
+                    .getResultList();
+        } catch (NoResultException ex) {
+            return new ArrayList<>();
+        }
     }
 
     @Override
     public Booking findByTicket(Ticket ticket) {
-        return em.createQuery(SELECT_QUERY + " WHERE ticket = :ticket", Booking.class)
-                .setParameter("ticket", ticket)
-                .getSingleResult();
+        try {
+            return em.createQuery(SELECT_QUERY + " WHERE ticket = :ticket", Booking.class)
+                    .setParameter("ticket", ticket)
+                    .getSingleResult();
+        } catch (NoResultException ex) {
+            return null;
+        }
     }
 
     @Override
     public List<Booking> findByPaymentStatus(PaymentStatus paymentStatus) {
-        return em.createQuery(SELECT_QUERY + " WHERE paymentStatus = :paymentStatus", Booking.class)
-                .setParameter("paymentStatus", paymentStatus)
-                .getResultList();
+        try {
+            return em.createQuery(SELECT_QUERY + " WHERE paymentStatus = :paymentStatus", Booking.class)
+                    .setParameter("paymentStatus", paymentStatus)
+                    .getResultList();
+        } catch (NoResultException ex) {
+            return new ArrayList<>();
+        }
     }
 
     @Override
     public List<Booking> findByCreationDate(LocalDate creationDate) {
-        return em.createQuery(SELECT_QUERY + " WHERE createdAt = :creationDate", Booking.class)
-                .setParameter("creationDate", creationDate)
-                .getResultList();
+        try {
+            return em.createQuery(SELECT_QUERY + " WHERE createdAt = :creationDate", Booking.class)
+                    .setParameter("creationDate", creationDate)
+                    .getResultList();
+        } catch (NoResultException ex) {
+            return new ArrayList<>();
+        }
     }
 
     @Override
     public List<Booking> findByUpdateDate(LocalDate updateDate) {
-        return em.createQuery(SELECT_QUERY + " WHERE updatedAt = :updateDate", Booking.class)
-                .setParameter("updateDate", updateDate)
-                .getResultList();
+        try {
+            return em.createQuery(SELECT_QUERY + " WHERE updatedAt = :updateDate", Booking.class)
+                    .setParameter("updateDate", updateDate)
+                    .getResultList();
+        } catch (NoResultException ex) {
+            return new ArrayList<>();
+        }
     }
 
     @Override
     public List<Booking> findByPerformance(Performance performance) {
-        return em.createQuery(SELECT_QUERY + " WHERE performance = :performance", Booking.class)
-                .setParameter("performance", performance)
-                .getResultList();
+        try {
+            return em.createQuery(SELECT_QUERY + " WHERE performance = :performance", Booking.class)
+                    .setParameter("performance", performance)
+                    .getResultList();
+        } catch (NoResultException ex) {
+            return new ArrayList<>();
+        }
     }
 
     @Override
     public List<Booking> findByUser(Users user) {
-        return em.createQuery(SELECT_QUERY + " WHERE user = :user", Booking.class)
-                .setParameter("user", user)
-                .getResultList();
+        try {
+            return em.createQuery(SELECT_QUERY + " WHERE user = :user", Booking.class)
+                    .setParameter("user", user)
+                    .getResultList();
+        } catch (NoResultException ex) {
+            return new ArrayList<>();
+        }
     }
 
     @Override
