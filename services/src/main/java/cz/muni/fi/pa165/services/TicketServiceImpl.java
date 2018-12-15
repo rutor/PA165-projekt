@@ -1,6 +1,5 @@
 package cz.muni.fi.pa165.services;
 
-import cz.muni.fi.pa165.dao.PerformanceDao;
 import cz.muni.fi.pa165.dao.TicketDao;
 import cz.muni.fi.pa165.entity.Performance;
 import cz.muni.fi.pa165.entity.Ticket;
@@ -22,8 +21,7 @@ public class TicketServiceImpl implements TicketService {
     UserService userService;
 
     @Inject
-    // FIXME Tomas milestone2 use service when it is implemented
-    PerformanceDao performanceDao;
+    PerformanceService performanceService;
 
     @Override
     public Long create(Ticket ticket) {
@@ -54,13 +52,16 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public List<Ticket> getByPerformance(Long id) {
-        Performance performance = performanceDao.findById(id);
+        Performance performance = performanceService.findById(id);
         return ticketDao.findByPerformance(performance);
     }
 
     @Override
     public boolean returnTicket(Long id) {
         Ticket ticket = getById(id);
+        if (ticket == null) {
+            return false;
+        }
         if (ticket.getStatus().equals(TicketStatus.NOT_USED)) {
             ticket.setStatus(TicketStatus.RETURNED);
             ticketDao.update(ticket);
