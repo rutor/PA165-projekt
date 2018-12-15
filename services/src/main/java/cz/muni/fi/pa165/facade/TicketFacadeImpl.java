@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Transactional
@@ -34,6 +35,11 @@ public class TicketFacadeImpl implements TicketFacade{
     }
 
     @Override
+    public TicketDTO getByBarcode(UUID barcode) {
+        return beanMappingService.mapTo(ticketService.getByBarcode(barcode), TicketDTO.class);
+    }
+
+    @Override
     public List<TicketDTO> getByPerformance(Long id) {
         return beanMappingService.mapTo(ticketService.getByPerformance(id), TicketDTO.class);
     }
@@ -44,15 +50,18 @@ public class TicketFacadeImpl implements TicketFacade{
     }
 
     @Override
-    // FIXME Tomas milestone2 Implement this in service rather then in facade
     public TicketValidationAnswerDTO validateTicket(TicketValidationRequestDTO dto) {
         TicketValidationAnswerDTO validationDto = new TicketValidationAnswerDTO();
         Ticket ticket = ticketService.getByBarcode(dto.getBarcode());
-        if (ticket.getPerformance().getId().equals(dto.getPerformanceId())) {
-            TicketStatus status = ticket.getStatus();
-            validationDto.setTicketStatus(status);
-            if (status.equals(TicketStatus.NOT_USED)) {
-                validationDto.setValid(true);
+        if (ticket == null) {
+            return null;
+        } else {
+            if (ticket.getPerformance().getId().equals(dto.getPerformanceId())) {
+                TicketStatus status = ticket.getStatus();
+                validationDto.setTicketStatus(status);
+                if (status.equals(TicketStatus.NOT_USED)) {
+                    validationDto.setValid(true);
+                }
             }
         }
         return validationDto;

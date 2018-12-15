@@ -36,9 +36,6 @@ public class BookingFacadeImpl implements BookingFacade{
 
     @Override
     public Long create(CreateBookingDTO dto) {
-        /*Booking booking = new Booking();
-        booking.setDescription(dto.getDescription());
-        // FIXME Tomas milestone2 Add all missing setters after DTOs are implemented*/
         Booking booking = beanMappingService.mapTo(dto, Booking.class);
         return bookingService.create(booking);
     }
@@ -48,5 +45,10 @@ public class BookingFacadeImpl implements BookingFacade{
         Booking booking = bookingService.getById(dto.getId());
         Ticket ticket = bookingService.pay(booking);
         return beanMappingService.mapTo(ticket, TicketDTO.class);
+    }
+
+    @Override
+    public boolean remove(Long id) {
+        return bookingService.remove(id);
     }
 }

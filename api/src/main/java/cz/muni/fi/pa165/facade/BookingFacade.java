@@ -6,11 +6,13 @@ import java.util.List;
 
 public interface BookingFacade {
 
-    public List<BookingDTO> getAll();
+    List<BookingDTO> getAll();
 
-    public BookingDTO getById(Long id);
+    BookingDTO getById(Long id);
 
-    public Long create(CreateBookingDTO dto);
+    Long create(CreateBookingDTO dto);
 
-    public TicketDTO pay(PayBookingDTO dto);
+    TicketDTO pay(PayBookingDTO dto);
+
+    boolean remove(Long id);
 }
