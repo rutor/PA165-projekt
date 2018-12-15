@@ -57,7 +57,8 @@ public class InsertSampleDataImpl implements InsertSampleData {
         Hall hall2 = createHall(null,"Hall2", "Hall2Description", 40l);
         Hall hall3 = createHall(null,"Hall3", "Hall3Description", 65l);
 
-        Performance performance = createPerformance(null, "The only chance to see", 15.0f, hall1, show1, LocalDate.now());
+        Performance performance1 = createPerformance(null, "The only chance to see", 15.0f, hall1, show1, LocalDate.now());
+        Performance performance2 = createPerformance(null, "Test performance", 12.0f, hall2, show2, LocalDate.now());
 
         roleService.create(userRole);
         roleService.create(adminRole);
@@ -77,6 +78,7 @@ public class InsertSampleDataImpl implements InsertSampleData {
         hallService.create(hall2);
         hallService.create(hall3);
 
-        performanceService.create(performance);
+        performanceService.create(performance1);
+        performanceService.create(performance2);
     }
 }
