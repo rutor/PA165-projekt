@@ -14,7 +14,11 @@
         <div class="form-group ${performance_error?'has-error':''}">
             <form:label path="performance" cssClass="col-sm-2 control-label">Performance</form:label>
             <div class="col-sm-10">
-                <form:select path="performance" cssClass="form-control" items="${performances}"/>
+                <form:select path="performance" cssClass="form-control">
+                    <c:forEach items="${performances}" var="performance">
+                        <form:option value="${performance.id}" label="${performance.toString()}"/>
+                    </c:forEach>
+                </form:select>
                 <form:errors path="performance" cssClass="help-block"/>
             </div>
         </div>
