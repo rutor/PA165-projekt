@@ -45,11 +45,33 @@
 */
 
 body {
-    width: 100%;
-    background-image: url("pictures/dark-theatre.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    background: url(pictures/blured.png) center center fixed;
+    background-size: 100% 100%;
     color: #e0e0e0;
+}
+
+
+a {
+    color: #e0e0e0;
+}
+
+a:hover, a:focus, .btn:hover, .btn:focus{
+    color:#8a7769;
+}
+
+.btn-primary {
+    background-image: linear-gradient(to bottom,#724218 0,#5c3515 100%);
+    border-color: #ffffff;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+    background-image: linear-gradient(to bottom,#724218 0,#5c3515 100%);
+    border-color: #ffffff;
+}
+
+.navbar {
+    background-image: -webkit-linear-gradient(top,#0c0704 40%,#382419 100%);
+
 }
 
 .container.page {
