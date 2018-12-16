@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.dto;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import javax.validation.constraints.NotNull;
 
@@ -12,13 +13,32 @@ public class CreatePerformanceDTO {
     private LocalDate startDate;
     private Long showId;
     private Long hallId;
+    private String description;
+    private Float price;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Float getPrice() {
+        return price;
+    }
+
+    public void setPrice(Float price) {
+        this.price = price;
+    }
 
     public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
+    public void setStartDate(String start) {
+        LocalDate date = LocalDate.parse(start, DateTimeFormatter.ISO_DATE_TIME);
+        this.startDate = date;
     }
 
     public Long getShowId() {
