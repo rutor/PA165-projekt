@@ -2,8 +2,9 @@ package cz.muni.fi.pa165.mvc.controllers;
 
 import cz.muni.fi.pa165.dto.CreateShowDTO;
 import cz.muni.fi.pa165.dto.ShowDTO;
+import cz.muni.fi.pa165.dto.GenreDTO;
 import cz.muni.fi.pa165.facade.ShowFacade;
-
+import cz.muni.fi.pa165.facade.GenreFacade;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,6 +30,8 @@ public class ShowController {
 
 	@Inject
 	private ShowFacade showFacade;
+@Inject
+	private GenreFacade genreFacade;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String list(@RequestParam(required = false) Long genreId, Model model) {
@@ -75,8 +78,14 @@ public class ShowController {
 		CreateShowDTO showCreate = new CreateShowDTO();
 		showCreate.setGenreId(genreId);
 		model.addAttribute("showCreate", showCreate);
-		return "genre/new";
+		return "show/new";
 	}
+
+	@ModelAttribute("genres")
+public List<GenreDTO> genres() {
+	return genreFacade.getAllGenres();
+}
+    
 
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
 	public String create(@Valid @ModelAttribute("showCreate") CreateShowDTO formBean, BindingResult bindingResult,
