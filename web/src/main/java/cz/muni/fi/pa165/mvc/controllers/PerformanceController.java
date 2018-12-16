@@ -151,4 +151,48 @@ public class PerformanceController {
         return "redirect:" + uriBuilder.path("/performance/{id}").buildAndExpand(formBean.getId()).encode().toUriString();
     }
     
+    @RequestMapping(value = "/{id}/delete", method = RequestMethod.POST)
+    public String delete(@PathVariable long id, UriComponentsBuilder uriBuilder,
+            RedirectAttributes redirectAttributes) {
+        PerformanceDTO performance = performanceFacade.getPerformanceById(id);
+        try {
+            performanceFacade.removePerformance(id);
+            redirectAttributes.addFlashAttribute("alert_success", "Performance \"" + performance.getId() + "\" was deleted.");
+        } catch (Exception ex) {
+            redirectAttributes.addFlashAttribute("alert_danger",
+                    "Performance \"" + performance.getId() + "\" cannot be deleted, it might be used for a show.");
+        }
+        return "redirect:" + uriBuilder.path("/performance/").toUriString();
+    }
+
+    @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
+    public String confirmDelete(@PathVariable long id, Model model) {
+        model.addAttribute("performance", performanceFacade.getPerformanceById(id));
+        return "performance/confirm_delete";
+    }
+    
+    @InitBinder
+    protected void initBinder(WebDataBinder binder) {
+        if (binder.getTarget() instanceof PerformanceDTO) {
+            // Converts from ID of Performance to PerformanceDTO object before passing to function
+            binder.registerCustomEditor(HallDTO.class, new PropertyEditorSupport() {
+                @Override
+                public void setAsText(String s) throws IllegalArgumentException {
+                    log.debug("setAsText `" + s + "`");
+                    Long id = Long.valueOf(s);
+                    super.setValue(hallFacade.getHallById(id));
+                }
+            });
+            binder.registerCustomEditor(ShowDTO.class, new PropertyEditorSupport() {
+                @Override
+                public void setAsText(String s) throws IllegalArgumentException {
+                    log.debug("setAsText `" + s + "`");
+                    Long id = Long.valueOf(s);
+                    super.setValue(showFacade.getShowById(id));
+                }
+            });
+        }
+    }
+
+    
 }

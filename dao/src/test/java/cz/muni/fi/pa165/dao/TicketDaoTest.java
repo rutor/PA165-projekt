@@ -17,6 +17,7 @@ import javax.persistence.*;
 import static org.junit.Assert.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -51,7 +52,7 @@ public class TicketDaoTest extends AbstractTestNGSpringContextTests {
     	em.persist(show);
     	performance = new Performance();
     	performance.setShow(show);
-    	performance.setStartDate(LocalDate.now());
+    	performance.setStartDate(LocalDateTime.now());
     	em.persist(performance);
     	Role role = new Role();
     	role.setName("admin");

@@ -1,6 +1,6 @@
 package cz.muni.fi.pa165.entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -23,7 +23,7 @@ public class Performance {
 
     @Column(nullable=false)
     @NotNull
-    private LocalDate startDate;
+    private LocalDateTime startDate;
 
     @ManyToOne(targetEntity = Show.class)
     private Show show;
@@ -65,11 +65,11 @@ public class Performance {
         this.price = price;
     }
 
-    public LocalDate getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 

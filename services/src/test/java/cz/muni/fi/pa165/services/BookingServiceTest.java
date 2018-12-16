@@ -23,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.inject.Inject;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -64,7 +65,7 @@ public class BookingServiceTest extends AbstractTestNGSpringContextTests {
         Hall hall = createHall(random.nextLong(), "Hall1", "Address1", 100l);
         Genre genre = createGenre(random.nextLong(), "Genre1", "GenreDescription");
         Show show = createShow(random.nextLong(), "Show1", "ShowDescription", genre, 120);
-        performance = createPerformance(random.nextLong(), "PerformanceDescription", 42.42f, hall, show, LocalDate.now());
+        performance = createPerformance(random.nextLong(), "PerformanceDescription", 42.42f, hall, show, LocalDateTime.now());
         booking1 = createBooking(random.nextLong(), user, "description", PaymentStatus.PAYED, performance, LocalDate.now(), LocalDate.now());
         booking2 = createBooking(random.nextLong(), user, "descriptionDiffers", PaymentStatus.PAYED, performance, LocalDate.now(), LocalDate.now());
     }

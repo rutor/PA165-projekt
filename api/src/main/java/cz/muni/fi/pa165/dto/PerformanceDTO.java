@@ -1,6 +1,6 @@
 package cz.muni.fi.pa165.dto;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -12,7 +12,7 @@ public class PerformanceDTO {
     private Long id;
     private String description;
     private Float price;
-    private LocalDate startDate;
+    private LocalDateTime startDate;
     private ShowDTO show;
     private HallDTO hall;
 
@@ -40,11 +40,11 @@ public class PerformanceDTO {
         this.price = price;
     }
 
-    public LocalDate getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 

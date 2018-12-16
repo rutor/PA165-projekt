@@ -11,8 +11,12 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:administrationTemplate subtitle="Add a new performace">
+<my:administrationTemplate subtitle="Delete">
 <jsp:attribute name="body_area">
-    delete
+        <p>Do you really want to delete the hall <c:out value="${performance.id}"/>?</p>
+        <form method="post" action="${pageContext.request.contextPath}/performance/${performance.id}/delete">
+            <button type="submit" class="btn btn-primary">Yes, delete it</button>
+        </form>
+        <my:a href="/performance/">No, goback to the overview</my:a>
 </jsp:attribute>
 </my:administrationTemplate>
