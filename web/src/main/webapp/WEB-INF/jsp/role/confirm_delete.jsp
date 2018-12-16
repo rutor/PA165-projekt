@@ -11,5 +11,6 @@
     <button type="submit" class="btn btn-primary">Yes, delete it</button>
 </form>
 <my:a href="/role/" target="_parent"><button class="btn btn-primary">No, go back</button></my:a>
+
 </jsp:attribute>
 </my:pagetemplate>

@@ -118,5 +118,6 @@ public class RoleController {
         redirectAttributes.addFlashAttribute("alert_success", "Your edits to the role " + formBean.getName() + " were successfully saved");
         return "redirect:" + uriBuilder.path(WebUrls.URL_ROLE+"/{id}").buildAndExpand(formBean.getId()).encode().toUriString();
     }
+
 }
 

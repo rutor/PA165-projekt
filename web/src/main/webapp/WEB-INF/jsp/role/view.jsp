@@ -14,5 +14,6 @@
     <p>User: ${user.lastName} ${user.firstName}</p><br/>
 </c:forEach>
 <my:a href="/role/" target="_parent"><button class="btn btn-primary">Go back</button></my:a>
+
 </jsp:attribute>
 </my:pagetemplate>
