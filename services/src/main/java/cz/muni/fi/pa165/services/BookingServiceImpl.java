@@ -44,4 +44,14 @@ public class BookingServiceImpl implements BookingService{
         bookingDao.update(booking);
         return ticket;
     }
+
+    @Override
+    public boolean remove(Long id) {
+        Booking booking = getById(id);
+        if (booking == null) {
+            return false;
+        }
+        bookingDao.delete(booking);
+        return true;
+    }
 }

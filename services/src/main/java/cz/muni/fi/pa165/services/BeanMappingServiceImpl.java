@@ -22,12 +22,14 @@ public class BeanMappingServiceImpl implements BeanMappingService {
         return mappedCollection;
     }
 
-    public  <T> T mapTo(Object u, Class<T> mapToClass)
-    {
+    public  <T> T mapTo(Object u, Class<T> mapToClass) {
+        if (u == null) {
+            return null;
+        }
         return dozer.map(u,mapToClass);
     }
 
-    public Mapper getMapper(){
+    public Mapper getMapper() {
         return dozer;
     }
 }

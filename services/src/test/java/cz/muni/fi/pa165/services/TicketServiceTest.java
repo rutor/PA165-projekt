@@ -1,7 +1,6 @@
 package cz.muni.fi.pa165.services;
 
 import cz.muni.fi.pa165.ServicesContext;
-import cz.muni.fi.pa165.dao.PerformanceDao;
 import cz.muni.fi.pa165.dao.TicketDao;
 import cz.muni.fi.pa165.entity.*;
 import cz.muni.fi.pa165.enums.TicketStatus;
@@ -42,8 +41,7 @@ public class TicketServiceTest extends AbstractTestNGSpringContextTests {
     private UserService userService;
 
     @Mock
-    // FIXME Tomas milestone2 replace by service when available
-    private PerformanceDao performanceDao;
+    private PerformanceService performanceService;
 
     @Inject
     @InjectMocks
@@ -112,19 +110,18 @@ public class TicketServiceTest extends AbstractTestNGSpringContextTests {
     @Test
     public void getByPerformanceTest() {
         Performance performance = ticket1.getPerformance();
-        when(performanceDao.findById(performance.getId())).thenReturn(performance);
+        when(performanceService.findById(performance.getId())).thenReturn(performance);
         when(ticketDao.findByPerformance(performance)).thenReturn(Arrays.asList(ticket1));
         List<Ticket> tickets = ticketService.getByPerformance(performance.getId());
         assertEquals(1, tickets.size());
         assertEquals(ticket1, tickets.get(0));
     }
 
-    //@Test
-    // FIXME Tomas milestone2 Now fails on some null probably because we do not throw exceptions
+    @Test
     public void returnTicketTest() {
-        TicketStatus status = ticket1.getStatus();
-        assertEquals(TicketStatus.NOT_USED, status);
+        assertEquals(TicketStatus.NOT_USED, ticket1.getStatus());
+        when(ticketDao.findById(ticket1.getId())).thenReturn(ticket1);
         assertTrue(ticketService.returnTicket(ticket1.getId()));
-        assertEquals(TicketStatus.RETURNED, status);
+        assertEquals(TicketStatus.RETURNED, ticket1.getStatus());
     }
 }

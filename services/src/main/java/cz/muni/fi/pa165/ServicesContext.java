@@ -17,8 +17,7 @@ public class ServicesContext {
 	@Bean
 	public Mapper mapper() {
 		List<String> mappingFiles = new ArrayList();
-		mappingFiles.add("dozerJdk8Converters.xml");
-		//mappingFiles.add("UUIDMapping.xml");
+		mappingFiles.add("DozerConfiguration.xml");
 		DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
 		dozerBeanMapper.setMappingFiles(mappingFiles);
 		return dozerBeanMapper;

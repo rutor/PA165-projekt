@@ -13,6 +13,8 @@ public interface TicketFacade {
 
     TicketDTO getById(Long id);
 
+    TicketDTO getByBarcode(UUID barcode);
+
     List<TicketDTO> getByPerformance(Long id);
 
     List<TicketDTO> getByUser(Long id);

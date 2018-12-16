@@ -14,4 +14,6 @@ public interface BookingService {
     Long create(Booking booking);
 
     Ticket pay(Booking booking);
+
+    boolean remove(Long id);
 }

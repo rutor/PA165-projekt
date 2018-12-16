@@ -1,18 +1,30 @@
 package cz.muni.fi.pa165.mvc.controllers;
 
-import cz.muni.fi.pa165.dto.BookingDTO;
+import cz.muni.fi.pa165.dto.PerformanceDTO;
 import cz.muni.fi.pa165.dto.TicketDTO;
+import cz.muni.fi.pa165.dto.TicketValidationAnswerDTO;
+import cz.muni.fi.pa165.dto.TicketValidationRequestDTO;
+import cz.muni.fi.pa165.enums.TicketStatus;
+import cz.muni.fi.pa165.facade.PerformanceFacade;
 import cz.muni.fi.pa165.facade.TicketFacade;
+import cz.muni.fi.pa165.mvc.ViewErrorUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Tickets controller
@@ -20,7 +32,7 @@ import java.util.List;
  * @author Tomas Rudolf
  */
 @Controller
-@RequestMapping("/ticketFacade")
+@RequestMapping("/ticket")
 public class TicketController {
 
     final static Logger log = LoggerFactory.getLogger(TicketController.class);
@@ -31,7 +43,10 @@ public class TicketController {
     @Inject
     private TicketFacade ticketFacade;
 
-    @RequestMapping({"/", "/list"})
+    @Inject
+    private PerformanceFacade performanceFacade;
+
+    @RequestMapping(value = {"/", "/list", ""}, method = RequestMethod.GET)
     public String list(Model model) {
         log.info("/ or /list requested");
         List<TicketDTO> ticketsAll = ticketFacade.getAll();
@@ -39,28 +54,84 @@ public class TicketController {
         return "ticket/list";
     }
 
-    @RequestMapping("/{id}")
-    public String getById(@PathVariable Long id, Model model) {
-        log.info("/{id} requested");
-        TicketDTO ticket = ticketFacade.getById(id);
+    @RequestMapping(value = "/{barcodeString}", method = RequestMethod.GET)
+    public String getByBarcode(@PathVariable String barcodeString, Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
+        log.info("/{barcodeString} requested");
+        UUID barcode = UUID.fromString(barcodeString);
+        TicketDTO ticket = ticketFacade.getByBarcode(barcode);
+        if (ticket == null) {
+            redirectAttributes.addFlashAttribute("alert_danger", "No ticket with barcode: " + barcodeString + " exists");
+            return "redirect:" + uriBuilder.path("/ticket").toUriString();
+        }
         model.addAttribute("ticket", ticket);
         return "ticket/detail";
     }
 
-    @RequestMapping("/verify/{id}")
-    public String verifyTicketWithId(@PathVariable Long id, Model model) {
-        log.info("/verify/{id} requested");
-        TicketDTO ticket = ticketFacade.getById(id);
-        model.addAttribute("ticket", ticket);
-        return "ticket/verification";
+    @RequestMapping(value = "/verify", method = RequestMethod.GET)
+    public String verifyTicketForm(Model model) {
+        log.info("/verify GET requested");
+
+        TicketValidationRequestDTO validationDTO = new TicketValidationRequestDTO();
+        model.addAttribute("validationDTO", validationDTO);
+
+        List<PerformanceDTO> performances = performanceFacade.getAllPerformances();
+        model.addAttribute("performances", performances);
+        return "ticket/verify";
     }
 
-    @RequestMapping("/return/{id}")
-    public String returnById(@PathVariable Long id, Model model) {
-        log.info("/return/{id} requested");
-        boolean returned = ticketFacade.returnTicket(id);
-        // FIXME Tomas milestone3 return back to list and show flash message about return of ticketFacade
-        return "ticket/returned";
+    @RequestMapping(value = "/verify", method = RequestMethod.POST)
+    public String verifyTicketWithId(@Valid @ModelAttribute("validationDTO") TicketValidationRequestDTO dto, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
+        log.info("/verify POST requested");
+        if (bindingResult.hasErrors()) {
+            ViewErrorUtils.handleErrorInBinding(bindingResult, model);
+            return "ticket/verify";
+        }
+        TicketValidationAnswerDTO answerDTO = ticketFacade.validateTicket(dto);
+        if (answerDTO == null) {
+            redirectAttributes.addFlashAttribute("alert_danger", "Ticket with barcode " + dto.getBarcode() + " does not exist");
+            return "redirect:" + uriBuilder.path("/ticket").toUriString();
+        }
+        if (answerDTO.isValid()) {
+            if (answerDTO.getTicketStatus() == TicketStatus.NOT_USED) {
+                redirectAttributes.addFlashAttribute("alert_success", "Ticket with barcode " + dto.getBarcode() + " is valid for given performance");
+            }
+            if (answerDTO.getTicketStatus() == TicketStatus.USED) {
+                redirectAttributes.addFlashAttribute("alert_danger", "Ticket with barcode " + dto.getBarcode() + " is already used");
+            }
+            if (answerDTO.getTicketStatus() == TicketStatus.RETURNED) {
+                redirectAttributes.addFlashAttribute("alert_danger", "Ticket with barcode " + dto.getBarcode() + " is already returned");
+            }
+        } else {
+            redirectAttributes.addFlashAttribute("alert_danger", "Ticket with barcode " + dto.getBarcode() + " is not for this performance");
+        }
+        return "redirect:" + uriBuilder.path("/ticket/" + dto.getBarcode()).toUriString();
+    }
+
+    @RequestMapping(value = "/return/{barcodeString}", method = RequestMethod.GET)
+    public String returnForm(@PathVariable String barcodeString, Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
+        log.info("/return/{barcodeString} requested");
+        // FIXME Tomas milestone3 Check that currently logged user is admin
+        model.addAttribute("barcode", barcodeString);
+        return "ticket/return";
+    }
+
+    @RequestMapping(value = "/return/{barcodeString}", method = RequestMethod.POST)
+    public String returnById(@PathVariable String barcodeString, Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
+        log.info("/return/{barcodeString} requested");
+        // FIXME Tomas milestone3 Check that currently logged user is admin
+        UUID barcode = UUID.fromString(barcodeString);
+        TicketDTO ticket = ticketFacade.getByBarcode(barcode);
+        if (ticket == null) {
+            redirectAttributes.addFlashAttribute("alert_danger", "No ticket with barcode: " + barcodeString + " exists");
+            return "redirect:" + uriBuilder.path("/ticket").toUriString();
+        }
+        boolean returned = ticketFacade.returnTicket(ticket.getId());
+        if (returned) {
+            redirectAttributes.addFlashAttribute("alert_success", "Ticket with barcode: " + barcodeString + " was successfully returned");
+        } else {
+            redirectAttributes.addFlashAttribute("alert_danger", "Ticket with barcode: " + barcodeString + " cannot be returned");
+        }
+        return "redirect:" + uriBuilder.path("/ticket").toUriString();
     }
 
 }

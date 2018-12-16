@@ -13,9 +13,8 @@ public class TicketDTO {
     @Getter @Setter
     private UUID barcode;
 
-    // FIXME Tomas milestone2 Uncomment when DTO classes are in repository
-    /*@Getter @Setter
-    private PerformanceDTO performance;*/
+    @Getter @Setter
+    private PerformanceDTO performance;
 
     @Getter @Setter
     private UserDTO user;
