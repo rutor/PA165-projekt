@@ -1,7 +1,7 @@
 <%-- 
     Document   : edit
     Created on : 15.12.2018, 22:53:55
-    Author     : Kupker
+    Author     : xtrnkal
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="utf-8" trimDirectiveWhitespaces="false" session="false" %>
@@ -11,12 +11,9 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:administrationTemplate subtitle="Add a new performace">
+<my:administrationTemplate subtitle="Edit performace">
 <jsp:attribute name="body_area">
 
-    
-    
-    
     <form:form method="post" action="${pageContext.request.contextPath}/performance/edit"
                modelAttribute="performanceEdit" cssClass="form-horizontal">
         <div class="form-group">

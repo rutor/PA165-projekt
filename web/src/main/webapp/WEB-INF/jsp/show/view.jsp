@@ -1,6 +1,6 @@
 <%-- 
-    Document   : confirm_delete
-    Created on : 15.12.2018, 22:54:06
+    Document   : view
+    Created on : 16.12.2018, 20:19:57
     Author     : xtrnkal
 --%>
 
@@ -11,12 +11,13 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:administrationTemplate subtitle="Delete">
+<my:administrationTemplate subtitle="Performace">
 <jsp:attribute name="body_area">
-        <p>Do you really want to delete the hall <c:out value="${performance.id}"/>?</p>
-        <form method="post" action="${pageContext.request.contextPath}/performance/${performance.id}/delete">
-            <button type="submit" class="btn btn-primary">Yes, delete it</button>
-        </form>
-        <my:a href="/performance/">No, goback to the overview</my:a>
+    <h1>Detail for <c:out value="${show.id}"/></h1>
+    <p><c:out value="${show.name}"/></p>
+    <p><c:out value="${show.description}"/></p>
+    <p><c:out value="${show.duration}"/></p>
+    <p><c:out value="${show.genre}"/></p>
 </jsp:attribute>
 </my:administrationTemplate>
+

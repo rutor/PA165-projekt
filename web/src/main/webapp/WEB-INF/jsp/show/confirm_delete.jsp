@@ -1,6 +1,6 @@
 <%-- 
     Document   : confirm_delete
-    Created on : 15.12.2018, 22:54:06
+    Created on : 16.12.2018, 21:09:36
     Author     : xtrnkal
 --%>
 
@@ -13,10 +13,10 @@
 
 <my:administrationTemplate subtitle="Delete">
 <jsp:attribute name="body_area">
-        <p>Do you really want to delete the hall <c:out value="${performance.id}"/>?</p>
-        <form method="post" action="${pageContext.request.contextPath}/performance/${performance.id}/delete">
+        <p>Do you really want to delete the hall <c:out value="${show.id}"/>?</p>
+        <form method="post" action="${pageContext.request.contextPath}/show/${show.id}/delete">
             <button type="submit" class="btn btn-primary">Yes, delete it</button>
         </form>
-        <my:a href="/performance/">No, goback to the overview</my:a>
+        <my:a href="/show/">No, goback to the overview</my:a>
 </jsp:attribute>
 </my:administrationTemplate>
