@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import cz.muni.fi.pa165.dto.UserAuthenticateDTO;
 import cz.muni.fi.pa165.entity.Role;
+import cz.muni.fi.pa165.enums.AuthenticateUserStatus;
 import org.springframework.stereotype.Service;
 
 import cz.muni.fi.pa165.services.BeanMappingService;
@@ -70,17 +71,20 @@ public class UserFacadeImpl implements UserFacade {
     }
 
     @Override
-    public UserDTO authenticate(UserAuthenticateDTO user) {
-        Users foundUser = userService.findByEmail(user.getEmail());
+    public Enum<AuthenticateUserStatus> authenticate(UserAuthenticateDTO userAuthenticateDTO) {
+        UserDTO foundUser= mappingService.mapTo(userService.findByEmail(userAuthenticateDTO.getEmail()), UserDTO.class);
         if (foundUser == null) {
-            return null;
+            return AuthenticateUserStatus.UNKNOWN;
         }
-        if (userService.authenticate(foundUser, user.getPassword())) {
-            return mappingService.mapTo(foundUser, UserDTO.class);
+        if (userService.authenticate(foundUser)) {
+            mappingService.mapTo(foundUser, UserDTO.class);
+            return AuthenticateUserStatus.OK;
         }
 
-        return null;
+        return AuthenticateUserStatus.BAD_PASSWORD;
     }
+
+
 
 
     @Override

@@ -6,7 +6,7 @@ import java.util.List;
 import cz.muni.fi.pa165.dto.CreateUserDTO;
 import cz.muni.fi.pa165.dto.UserAuthenticateDTO;
 import cz.muni.fi.pa165.dto.UserDTO;
-
+import cz.muni.fi.pa165.enums.AuthenticateUserStatus;
 
 
 public interface UserFacade {
@@ -28,7 +28,7 @@ public interface UserFacade {
 
     public List<UserDTO> getAllUsersByRoleId(Long roleId);
 
-    UserDTO authenticate(UserAuthenticateDTO user);
+    public Enum<AuthenticateUserStatus> authenticate(UserAuthenticateDTO userAuthenticateDTO);
 
 
 }

@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.services;
 
 import java.util.List;
 
+import cz.muni.fi.pa165.dto.UserDTO;
 import cz.muni.fi.pa165.entity.Role;
 import cz.muni.fi.pa165.entity.Users;
 
@@ -15,7 +16,7 @@ public interface UserService {
     public boolean validatePassword(Users user);
     public void update(Users user);
     public List<Users> findAllByRole(Role role);
-    boolean authenticate(Users user, String password);
+    boolean authenticate(UserDTO user);
 
 
 }
