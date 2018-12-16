@@ -30,6 +30,8 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.beans.PropertyEditorSupport;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import org.hibernate.validator.constraints.SafeHtml.Attribute;
 
 /**
@@ -189,6 +191,15 @@ public class PerformanceController {
                     log.debug("setAsText `" + s + "`");
                     Long id = Long.valueOf(s);
                     super.setValue(showFacade.getShowById(id));
+                }
+            });
+            
+            binder.registerCustomEditor(LocalDateTime.class, new PropertyEditorSupport() {
+                @Override
+                public void setAsText(String s) throws IllegalArgumentException {
+                    log.debug("setAsText `" + s + "`");
+                    LocalDateTime time = LocalDateTime.parse(s, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+                    super.setValue(time);
                 }
             });
         }

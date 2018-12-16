@@ -37,7 +37,8 @@ public class CreatePerformanceDTO {
     }
 
     public void setStartDate(String start) {
-        LocalDateTime date = LocalDateTime.parse(start, DateTimeFormatter.ISO_DATE_TIME);
+        LocalDateTime date = LocalDateTime.parse(start, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+        date.minusNanos(date.getNano());
         this.startDate = date;
     }
 
