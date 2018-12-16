@@ -1,21 +1,20 @@
 package cz.muni.fi.pa165.mvc.controllers;
 
-import cz.muni.fi.pa165.dto.CreateRoleDTO;
-import cz.muni.fi.pa165.dto.RoleDTO;
-import cz.muni.fi.pa165.facade.RoleFacade;
+        import cz.muni.fi.pa165.dto.CreateRoleDTO;
+        import cz.muni.fi.pa165.dto.RoleDTO;
+        import cz.muni.fi.pa165.facade.RoleFacade;
 
-import cz.muni.fi.pa165.facade.UserFacade;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.util.UriComponentsBuilder;
+        import cz.muni.fi.pa165.facade.UserFacade;
+        import org.springframework.stereotype.Controller;
+        import org.springframework.ui.Model;
+        import org.springframework.validation.BindingResult;
+        import org.springframework.validation.FieldError;
+        import org.springframework.web.bind.annotation.*;
+        import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+        import org.springframework.web.util.UriComponentsBuilder;
 
-import javax.validation.Valid;
-import javax.inject.Inject;
-
+        import javax.validation.Valid;
+        import javax.inject.Inject;
 
 /**
  * Implements the role management and display interface.
@@ -119,5 +118,6 @@ public class RoleController {
         redirectAttributes.addFlashAttribute("alert_success", "Your edits to the role " + formBean.getName() + " were successfully saved");
         return "redirect:" + uriBuilder.path(WebUrls.URL_ROLE+"/{id}").buildAndExpand(formBean.getId()).encode().toUriString();
     }
+
 }
 

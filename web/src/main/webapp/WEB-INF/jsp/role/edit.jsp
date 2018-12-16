@@ -28,5 +28,6 @@
         <button class="btn btn-primary" type="submit">Save</button>
     </form:form>
 <my:a href="/role/" target="_parent"><button class="btn btn-primary">No, go back</button></my:a>
+
 </jsp:attribute>
 </my:pagetemplate>
