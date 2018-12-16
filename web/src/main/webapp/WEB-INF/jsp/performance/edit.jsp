@@ -16,6 +16,7 @@
 
     <form:form method="post" action="${pageContext.request.contextPath}/performance/edit"
                modelAttribute="performanceEdit" cssClass="form-horizontal">
+        <form:hidden path="id"/>
         <div class="form-group">
         
         <div class="form-group ${description_error?'has-error':''}">
