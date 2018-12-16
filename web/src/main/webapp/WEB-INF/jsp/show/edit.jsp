@@ -15,6 +15,7 @@
 <jsp:attribute name="body_area">
     <form:form method="post" action="${pageContext.request.contextPath}/show/edit"
                modelAttribute="showEdit" cssClass="form-horizontal">
+        <form:hidden path="id"/>
         <div class="form-group">
         
         <div class="form-group ${name_error?'has-error':''}">
