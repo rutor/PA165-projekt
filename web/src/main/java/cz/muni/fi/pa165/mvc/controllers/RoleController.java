@@ -59,7 +59,6 @@ public class RoleController {
         return "role/view";
     }
 
-
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
     public String confirmDelete(@PathVariable long id, Model model) {
         model.addAttribute("role", roleFacade.getRoleById(id));

@@ -25,6 +25,5 @@
         </div>
         <button class="btn btn-primary" type="submit">Create role</button>
     </form:form>
-
 </jsp:attribute>
 </my:pagetemplate>

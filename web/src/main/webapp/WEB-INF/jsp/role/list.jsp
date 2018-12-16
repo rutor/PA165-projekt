@@ -7,7 +7,6 @@
 
 <my:pagetemplate title="Role listing">
     <jsp:attribute name="body">
-        <!-- TODO: Show for admins only -->
         <my:a href="/role/new" class="btn btn-primary">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             Add

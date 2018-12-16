@@ -12,7 +12,6 @@
 <h2>All users of this role</h2>
 <c:forEach items="${user}" var="user">
     <p>User: ${user.lastName} ${user.firstName}</p><br/>
-
 </c:forEach>
 <my:a href="/role/" target="_parent"><button class="btn btn-primary">Go back</button></my:a>
 </jsp:attribute>
