@@ -108,3 +108,32 @@ a:hover, a:focus, .btn:hover, .btn:focus{
 .img {
     width:100%;
 }
+
+.img-container.home {
+    width:20rem;
+    height:25rem;
+}
+
+td.home {
+    text-align: center;
+    width:25rem;
+}
+
+.description {
+        height: 12rem;
+}
+
+.genre {
+    
+    margin-bottom: 2rem;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    color: black;
+    background: #fcf7f4;
+}
+
