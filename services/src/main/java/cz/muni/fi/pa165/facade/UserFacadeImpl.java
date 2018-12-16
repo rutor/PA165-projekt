@@ -4,6 +4,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+
+import cz.muni.fi.pa165.dto.UserAuthenticateDTO;
+import cz.muni.fi.pa165.entity.Role;
 import org.springframework.stereotype.Service;
 
 import cz.muni.fi.pa165.services.BeanMappingService;
@@ -66,6 +69,25 @@ public class UserFacadeImpl implements UserFacade {
         userService.update(mappingService.mapTo(user, Users.class));
     }
 
+    @Override
+    public UserDTO authenticate(UserAuthenticateDTO user) {
+        Users foundUser = userService.findByEmail(user.getEmail());
+        if (foundUser == null) {
+            return null;
+        }
+        if (userService.authenticate(foundUser, user.getPassword())) {
+            return mappingService.mapTo(foundUser, UserDTO.class);
+        }
+
+        return null;
+    }
+
+
+    @Override
+    public List<UserDTO> getAllUsersByRoleId(Long roleId) {
+        Role role = roleService.findById(roleId);
+        return mappingService.mapTo(userService.findAllByRole(role),  UserDTO.class);
+    }
 
 
 }
