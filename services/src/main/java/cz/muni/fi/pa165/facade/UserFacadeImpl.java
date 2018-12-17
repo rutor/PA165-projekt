@@ -4,6 +4,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+
+import cz.muni.fi.pa165.dto.UserAuthenticateDTO;
+import cz.muni.fi.pa165.entity.Role;
+import cz.muni.fi.pa165.enums.AuthenticateUserStatus;
 import org.springframework.stereotype.Service;
 
 import cz.muni.fi.pa165.services.BeanMappingService;
@@ -66,6 +70,19 @@ public class UserFacadeImpl implements UserFacade {
         userService.update(mappingService.mapTo(user, Users.class));
     }
 
+    @Override
+    public Enum<AuthenticateUserStatus> authenticate(UserAuthenticateDTO userAuthenticateDTO) {
+        Users user = mappingService.mapTo(userAuthenticateDTO, Users.class);
+        return userService.authenticate(user);
+
+    }
+
+
+    @Override
+    public List<UserDTO> getAllUsersByRoleId(Long roleId) {
+        Role role = roleService.findById(roleId);
+        return mappingService.mapTo(userService.findAllByRole(role),  UserDTO.class);
+    }
 
 
 }
