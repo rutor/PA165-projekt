@@ -22,6 +22,7 @@
             <a href="${pageContext.request.contextPath}/genre/" class="btn btn-primary">Genres</a>
             <a href="${pageContext.request.contextPath}/hall/" class="btn btn-primary">Halls</a>
             <a href="${pageContext.request.contextPath}/user/" class="btn btn-primary">Users</a>
+            <a href="${pageContext.request.contextPath}/role/" class="btn btn-primary">Roles</a>
         </div>
         <!-- page title -->
             <c:if test="${not empty subtitle}">

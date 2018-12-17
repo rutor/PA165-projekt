@@ -55,7 +55,7 @@ public class UserFacadeImpl implements UserFacade {
     }
 
     @Override
-    public UserDTO findByEmail(String email) {
+    public UserDTO getUserByEmail(String email) {
         return mappingService.mapTo(userService.findByEmail(email), UserDTO.class);
     }
 

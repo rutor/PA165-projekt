@@ -66,7 +66,7 @@ public class UserFacadeTest extends AbstractTestNGSpringContextTests {
     public void testGetByEmail() {
 
         Users test = newUser("Dudas", "Robert","robo@robo.com","robo123","Customer","new_custome");
-        UserDTO testFromDb = facade.findByEmail(test.getEmail());
+        UserDTO testFromDb = facade.getUserByEmail(test.getEmail());
         assertDTOAndEntityEquals(testFromDb, test);
     }
 
