@@ -12,7 +12,6 @@
     <form:form method="post" action="${pageContext.request.contextPath}/role/${role.id}/edit"
                modelAttribute="roleEdit" cssClass="form-horizontal">
         <form:hidden path="id"/>
-               <div class="form-group">
         <div class="form-group ${name_error?'has-error':''}">
             <form:label path="name" cssClass="col-sm-2 control-label">Name</form:label>
             <div class="col-sm-10">

@@ -20,7 +20,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 import javax.inject.Inject;
+import java.beans.PropertyEditorSupport;
+import java.time.LocalDate;
 import java.util.List;
+
+import static cz.muni.fi.pa165.mvc.controllers.BookingController.log;
 
 
 @Controller
@@ -33,6 +37,22 @@ public class UserController {
 
     @Inject
     private RoleFacade roleFacade;
+
+
+    @InitBinder
+    protected void initBinder(WebDataBinder binder) {
+        if (binder.getTarget() instanceof UserDTO) {
+            // Converts from ID of User to UserDTO object before passing to function
+            binder.registerCustomEditor(RoleDTO.class, new PropertyEditorSupport() {
+                @Override
+                public void setAsText(String s) throws IllegalArgumentException {
+                    log.debug("setAsText " + s + "");
+                    Long id = Long.valueOf(s);
+                    super.setValue(roleFacade.getRoleById(id));
+                }
+            });
+        }
+    }
 
     @RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
     public String list(@RequestParam(required = false) Long roleId, Model model) {
@@ -77,8 +97,8 @@ public class UserController {
     //public String newUser(@RequestParam(required = false) Long roleId, Model model) {
     public String newUser(Model model) {
         CreateUserDTO userCreate = new CreateUserDTO();
-        List<RoleDTO> allRoles = roleFacade.getAllRole();
-        model.addAttribute("roles", allRoles);
+        List<RoleDTO> roles = roleFacade.getAllRole();
+        model.addAttribute("roles", roles);
         model.addAttribute("userCreate", userCreate);
         return (WebUrls.URL_USER+"/new");
     }
@@ -93,6 +113,7 @@ public class UserController {
             return (WebUrls.URL_USER+"/new");
         }
         formBean.setRoleId(formBean.getRoleId());
+        formBean.setCreatedAt(LocalDate.now());
         Long id = userFacade.createUser(formBean);
         redirectAttributes.addFlashAttribute("alert_success", "User " + id + " was created");
         return "redirect:" + uriBuilder.path(WebUrls.URL_USER+"/{id}").buildAndExpand(id).encode().toUriString();
@@ -116,10 +137,8 @@ public class UserController {
             return (WebUrls.URL_USER+"/edit");
         }
 
-//        RoleDTO roleDTO=roleFacade.getRoleById(formBean.getId());
-//        formBean.setRole(roleDTO);
-//        RoleDTO roleDTO=roleFacade.getRoleByName(formBean.getRole().getName());
-//        formBean.setRole(roleDTO);
+        formBean.setCreatedAt(userFacade.getUserById(formBean.getId()).getCreatedAt());
+        formBean.setUpdatedAt(LocalDate.now());
         userFacade.updateUser(formBean);
         redirectAttributes.addFlashAttribute("alert_success", "Your edits to the user " +formBean.getId() + " were successfully saved");
         return "redirect:" + uriBuilder.path(WebUrls.URL_USER+"/{id}").buildAndExpand(formBean.getId()).encode().toUriString();

@@ -11,7 +11,6 @@
     <form:form method="post" action="${pageContext.request.contextPath}/user/${user.id}/edit"
                modelAttribute="userEdit"  cssClass="form-horizontal">
         <form:hidden path="id"/>
-               <div class="form-group">
         <div class="form-group ${lastName_error?'has-error':''}">
             <form:label path="lastName" cssClass="col-sm-2 control-label">LastName</form:label>
             <div class="col-sm-10">
@@ -52,21 +51,6 @@
                 <form:errors path="role" cssClass="help-block"/>
             </div>
         </div>
-
-         <%--<div class="form-group ${role_error?'has-error':''}">--%>
-             <%--<form:label path="role" cssClass="col-sm-2 control-label">Role</form:label>--%>
-             <%--<div class="col-sm-10">--%>
-                <%--<form:select path="role" cssClass="form-control">--%>
-                     <%--<c:forEach items="${roles}" var="role">--%>
-                       <%--<form:option value="${role.id}" label="${role.name}"/>--%>
-                    <%--</c:forEach>--%>
-                <%--</form:select>--%>
-                 <%--<form:errors path="role" cssClass="help-block"/>--%>
-             <%--</div>--%>
-         <%--</div>--%>
-
-
-
 
         <button class="btn btn-primary" type="submit">Save</button>
     </form:form>

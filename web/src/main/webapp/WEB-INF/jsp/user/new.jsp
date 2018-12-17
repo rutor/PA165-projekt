@@ -10,8 +10,6 @@
     <jsp:attribute name="body_area">
     <form:form method="post" action="${pageContext.request.contextPath}/user/new"
                modelAttribute="userCreate" cssClass="form-horizontal">
-        <div class="form-group">
-
         <div class="form-group ${lastName_error?'has-error':''}">
             <form:label path="lastName" cssClass="col-sm-2 control-label">LastName</form:label>
             <div class="col-sm-10">

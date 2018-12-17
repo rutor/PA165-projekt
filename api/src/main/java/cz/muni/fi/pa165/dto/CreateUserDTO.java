@@ -19,6 +19,8 @@ public class CreateUserDTO {
     @NotNull
     private String password;
 
+    private LocalDate createdAt;
+
 
 
     public Long getRoleId() {
@@ -61,7 +63,13 @@ public class CreateUserDTO {
         this.password = password;
     }
 
+    public LocalDate getCreatedAt() {
+        return createdAt;
+    }
 
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
+    }
 
     @Override
     public int hashCode() {
