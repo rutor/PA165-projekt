@@ -22,7 +22,7 @@ public interface UserFacade {
 
     public UserDTO getUserById(Long id);
 
-    public UserDTO findByEmail(String email);
+    public UserDTO getUserByEmail(String email);
 
     public void updateUser(UserDTO role);
 

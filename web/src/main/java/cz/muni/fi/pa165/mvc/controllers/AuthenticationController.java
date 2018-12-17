@@ -53,28 +53,23 @@ public class AuthenticationController {
             RedirectAttributes redirectAttributes,
             HttpServletRequest req,
             HttpServletResponse res) {
-        log.info("POST request:" +(WebUrls.Authentication+WebUrls.URL_LOGIN));
+        log.info("POST request:" + WebUrls.Authentication + WebUrls.URL_LOGIN);
 
-        UserAuthenticateDTO userAuthenticateDTO=new UserAuthenticateDTO(email,password);
-        UserDTO userDTO=null;
-        if(userFacade.authenticate(userAuthenticateDTO)== AuthenticateUserStatus.OK){
-            userDTO =mappingService.mapTo(userAuthenticateDTO, UserDTO.class);
+        UserAuthenticateDTO userAuthenticateDTO = new UserAuthenticateDTO(email, password);
+        Enum<AuthenticateUserStatus> authenticationStatus = userFacade.authenticate(userAuthenticateDTO);
+        if(authenticationStatus == AuthenticateUserStatus.UNKNOWN_USER) {
+            redirectAttributes.addFlashAttribute("alert_danger", "User with given email does not exist");
+            return "redirect:" + WebUrls.Authentication + WebUrls.URL_LOGIN;
+        } else if(authenticationStatus == AuthenticateUserStatus.BAD_PASSWORD) {
+            redirectAttributes.addFlashAttribute("alert_danger", "Wrong password");
+            return "redirect:" + WebUrls.Authentication + WebUrls.URL_LOGIN;
         }
 
-
-        if (userDTO == null) {
-            log.warn("POST request:" +(WebUrls.Authentication+WebUrls.URL_LOGIN)+" wrong login information, entered mail={}", email);
-            redirectAttributes.addFlashAttribute(
-                    "alert_danger", "Wrong mail or password of user");
-            return "redirect:"+(WebUrls.Authentication+WebUrls.URL_LOGIN);
-        }
-
-
+        UserDTO user = userFacade.getUserByEmail(email);
         HttpSession session = req.getSession(true);
-        session.setAttribute("authUser", userDTO);
-        log.info("POST request:"+(WebUrls.Authentication+WebUrls.URL_LOGIN) +"; user with id {} has been logged in", userDTO.getId());
-        redirectAttributes.addFlashAttribute("alert_info",
-                "User with email " + userDTO.getEmail() + " has been logged in.");
+        session.setAttribute("authUser", user);
+        log.info("POST request:" + WebUrls.Authentication + WebUrls.URL_LOGIN + "; user with email {} has been logged in", user.getEmail());
+        redirectAttributes.addFlashAttribute("alert_info", "User with email " + user.getEmail() + " has been logged in.");
         return "redirect:/";
     }
 
