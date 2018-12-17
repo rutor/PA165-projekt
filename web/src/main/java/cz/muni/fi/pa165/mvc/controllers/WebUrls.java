@@ -12,6 +12,10 @@ public class WebUrls {
     public static final String Admin = "Admin";
     public static final String User = "User";
 
+
+    public static final String Authentication="/auth";
+
+
     private WebUrls() {
         throw new AssertionError("This is not the class you are looking for");
     }

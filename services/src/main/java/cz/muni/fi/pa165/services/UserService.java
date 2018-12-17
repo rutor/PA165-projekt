@@ -18,6 +18,7 @@ public interface UserService {
     public void update(Users user);
     public List<Users> findAllByRole(Role role);
     public Enum<AuthenticateUserStatus> authenticate(Users user);
+    boolean isAdmin(Users user);
 
 
 }

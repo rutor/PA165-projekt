@@ -133,6 +133,11 @@ public class UserServiceImpl implements UserService{
 
     }
 
+    @Override
+    public boolean isAdmin(Users user) {
+        return user.isAdmin();
+    }
+
 
     @Override
     public boolean validatePassword(Users user) {

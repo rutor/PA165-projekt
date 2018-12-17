@@ -28,7 +28,9 @@ public interface UserFacade {
 
     public List<UserDTO> getAllUsersByRoleId(Long roleId);
 
-    public Enum<AuthenticateUserStatus> authenticate(UserAuthenticateDTO userAuthenticateDTO);
+    public UserDTO authenticate(UserAuthenticateDTO userAuthenticateDTO);
+
+    boolean isAdmin(long id);
 
 
 }

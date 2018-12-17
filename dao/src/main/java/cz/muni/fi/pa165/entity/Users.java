@@ -9,6 +9,8 @@ import java.util.UUID;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+
+
 /**
  * User class
  * @author Robert Dudas
@@ -122,6 +124,10 @@ public class Users {
 
     public void setUpdatedAt(LocalDate updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public boolean isAdmin() {
+        return role.getName().equals("Admin");
     }
 
     @Override
