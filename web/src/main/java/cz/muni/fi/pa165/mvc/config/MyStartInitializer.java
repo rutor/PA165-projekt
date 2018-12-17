@@ -25,7 +25,7 @@ public class MyStartInitializer extends AbstractAnnotationConfigDispatcherServle
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[]{MySpringMvcConfig.class};
+        return new Class<?>[]{MySpringMvcConfig.class, SecurityConfig.class};
     }
 
     @Override
