@@ -35,7 +35,12 @@ public void create(Genre genre) {
 	}
 @Override
 	public Genre findByName(String name) {
+	try {
 	return em.createQuery("select g from Genre g where name = :name", Genre.class).setParameter("name",  name).getSingleResult();
+	}
+	catch (NoResultException ex) {
+		return null;
+	}
 }
 @Override
 public void update(Genre genre) {
