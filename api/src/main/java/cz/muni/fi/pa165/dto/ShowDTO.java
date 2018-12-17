@@ -137,4 +137,14 @@ public class ShowDTO {
 				&& Objects.equals(description, other.getDescription()) && Objects.equals(duration, other.getDuration())
 				&& Objects.equals(genre, other.getGenre());
 	}
+
+	@Override
+	public String toString() {
+		return "ShowDTO{" +
+				"name='" + name + '\'' +
+				", description='" + description + '\'' +
+				", duration=" + duration +
+				", genre=" + genre +
+				'}';
+	}
 }

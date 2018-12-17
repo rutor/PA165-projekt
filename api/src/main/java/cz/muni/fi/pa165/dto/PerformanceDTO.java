@@ -99,6 +99,17 @@ public class PerformanceDTO {
 
     @Override
     public String toString() {
+        return "PerformanceDTO{" +
+                "description='" + description + '\'' +
+                ", price=" + price +
+                ", startDate=" + startDate +
+                ", show=" + show +
+                ", hall=" + hall +
+                '}';
+    }
+
+    public String getDisplayableFormat() {
         return getShow().getName() + " at " + getStartDate().toString();
+
     }
 }

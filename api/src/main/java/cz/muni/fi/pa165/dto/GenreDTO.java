@@ -90,4 +90,12 @@ public class GenreDTO {
 		return Objects.equals(id, other.getId()) && Objects.equals(name, other.getName())
 				&& Objects.equals(description, other.getDescription());
 	}
+
+	@Override
+	public String toString() {
+		return "GenreDTO{" +
+				"name='" + name + '\'' +
+				", description='" + description + '\'' +
+				'}';
+	}
 }
