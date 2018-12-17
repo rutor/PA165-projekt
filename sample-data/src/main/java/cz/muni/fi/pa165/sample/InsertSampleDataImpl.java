@@ -73,8 +73,8 @@ public class InsertSampleDataImpl implements InsertSampleData {
 
         Hall bigHall = createHall(null,"Hall1", "Hall1Description", 103l);
         Hall hall400 = createHall(null,"Hall2", "Hall2Description", 400l);
-        Hall hall500 = createHall(null,"Hall2", "Hall2Description", 500l);
-        Hall smallHall = createHall(null,"Hall3", "Hall3Description", 65l);
+        Hall hall500 = createHall(null,"Hall3", "Hall3Description", 500l);
+        Hall smallHall = createHall(null,"Hall4", "Hall4Description", 65l);
 
         Performance performance1 = createPerformance(null, "The only chance to see", 15.0f, bigHall, BalletFashion, LocalDateTime.now());
         Performance performance2 = createPerformance(null, "Performance", 12.0f, hall400,Zelary, LocalDateTime.now());
@@ -100,6 +100,7 @@ public class InsertSampleDataImpl implements InsertSampleData {
         genreService.create(genreSatire‎);
 
         showService.create(BalletFashion);
+        showService.create(Company);
         showService.create(BedrichSmetana);
         showService.create(Zelary);
         showService.create(La_boheme);
