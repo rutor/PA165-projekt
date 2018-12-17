@@ -29,7 +29,9 @@
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><my:a href="/administration/">Administration</my:a></li>
+                        <!-- authenticated user info -->
+                        <li><my:a href="/bookings_tickets?userId=1">My Tickets</my:a></li>
+                        <li><my:a href="/show/">Administration</my:a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <!-- authenticated user info -->
