@@ -99,12 +99,7 @@ public class PerformanceDTO {
 
     @Override
     public String toString() {
-        return "PerformanceDTO{" +
-                "description='" + description + '\'' +
-                ", price=" + price +
-                ", startDate=" + startDate +
-                ", show=" + show +
-                ", hall=" + hall +
-                '}';
+        return "PerformanceDTO{" +description+','+price+','+startDate+','+show.getName()+','+hall.getName()+','+hall.getAddress()+','+hall.getCapacity()+ '}';
+
     }
 }
