@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="utf-8" trimDirectiveWhitespaces="false" session="false" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="utf-8" trimDirectiveWhitespaces="false" session="true" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -10,7 +10,7 @@
     <jsp:attribute name="body_area">
 <div class="row">
     <div class="col-6 col-md-6 col-md-offset-3 col-offset-3">
-        <form class="form" method="POST" action="${pageContext.request.contextPath}/auth/login/">
+        <form class="form" method="POST" action="${pageContext.request.contextPath}/auth/login">
             <h2 class="form-heading">Please sign in</h2>
 
             <label for="email" class="sr-only">Email:</label>
