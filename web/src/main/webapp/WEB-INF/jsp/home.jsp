@@ -10,44 +10,47 @@
 
         <div class="current-shows-container">
             <div class="current-shows-panel row up-to-large-5">
+                <c:forEach items="${shows}" var="show">
                 <div class="img-container column">
-                    <img class="img" src="pictures/ballet.png">
+                    <a href="${pageContext.request.contextPath}/show_detail/${show.id}">
+                    <img class="img" src="${pageContext.request.contextPath}/pictures/${show.id mod 3 + 1}.png">
+                    </a>
                 </div>
-                <div class="img-container column">
-                    <img class="img" src="pictures/smetana.jpg">
-                </div>
-                <div class="img-container column">
-                    <img class="img" src="pictures/zelary.jpg">
-                </div>
-                <div class="img-container column">
-                    <img class="img" src="pictures/ballet.png">
-                </div>
-                <div class="img-container column">
-                    <img class="img" src="pictures/smetana.jpg">
-                </div>
+                </c:forEach>
             </div>
         </div>
 
         <div>
             <table class="table" summary="Show listing">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
             <tbody>
                 <c:forEach items="${shows}" var="show">
                     <tr>
-                        <td>
-                            <my:a href="/show/${show.id}" class="btn btn-primary">
-                                <c:out value="${show.description}" />
-                            </my:a>
+                        <td class="home">
+                            <div class="img-container home column">
+                                <a href="${pageContext.request.contextPath}/show_detail/${show.id}">
+                                    <img class="img" src="${pageContext.request.contextPath}/pictures/${show.id mod 3 + 1}.png">
+                                </a>
+                            </div>
                         </td>
+                        
                         <td>
-                            <!-- TODO: show both only for admins -->
-                            <my:a href="/show/${show.id}/edit" class="btn">Edit</my:a>
-                            <my:a href="/show/${show.id}/delete" class="btn">Delete</my:a>
+                            <div class="row">
+                            <h3>${show.name}</h3>
+                            </div>
+                            <div class="row genre">
+                                <strong>${show.genre.getName()}</strong>
+                            </div>
+                            <div class="row description">
+                                ${show.description}
+                            </div>
+                            <div class="row show-bottom">
+                                <my:a href="${pageContext.request.contextPath}/show_detail/${show.id}" class="btn btn-primary">
+                                    More information
+                                </my:a>
+                                <my:a href="${pageContext.request.contextPath}/show_detail/${show.id}" class="btn btn-primary">
+                                    Buy tickets
+                                </my:a>
+                            </div>
                         </td>
                     </tr>
                 </c:forEach>
