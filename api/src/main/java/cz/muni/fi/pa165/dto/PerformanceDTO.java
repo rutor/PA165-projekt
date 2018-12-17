@@ -107,4 +107,9 @@ public class PerformanceDTO {
                 ", hall=" + hall +
                 '}';
     }
+
+    public String getDisplayableFormat() {
+        return getShow().getName() + " at " + getStartDate().toString();
+
+    }
 }
