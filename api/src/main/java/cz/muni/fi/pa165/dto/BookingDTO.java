@@ -31,4 +31,16 @@ public class BookingDTO {
 
     @Getter @Setter
     private LocalDate updatedAt;
+
+    @Override
+    public String toString() {
+        return "BookingDTO{" +
+                "paymentStatus=" + paymentStatus +
+                ", ticket=" + ticket +
+                ", description='" + description + '\'' +
+                ", user=" + user +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
+    }
 }

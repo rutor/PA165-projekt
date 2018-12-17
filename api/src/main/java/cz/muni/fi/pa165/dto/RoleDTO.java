@@ -57,4 +57,11 @@ public class RoleDTO {
         return false;
     }
 
+    @Override
+    public String toString() {
+        return "RoleDTO{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

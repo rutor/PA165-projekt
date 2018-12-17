@@ -61,4 +61,13 @@ public class HallDTO {
         HallDTO other = (HallDTO) obj;
         return Objects.equals(name, other.getName()) && Objects.equals(capacity, other.getCapacity()) && Objects.equals(address, other.getAddress());
     }
+
+    @Override
+    public String toString() {
+        return "HallDTO{" +
+                "name='" + name + '\'' +
+                ", capacity=" + capacity +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }
