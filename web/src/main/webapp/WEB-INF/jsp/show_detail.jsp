@@ -26,13 +26,13 @@
                         
                         <td>
                             <div class="row">
-                            <h3>${show.name}</h3>
+                            <h3><c:out value="${show.name}"/></h3>
                             </div>
                             <div class="row genre">
-                                <strong>${show.genre.getName()}</strong>
+                                <strong><c:out value="${show.genre.getName()}"/></strong>
                             </div>
                             <div class="row description">
-                                ${show.description}
+                                <c:out value="${show.description}"/>
                             </div>
                             <div class="row show-bottom">
 
@@ -58,10 +58,10 @@
                             ${performance.startDate}
                         </td>
                         <td>
-                            ${performance.hall}
+                            <c:out value="${performance.hall}"/>
                         </td>
                         <td>
-                            ${performance.description}
+                            <c:out value="${performance.description}"/>
                         </td>
 
                         <td>
