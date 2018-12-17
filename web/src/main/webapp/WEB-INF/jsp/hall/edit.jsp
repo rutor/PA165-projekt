@@ -16,7 +16,7 @@
         <form:form method="post" action="${pageContext.request.contextPath}/hall/${hall.id}/edit"
                    modelAttribute="hallEdit" cssClass="form-horizontal">
             <form:hidden path="id"/>
-            <div class="form-group">
+            
                 <div class="form-group ${name_error?'has-error':''}">
                     <form:label path="name" cssClass="col-sm-2 control-label">Name</form:label>
                     <div class="col-sm-10">
@@ -31,7 +31,7 @@
                         <form:errors path="address" cssClass="help-block"/>
                     </div>
                 </div>
-                <div class="form-group ${address_error?'has-error':''}">
+                <div class="form-group ${capacity_error?'has-error':''}">
                     <form:label path="capacity" cssClass="col-sm-2 control-label">Capacity</form:label>
                     <div class="col-sm-10">
                         <form:input path="capacity" cssClass="form-control"/>
@@ -39,7 +39,7 @@
                     </div>
                 </div>    
                 <button class="btn btn-primary" type="submit">Save</button>
-            </div>
+            
         </form:form>
     </jsp:attribute>
 </my:administrationTemplate>

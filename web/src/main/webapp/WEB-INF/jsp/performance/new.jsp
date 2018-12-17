@@ -15,9 +15,8 @@
 <jsp:attribute name="body_area">
         <form:form method="post" action="${pageContext.request.contextPath}/performance/new"
                modelAttribute="performanceCreate" cssClass="form-horizontal">
-        <div class="form-group">
         
-        <div class="form-group ${name_error?'has-error':''}">
+        <div class="form-group ${description_error?'has-error':''}">
             <form:label path="description" cssClass="col-sm-2 control-label">Description</form:label>
             <div class="col-sm-10">
                 <form:input path="description" cssClass="form-control"/>
@@ -25,7 +24,7 @@
             </div>
         </div>
             
-        <div class="form-group ${name_error?'has-error':''}">
+        <div class="form-group ${price_error?'has-error':''}">
             <form:label path="price" cssClass="col-sm-2 control-label">Price</form:label>
             <div class="col-sm-10">
                 <form:input type="number" path="price" cssClass="form-control"/>
@@ -33,14 +32,14 @@
             </div>
         </div>
             
-        <div class="form-group ${name_error?'has-error':''}">
+        <div class="form-group ${startDate_error?'has-error':''}">
             <form:label path="startDate" cssClass="col-sm-2 control-label">Start date</form:label>
             <div class="col-sm-10">
                 <form:input type="datetime-local" path="startDate" cssClass="form-control"/>
                 <form:errors path="startDate" cssClass="help-block"/>
             </div>
         </div>
-        <div class="form-group ${show_error?'has-error':''}">
+        <div class="form-group ${showId_error?'has-error':''}">
             <form:label path="showId" cssClass="col-sm-2 control-label">Show</form:label>
             <div class="col-sm-10">
                 <form:select path="showId" cssClass="form-control">
@@ -52,7 +51,7 @@
             </div>
         </div>
             
-        <div class="form-group ${hall_error?'has-error':''}">
+        <div class="form-group ${hallId_error?'has-error':''}">
             <form:label path="hallId" cssClass="col-sm-2 control-label">Hall</form:label>
             <div class="col-sm-10">
                 <form:select path="hallId" cssClass="form-control">

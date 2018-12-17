@@ -16,7 +16,6 @@
     <form:form method="post" action="${pageContext.request.contextPath}/show/edit"
                modelAttribute="showEdit" cssClass="form-horizontal">
         <form:hidden path="id"/>
-        <div class="form-group">
         
         <div class="form-group ${name_error?'has-error':''}">
             <form:label path="name" cssClass="col-sm-2 control-label">Name</form:label>
@@ -52,7 +51,6 @@
         </div>
        
         <button class="btn btn-primary" type="submit">Save</button>
-        </div>
         </form:form>
 </jsp:attribute>
 </my:administrationTemplate>

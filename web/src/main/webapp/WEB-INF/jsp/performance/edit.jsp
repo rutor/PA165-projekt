@@ -17,7 +17,6 @@
     <form:form method="post" action="${pageContext.request.contextPath}/performance/edit"
                modelAttribute="performanceEdit" cssClass="form-horizontal">
         <form:hidden path="id"/>
-        <div class="form-group">
         
         <div class="form-group ${description_error?'has-error':''}">
             <form:label path="description" cssClass="col-sm-2 control-label">Description</form:label>
@@ -27,7 +26,7 @@
             </div>
         </div>
             
-        <div class="form-group ${name_error?'has-error':''}">
+        <div class="form-group ${price_error?'has-error':''}">
             <form:label path="price" cssClass="col-sm-2 control-label">Price</form:label>
             <div class="col-sm-10">
                 <form:input type="number" path="price" cssClass="form-control"/>
@@ -35,7 +34,7 @@
             </div>
         </div>
             
-        <div class="form-group ${name_error?'has-error':''}">
+        <div class="form-group ${startDate_error?'has-error':''}">
             <form:label path="startDate" cssClass="col-sm-2 control-label">Start date</form:label>
             <div class="col-sm-10">
                 <form:input type="datetime-local" path="startDate" cssClass="form-control"/>
@@ -62,7 +61,6 @@
         </div>
 
         <button class="btn btn-primary" type="submit">Save</button>
-        </div>
         </form:form>
 </jsp:attribute>
 </my:administrationTemplate>

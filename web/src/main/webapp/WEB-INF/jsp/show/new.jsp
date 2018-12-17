@@ -15,7 +15,6 @@
 <jsp:attribute name="body_area">
         <form:form method="post" action="${pageContext.request.contextPath}/show/new"
                modelAttribute="showCreate" cssClass="form-horizontal">
-        <div class="form-group">
         
         <div class="form-group ${name_error?'has-error':''}">
             <form:label path="name" cssClass="col-sm-2 control-label">Name</form:label>
@@ -41,7 +40,7 @@
             </div>
         </div>
             
-        <div class="form-group ${genre_error?'has-error':''}">
+        <div class="form-group ${genreId_error?'has-error':''}">
             <form:label path="genreId" cssClass="col-sm-2 control-label">Genre</form:label>
             <div class="col-sm-10">
                 <form:select path="genreId" cssClass="form-control">
@@ -52,7 +51,7 @@
                 <form:errors path="genreId" cssClass="help-block"/>
             </div>
         </div>
-       
+      
         <button class="btn btn-primary" type="submit">Create show</button>
     </form:form>
 </jsp:attribute>
