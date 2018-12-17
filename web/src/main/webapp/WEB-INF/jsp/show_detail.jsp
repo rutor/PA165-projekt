@@ -1,3 +1,9 @@
+<%-- 
+    Document   : show
+    Created on : 17.12.2018, 20:54:42
+    Author     : xtrnkal
+--%>
+
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="utf-8" trimDirectiveWhitespaces="true" session="false" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -7,24 +13,9 @@
 
 <my:pagetemplate>
     <jsp:attribute name="body">
-
-        <div class="current-shows-container">
-            <div class="current-shows-panel row up-to-large-5">
-                <c:forEach items="${shows}" var="show">
-                <div class="img-container column">
-                    <a href="${pageContext.request.contextPath}/show_detail/${show.id}">
-                    <img class="img" src="${pageContext.request.contextPath}/pictures/${show.id mod 3 + 1}.png">
-                    </a>
-                </div>
-                </c:forEach>
-            </div>
-        </div>
-
-        <div>
             <table class="table" summary="Show listing">
             <tbody>
-                <c:forEach items="${shows}" var="show">
-                    <tr>
+                <tr>
                         <td class="home">
                             <div class="img-container home column">
                                 <a href="${pageContext.request.contextPath}/show_detail/${show.id}">
@@ -35,27 +26,52 @@
                         
                         <td>
                             <div class="row">
-                            <h3>${show.name}</h3>
+                            <h3><c:out value="${show.name}"/></h3>
                             </div>
                             <div class="row genre">
-                                <strong>${show.genre.getName()}</strong>
+                                <strong><c:out value="${show.genre.getName()}"/></strong>
                             </div>
                             <div class="row description">
-                                ${show.description}
+                                <c:out value="${show.description}"/>
                             </div>
                             <div class="row show-bottom">
-                                <my:a href="${pageContext.request.contextPath}/show_detail/${show.id}" class="btn btn-primary">
-                                    More information
-                                </my:a>
-                                <my:a href="${pageContext.request.contextPath}/show_detail/${show.id}" class="btn btn-primary">
-                                    Buy tickets
-                                </my:a>
+
+                                
                             </div>
+                        </td>
+                </tr>
+                </tbody>
+                </table>
+                <table class="table" summary="Performance listing">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Hall</th>
+                    <th>Description</th>
+                    <th>Buy ticket</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach items="${performances}" var="performance">
+                    <tr>
+                        <td>
+                            ${performance.startDate}
+                        </td>
+                        <td>
+                            <c:out value="${performance.hall}"/>
+                        </td>
+                        <td>
+                            <c:out value="${performance.description}"/>
+                        </td>
+
+                        <td>
+                            <my:a href="${pageContext.request.contextPath}/buy_ticket/${performance.id}" class="btn btn-primary">
+                                Buy ticket
+                            </my:a>
                         </td>
                     </tr>
                 </c:forEach>
             </tbody>
-            </table>
-        </div>
+        </table>
     </jsp:attribute>
 </my:pagetemplate>

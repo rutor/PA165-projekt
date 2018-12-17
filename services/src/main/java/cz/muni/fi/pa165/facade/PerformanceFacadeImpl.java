@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import cz.muni.fi.pa165.dto.CreatePerformanceDTO;
 import cz.muni.fi.pa165.dto.PerformanceDTO;
 import cz.muni.fi.pa165.entity.Hall;
+import cz.muni.fi.pa165.entity.Show;
 import cz.muni.fi.pa165.entity.Performance;
 import cz.muni.fi.pa165.services.BeanMappingService;
 import cz.muni.fi.pa165.services.HallService;
@@ -70,4 +71,9 @@ public class PerformanceFacadeImpl implements PerformanceFacade {
         return mappingService.mapTo(performanceService.findAllByHall(hall), PerformanceDTO.class);
     }
 
+    @Override
+    public List<PerformanceDTO> getAllPerfomancesByShowId(Long showId) {
+        Show show = showService.findById(showId);
+        return mappingService.mapTo(performanceService.findAllByShow(show), PerformanceDTO.class);
+    }
 }

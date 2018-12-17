@@ -38,7 +38,7 @@ public class PerformanceDaoImpl implements PerformanceDao {
     }
     
     public List<Performance> findAllByShow(Show show) {
-        return em.createQuery("select p from Performace p where show = :show", Performance.class)
+        return em.createQuery("select p from Performance p where show = :show", Performance.class)
                 .setParameter("show", show).getResultList();
     }
 

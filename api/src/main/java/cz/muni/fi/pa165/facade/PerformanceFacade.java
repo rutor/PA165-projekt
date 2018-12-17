@@ -17,6 +17,8 @@ public interface PerformanceFacade {
     public PerformanceDTO getPerformanceById(Long id);
 
     public List<PerformanceDTO> getAllPerfomancesByHallId(Long hallId);
+    
+    public List<PerformanceDTO> getAllPerfomancesByShowId(Long showId);
 
     public void removePerformance(Long id);
 
