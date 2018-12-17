@@ -134,4 +134,22 @@ public class TicketController {
         return "redirect:" + uriBuilder.path("/ticket").toUriString();
     }
 
+    @RequestMapping(value = "/use/{barcodeString}", method = RequestMethod.GET)
+    public String useTicket(@PathVariable String barcodeString, Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
+        log.info("/use/{barcodeString} requested");
+        UUID barcode = UUID.fromString(barcodeString);
+        TicketDTO ticket = ticketFacade.getByBarcode(barcode);
+        if (ticket == null) {
+            redirectAttributes.addFlashAttribute("alert_danger", "No ticket with barcode: " + barcodeString + " exists");
+            return "redirect:" + uriBuilder.path("/ticket").toUriString();
+        }
+        boolean used = ticketFacade.useTicket(barcode);
+        if (used) {
+            redirectAttributes.addFlashAttribute("alert_success", "Ticket with barcode: " + barcodeString + " was successfully used");
+        } else {
+            redirectAttributes.addFlashAttribute("alert_danger", "Ticket with barcode: " + barcodeString + " was already used before");
+        }
+        return "redirect:" + uriBuilder.path("/ticket/{barcodeString}").buildAndExpand(barcodeString).encode().toUriString();
+    }
+
 }
