@@ -176,7 +176,6 @@ public class PerformanceController {
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
         if (binder.getTarget() instanceof PerformanceDTO) {
-            // Converts from ID of Performance to PerformanceDTO object before passing to function
             binder.registerCustomEditor(HallDTO.class, new PropertyEditorSupport() {
                 @Override
                 public void setAsText(String s) throws IllegalArgumentException {
@@ -194,6 +193,16 @@ public class PerformanceController {
                 }
             });
             
+            binder.registerCustomEditor(LocalDateTime.class, new PropertyEditorSupport() {
+                @Override
+                public void setAsText(String s) throws IllegalArgumentException {
+                    log.debug("setAsText `" + s + "`");
+                    LocalDateTime time = LocalDateTime.parse(s, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+                    super.setValue(time);
+                }
+            });
+        }
+        if (binder.getTarget() instanceof CreatePerformanceDTO) {
             binder.registerCustomEditor(LocalDateTime.class, new PropertyEditorSupport() {
                 @Override
                 public void setAsText(String s) throws IllegalArgumentException {
