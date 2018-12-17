@@ -13,30 +13,33 @@ import cz.muni.fi.pa165.entity.Show;
 @Repository
 @Named
 public class ShowDaoImpl implements ShowDao {
-@PersistenceContext
-private EntityManager em;
-	public void create(Show show) {
-		em.persist(show);
-	}
 
-	public void remove(Show show) {
-		em.remove(show);
-	}
+    @PersistenceContext
+    private EntityManager em;
 
-	public List<Show> findAll() {
-		
-		return em.createQuery("select s from Show s", Show.class).getResultList();
-	}
+    public void create(Show show) {
+        em.persist(show);
+    }
 
-	public Show findById(Long id) {
-		return em.find(Show.class,  id);
-	}
+    public void remove(Show show) {
+        em.remove(show);
+    }
 
-	public List<Show> findAllByGenre(Genre genre) {
-		return em.createQuery("select s from Show s where genre = :genre", Show.class).setParameter("genre",  genre).getResultList();
-	}
-@Override
-public void update(Show show) {
-	em.merge(show);
-}
+    public List<Show> findAll() {
+
+        return em.createQuery("select s from Show s", Show.class).getResultList();
+    }
+
+    public Show findById(Long id) {
+        return em.find(Show.class, id);
+    }
+
+    public List<Show> findAllByGenre(Genre genre) {
+        return em.createQuery("select s from Show s where genre = :genre", Show.class).setParameter("genre", genre).getResultList();
+    }
+
+    @Override
+    public void update(Show show) {
+        em.merge(show);
+    }
 }

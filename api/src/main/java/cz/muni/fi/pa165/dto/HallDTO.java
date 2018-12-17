@@ -13,6 +13,10 @@ public class HallDTO {
     private Long capacity;
     private String address;
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
     public Long getId() {
         return id;
     }

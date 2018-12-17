@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @Service
@@ -57,8 +58,8 @@ public class InsertSampleDataImpl implements InsertSampleData {
         Hall hall2 = createHall(null,"Hall2", "Hall2Description", 40l);
         Hall hall3 = createHall(null,"Hall3", "Hall3Description", 65l);
 
-        Performance performance1 = createPerformance(null, "The only chance to see", 15.0f, hall1, show1, LocalDate.now());
-        Performance performance2 = createPerformance(null, "Test performance", 12.0f, hall2, show2, LocalDate.now());
+        Performance performance1 = createPerformance(null, "The only chance to see", 15.0f, hall1, show1, LocalDateTime.now());
+        Performance performance2 = createPerformance(null, "Test performance", 12.0f, hall2, show2, LocalDateTime.now());
 
         roleService.create(userRole);
         roleService.create(adminRole);

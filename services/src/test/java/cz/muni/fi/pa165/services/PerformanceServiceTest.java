@@ -8,6 +8,7 @@ import cz.muni.fi.pa165.entity.Hall;
 import cz.muni.fi.pa165.entity.Performance;
 import cz.muni.fi.pa165.entity.Show;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -80,7 +81,7 @@ public class PerformanceServiceTest extends AbstractTestNGSpringContextTests {
         return show;
     }
 
-    private Performance createPerformance(Long id, String description, Show show, Hall hall, LocalDate startDate, Float price) {
+    private Performance createPerformance(Long id, String description, Show show, Hall hall, LocalDateTime startDate, Float price) {
         Performance p = new Performance();
         p.setId(id);
         p.setPrice(price);
@@ -94,14 +95,14 @@ public class PerformanceServiceTest extends AbstractTestNGSpringContextTests {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        opera = createGenre(1L, "Opera", "Vážná");
-        comedy = createGenre(2L, "Komedie", "Ne úplnì vážná");
-        show1 = createShow(1L, "Cesta na severní pól", "Neznáte?", 175, comedy);
-        show2 = createShow(2L, "Rusalka", "Celkem známá", 265, opera);
-        theatre = createHall(1L, "Divadlo na kopeèku", 350L);
+        opera = createGenre(1L, "Opera", "Vï¿½nï¿½");
+        comedy = createGenre(2L, "Komedie", "Ne ï¿½plnï¿½ vï¿½nï¿½");
+        show1 = createShow(1L, "Cesta na severnï¿½ pï¿½l", "Neznï¿½te?", 175, comedy);
+        show2 = createShow(2L, "Rusalka", "Celkem znï¿½mï¿½", 265, opera);
+        theatre = createHall(1L, "Divadlo na kopeï¿½ku", 350L);
         cinema = createHall(2L, "Kino pod kopcem", 200L);
-        performance1 = createPerformance(10L, "První pøedstavení", show1, theatre, LocalDate.now(), 79.9f);
-        performance2 = createPerformance(11L, "Cesta za pokladem", show2, cinema, LocalDate.now(), 45.1f);
+        performance1 = createPerformance(10L, "Prvnï¿½ pï¿½edstavenï¿½", show1, theatre, LocalDateTime.now(), 79.9f);
+        performance2 = createPerformance(11L, "Cesta za pokladem", show2, cinema, LocalDateTime.now(), 45.1f);
     }
 
     @Test

@@ -29,8 +29,30 @@
         </div>
 
         <div>
-            Shows
-            Zde bude vypis aktualnich shows s kratkym popisem, obrazkem a odkazem na detail a koupi vstupenek
+            <table class="table" summary="Show listing">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach items="${shows}" var="show">
+                    <tr>
+                        <td>
+                            <my:a href="/show/${show.id}" class="btn btn-primary">
+                                <c:out value="${show.description}" />
+                            </my:a>
+                        </td>
+                        <td>
+                            <!-- TODO: show both only for admins -->
+                            <my:a href="/show/${show.id}/edit" class="btn">Edit</my:a>
+                            <my:a href="/show/${show.id}/delete" class="btn">Delete</my:a>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+            </table>
         </div>
     </jsp:attribute>
 </my:pagetemplate>

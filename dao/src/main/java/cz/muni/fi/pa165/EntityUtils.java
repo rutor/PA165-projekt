@@ -6,6 +6,7 @@ import cz.muni.fi.pa165.enums.TicketStatus;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class EntityUtils {
 
@@ -36,7 +37,7 @@ public class EntityUtils {
     }
 
     public static Performance createPerformance(Long id, @NotNull String description, @NotNull Float price,
-                                                @NotNull Hall hall, @NotNull Show show, @NotNull LocalDate startDate) {
+                                                @NotNull Hall hall, @NotNull Show show, @NotNull LocalDateTime startDate) {
         Performance performance = new Performance();
         performance.setId(id);
         performance.setDescription(description);

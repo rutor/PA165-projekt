@@ -5,6 +5,7 @@ package cz.muni.fi.pa165.dao;
 import cz.muni.fi.pa165.ApplicationContext;
 import cz.muni.fi.pa165.entity.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.dao.DataAccessException;
@@ -68,7 +69,7 @@ public class PerformanceDaoTest extends AbstractTestNGSpringContextTests {
 
         performance.setHall(bigHall);
         performance.setPrice(250f);
-        performance.setStartDate(LocalDate.now());
+        performance.setStartDate(LocalDateTime.now());
 
       //  em.getTransaction().commit();
       //  em.close();
@@ -118,7 +119,7 @@ public class PerformanceDaoTest extends AbstractTestNGSpringContextTests {
         Performance performance1= new Performance();
         performance1.setHall(bigHall);
         performance1.setPrice(250f);
-        performance1.setStartDate(LocalDate.now());
+        performance1.setStartDate(LocalDateTime.now());
 
 
         em.persist(performance1);
