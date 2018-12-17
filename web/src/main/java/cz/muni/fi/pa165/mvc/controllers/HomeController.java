@@ -4,6 +4,7 @@ import cz.muni.fi.pa165.dto.PerformanceDTO;
 import cz.muni.fi.pa165.dto.ShowDTO;
 import cz.muni.fi.pa165.facade.PerformanceFacade;
 import cz.muni.fi.pa165.facade.ShowFacade;
+import cz.muni.fi.pa165.facade.TicketFacade;
 import java.util.List;
 import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,9 @@ public class HomeController {
     @Inject
     PerformanceFacade performanceFacade;
     
+    @Inject
+    TicketFacade ticketFacade;
+    
     @RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
     public String list(@RequestParam(required = false) Long genreId, Model model) {
         List<ShowDTO> shows;
@@ -41,6 +45,12 @@ public class HomeController {
         List<PerformanceDTO> performances = performanceFacade.getAllPerfomancesByShowId(id);
         model.addAttribute("performances", performances);
         return "show_detail";
+    }
+    
+    @RequestMapping(value = "/bookings_tickets", method = RequestMethod.GET)
+    public String tickets(@RequestParam(required = true) Long userId,Model model) {
+        model.addAttribute("tickets", ticketFacade.getByUser(userId));
+        return "bookings_tickets";
     }
     
     
