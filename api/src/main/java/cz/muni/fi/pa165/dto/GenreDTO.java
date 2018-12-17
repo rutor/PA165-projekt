@@ -93,6 +93,9 @@ public class GenreDTO {
 
 	@Override
 	public String toString() {
-		return "GenreDTO{" +name+','+description+'}';
+		return "GenreDTO{" +
+				"name='" + name + '\'' +
+				", description='" + description + '\'' +
+				'}';
 	}
 }

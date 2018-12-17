@@ -140,7 +140,11 @@ public class ShowDTO {
 
 	@Override
 	public String toString() {
-		return "ShowDTO{" +name+','+description+','+duration+','+genre.getName()+'}';
-
+		return "ShowDTO{" +
+				"name='" + name + '\'' +
+				", description='" + description + '\'' +
+				", duration=" + duration +
+				", genre=" + genre +
+				'}';
 	}
 }

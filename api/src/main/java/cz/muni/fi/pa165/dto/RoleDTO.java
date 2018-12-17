@@ -59,7 +59,9 @@ public class RoleDTO {
 
     @Override
     public String toString() {
-        return "RoleDTO{" +name+','+description+ '}';
-
+        return "RoleDTO{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

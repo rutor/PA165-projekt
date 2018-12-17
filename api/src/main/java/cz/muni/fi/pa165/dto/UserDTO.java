@@ -122,7 +122,14 @@ public class UserDTO {
 
     @Override
     public String toString() {
-        return "UserDTO{" +firstName+','+lastName+','+email+','+createdAt+','+updatedAt+','+role.getName()+'}';
-
+        return "UserDTO{" +
+                "role=" + role +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
     }
 }

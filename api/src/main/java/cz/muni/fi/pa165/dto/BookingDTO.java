@@ -34,7 +34,13 @@ public class BookingDTO {
 
     @Override
     public String toString() {
-        return "BookingDTO{" +paymentStatus+','+description+','+user.getLastName()+','+user.getEmail()+','+ticket+','+createdAt+','+updatedAt+ '}';
-
+        return "BookingDTO{" +
+                "paymentStatus=" + paymentStatus +
+                ", ticket=" + ticket +
+                ", description='" + description + '\'' +
+                ", user=" + user +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
     }
 }

@@ -64,7 +64,10 @@ public class HallDTO {
 
     @Override
     public String toString() {
-        return "HallDTO{" +name+','+capacity+','+address+ '}';
-
+        return "HallDTO{" +
+                "name='" + name + '\'' +
+                ", capacity=" + capacity +
+                ", address='" + address + '\'' +
+                '}';
     }
 }
