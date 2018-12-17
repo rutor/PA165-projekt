@@ -55,10 +55,11 @@
 
                             </c:when>
                             <c:otherwise>
-                                <li><a href="/registration/"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                                <li><a href="/login/"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                                <li><a href="${pageContext.request.contextPath}/auth/logout/"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+                                <li><a href="${pageContext.request.contextPath}/auth/login/"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 
                             </c:otherwise>
+
                         </c:choose>
 
                     </ul>
