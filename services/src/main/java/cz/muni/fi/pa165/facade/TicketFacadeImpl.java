@@ -71,4 +71,9 @@ public class TicketFacadeImpl implements TicketFacade{
     public boolean returnTicket(Long id) {
         return ticketService.returnTicket(id);
     }
+
+    @Override
+    public boolean useTicket(UUID barcode) {
+        return ticketService.useTicket(barcode);
+    }
 }

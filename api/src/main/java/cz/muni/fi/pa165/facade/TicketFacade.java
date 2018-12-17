@@ -22,4 +22,6 @@ public interface TicketFacade {
     TicketValidationAnswerDTO validateTicket(TicketValidationRequestDTO dto);
 
     boolean returnTicket(Long id);
+
+    boolean useTicket(UUID barcode);
 }

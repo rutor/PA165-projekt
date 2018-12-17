@@ -19,4 +19,6 @@ public interface TicketService {
     List<Ticket> getByPerformance(Long id);
 
     boolean returnTicket(Long id);
+
+    boolean useTicket(UUID barcode);
 }

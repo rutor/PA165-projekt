@@ -69,4 +69,18 @@ public class TicketServiceImpl implements TicketService {
         }
         return false;
     }
+
+    @Override
+    public boolean useTicket(UUID barcode) {
+        Ticket ticket = ticketDao.findByBarcode(barcode);
+        if (ticket == null) {
+            return false;
+        }
+        if (ticket.getStatus() == TicketStatus.NOT_USED) {
+            ticket.setStatus(TicketStatus.USED);
+            ticketDao.update(ticket);
+            return true;
+        }
+        return false;
+    }
 }
