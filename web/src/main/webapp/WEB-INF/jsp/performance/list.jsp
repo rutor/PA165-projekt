@@ -11,14 +11,14 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:administrationTemplate subtitle="Performance listing">
+<my:administrationTemplate subtitle="Performances">
     <jsp:attribute name="body_area">
         <!-- TODO: Show for admins only -->
         <my:a href="/performance/new" class="btn btn-primary">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-            Add
+            Add new performance
         </my:a>
-        <table class="table" summary="Performance listing">
+        <table class="table" summary="Performances">
             <thead>
                 <tr>
                     <th>Name</th>

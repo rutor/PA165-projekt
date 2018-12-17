@@ -19,6 +19,7 @@
             <a href="${pageContext.request.contextPath}/show/" class="btn btn-primary">Shows</a>
             <a href="${pageContext.request.contextPath}/performance/" class="btn btn-primary">Performances</a>
             <a href="${pageContext.request.contextPath}/booking/" class="btn btn-primary">Bookings</a>
+            <a href="${pageContext.request.contextPath}/ticket/" class="btn btn-primary">Tickets</a>
             <a href="${pageContext.request.contextPath}/genre/" class="btn btn-primary">Genres</a>
             <a href="${pageContext.request.contextPath}/hall/" class="btn btn-primary">Halls</a>
             <a href="${pageContext.request.contextPath}/user/" class="btn btn-primary">Users</a>

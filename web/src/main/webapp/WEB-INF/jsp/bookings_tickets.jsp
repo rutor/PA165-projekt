@@ -18,9 +18,8 @@
             <thead>
                 <tr>
                     <th>Code</th>
-                    <th>Show</th>
-                    <th>Date</th>
-                    <th>Buy date</th>
+                    <th>Performance</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -28,8 +27,7 @@
                     <tr>
                         <td><c:out value="${ticket.barcode}"/></td>
                         <td><c:out value="${ticket.performance}"/></td>
-                        <td><c:out value="${ticket.performance}"/></td>
-                        <td>${ticket.createdAd}</td>
+                        
                     </tr>
                 </c:forEach>
             </tbody>
