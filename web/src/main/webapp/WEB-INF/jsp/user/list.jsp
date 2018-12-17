@@ -6,14 +6,13 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 
-<my:administrationTemplate subtitle="Role listing">
+<my:administrationTemplate subtitle="User listing">
     <jsp:attribute name="body_area">
-        <!-- TODO: Show for admins only -->
-        <my:a href="/role/new" class="btn btn-primary">
+        <my:a href="/user/new" class="btn btn-primary">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             Add
         </my:a>
-        <table class="table" summary="Role listing">
+        <table class="table" summary="User listing">
             <thead>
             <tr>
                 <th>Name</th>
@@ -21,22 +20,22 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${roles}" var="roles">
+            <c:forEach items="${users}" var="users">
                     <tr>
                         <td>
-                            <my:a href="/role/${roles.id}" class="btn btn-primary">
-                                <c:out value="${roles.name}" />
+                            <my:a href="/user/${users.id}" class="btn btn-primary">
+                                <c:out value="${users.lastName} ${users.firstName}" />
                             </my:a>
                         </td>
+
                         <td>
-                            <!-- TODO: show both only for admins -->
-                            <my:a href="/role/${roles.id}/edit" class="btn">Edit</my:a>
-                            <my:a href="/role/${roles.id}/delete" class="btn">Delete</my:a>
+
+                            <my:a href="/user/${users.id}/edit" class="btn">Edit</my:a>
+                            <my:a href="/user/${users.id}/delete" class="btn">Delete</my:a>
                         </td>
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
-
     </jsp:attribute>
 </my:administrationTemplate>

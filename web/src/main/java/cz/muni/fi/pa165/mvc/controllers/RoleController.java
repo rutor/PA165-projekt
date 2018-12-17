@@ -31,10 +31,10 @@ public class RoleController {
     private UserFacade userFacade;
 
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("roles", roleFacade.getAllRole());
-        return "role/list";
+        return (WebUrls.URL_ROLE+"/list");
     }
 
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.POST)
@@ -48,21 +48,21 @@ public class RoleController {
             redirectAttributes.addFlashAttribute("alert_danger",
                     "Role \"" + role.getName() + "\" cannot be deleted, it might be used for a show.");
         }
-        return "redirect:" + uriBuilder.path("/role/").toUriString();
+        return "redirect:" + uriBuilder.path(WebUrls.URL_ROLE+"/").toUriString();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String view(@PathVariable long id, Model model) {
         model.addAttribute("role", roleFacade.getRoleById(id));
-        model.addAttribute("user", userFacade.getAllUsersByRoleId(id));
-        return "role/view";
+        model.addAttribute("users", userFacade.getAllUsersByRoleId(id));
+        return (WebUrls.URL_ROLE+"/view");
     }
 
 
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
     public String confirmDelete(@PathVariable long id, Model model) {
         model.addAttribute("role", roleFacade.getRoleById(id));
-        return "role/confirm_delete";
+        return (WebUrls.URL_ROLE+"/confirm_delete");
     }
 
     /**
@@ -74,7 +74,7 @@ public class RoleController {
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String newRole(Model model) {
         model.addAttribute("roleCreate", new CreateRoleDTO());
-        return "role/new";
+        return (WebUrls.URL_ROLE+"/new");
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
@@ -84,7 +84,7 @@ public class RoleController {
             for (FieldError fe : bindingResult.getFieldErrors()) {
                 model.addAttribute(fe.getField() + "_error", true);
             }
-            return "role/new";
+            return (WebUrls.URL_ROLE+"/new");
         }
         Long id = roleFacade.createRole(formBean);
         redirectAttributes.addFlashAttribute("alert_success", "Role " + id + " was created");
@@ -99,7 +99,7 @@ public class RoleController {
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
     public String editRole(@PathVariable Long id, Model model) {
         model.addAttribute("roleEdit", roleFacade.getRoleById(id));
-        return "role/edit";
+        return (WebUrls.URL_ROLE+"/edit");
     }
 
     /**
@@ -112,7 +112,7 @@ public class RoleController {
             for (FieldError fe : bindingResult.getFieldErrors()) {
                 model.addAttribute(fe.getField() + "_error", true);
             }
-            return "role/edit";
+            return (WebUrls.URL_ROLE+"/edit");
         }
         roleFacade.updateRole(formBean);
         redirectAttributes.addFlashAttribute("alert_success", "Your edits to the role " + formBean.getName() + " were successfully saved");

@@ -72,19 +72,10 @@ public class UserFacadeImpl implements UserFacade {
 
     @Override
     public Enum<AuthenticateUserStatus> authenticate(UserAuthenticateDTO userAuthenticateDTO) {
-        UserDTO foundUser= mappingService.mapTo(userService.findByEmail(userAuthenticateDTO.getEmail()), UserDTO.class);
-        if (foundUser == null) {
-            return AuthenticateUserStatus.UNKNOWN;
-        }
-        if (userService.authenticate(foundUser)) {
-            mappingService.mapTo(foundUser, UserDTO.class);
-            return AuthenticateUserStatus.OK;
-        }
+        Users user = mappingService.mapTo(userAuthenticateDTO, Users.class);
+        return userService.authenticate(user);
 
-        return AuthenticateUserStatus.BAD_PASSWORD;
     }
-
-
 
 
     @Override

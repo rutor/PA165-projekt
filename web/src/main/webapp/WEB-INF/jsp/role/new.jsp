@@ -5,8 +5,9 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:pagetemplate title="Add a new role">
-<jsp:attribute name="body">
+
+<my:administrationTemplate subtitle="Add a new role">
+    <jsp:attribute name="body_area">
     <form:form method="post" action="${pageContext.request.contextPath}/role/new"
                modelAttribute="roleCreate" cssClass="form-horizontal">
         <div class="form-group ${name_error?'has-error':''}">
@@ -26,4 +27,4 @@
         <button class="btn btn-primary" type="submit">Create role</button>
     </form:form>
 </jsp:attribute>
-</my:pagetemplate>
+</my:administrationTemplate>

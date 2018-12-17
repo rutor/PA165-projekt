@@ -29,7 +29,7 @@ import java.io.IOException;
 
 import java.lang.Exception;
 
-
+import cz.muni.fi.pa165.enums.AuthenticateUserStatus;
 import cz.muni.fi.pa165.dao.UserDao;
 import cz.muni.fi.pa165.entity.Users;
 
@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService{
     @Inject
     private UserDao userDao;
 
-    private PasswordUtils passwordUtils;
+
 
 
     @Override
@@ -62,8 +62,8 @@ public class UserServiceImpl implements UserService{
             System.out.println("Password is not valid. Your password must contain at least one lowercase character, uppercase character and digit and be at least 8 characters. ");
         }
 
-        //hash Password use Scrypt
-        user.setPassword(SCryptUtil.scrypt(user.getPassword(), 16, 16, 16));
+        //hash Password
+        user.setPassword(PasswordUtils.createHash(user.getPassword()));
         userDao.create(user);
         return user.getId();
     }
@@ -98,15 +98,21 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public boolean authenticate(UserDTO user) {
-        try {
-            Users userFromDatabaze= userDao.findByEmail(user.getEmail());
-            return validatePassword(user.getPassword(), userFromDatabaze.getPassword());
-        } catch (NullPointerException ex) {
-            throw ex;
-        } catch (Exception ex) {
-            throw new PersistenceException(ex.getMessage());
+    public Enum<AuthenticateUserStatus> authenticate(Users user) {
+
+        if (user == null) {
+            return AuthenticateUserStatus.UNKNOWN_USER;
         }
+        Users userFromDatabaze= userDao.findByEmail(user.getEmail());
+        if (userFromDatabaze == null) {
+            return AuthenticateUserStatus.UNKNOWN_USER;
+        }
+        if (PasswordUtils.validatePassword(user.getPassword(), userFromDatabaze.getPassword())) {
+            return AuthenticateUserStatus.OK;
+        }
+
+        return AuthenticateUserStatus.BAD_PASSWORD;
+
     }
 
     @Override
@@ -121,20 +127,10 @@ public class UserServiceImpl implements UserService{
             System.out.println("Password is not valid. Your password must contain at least one lowercase character, uppercase character and digit and be at least 8 characters. ");
         }
 
-        //hash Password use Scrypt
-        user.setPassword(SCryptUtil.scrypt(user.getPassword(), 16, 16, 16));
+        //hash Password
+        user.setPassword(PasswordUtils.createHash(user.getPassword()));
         userDao.update(user);
 
-    }
-    private boolean validatePassword(String password, String correctHash) {
-        if(password==null) return false;
-        if(correctHash==null) throw new IllegalArgumentException("password hash is null");
-        String[] params = correctHash.split(":");
-        int iterations = Integer.parseInt(params[0]);
-        byte[] salt = passwordUtils.fromHex(params[1]);
-        byte[] hash = passwordUtils.fromHex(params[2]);
-        byte[] testHash = passwordUtils.pbkdf2(password.toCharArray(), salt, iterations, hash.length);
-        return passwordUtils.slowEquals(hash, testHash);
     }
 
 

@@ -5,8 +5,10 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:pagetemplate title="Edit a Role">
-<jsp:attribute name="body">
+
+
+<my:administrationTemplate subtitle="Edit a Role">
+    <jsp:attribute name="body_area">
     <form:form method="post" action="${pageContext.request.contextPath}/role/${role.id}/edit"
                modelAttribute="roleEdit" cssClass="form-horizontal">
         <form:hidden path="id"/>
@@ -30,4 +32,4 @@
 <my:a href="/role/" target="_parent"><button class="btn btn-primary">No, go back</button></my:a>
 
 </jsp:attribute>
-</my:pagetemplate>
+</my:administrationTemplate>

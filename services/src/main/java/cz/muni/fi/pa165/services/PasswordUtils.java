@@ -1,19 +1,26 @@
 package cz.muni.fi.pa165.services;
 
 import java.math.BigInteger;
-import java.io.UnsupportedEncodingException;
-import java.security.GeneralSecurityException;
-import java.security.SecureRandom;
-import static com.lambdaworks.codec.Base64.*;
-import static com.lambdaworks.crypto.PBKDF.pbkdf2;
 
-import com.lambdaworks.crypto.SCryptUtil;
+import java.security.SecureRandom;
+
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
 
 public class PasswordUtils {
+
+    public static boolean validatePassword(String password, String correctHash) {
+        if(password==null) return false;
+        if(correctHash==null) throw new IllegalArgumentException("password hash is null");
+        String[] params = correctHash.split(":");
+        int iterations = Integer.parseInt(params[0]);
+        byte[] salt = fromHex(params[1]);
+        byte[] hash = fromHex(params[2]);
+        byte[] testHash = pbkdf2(password.toCharArray(), salt, iterations, hash.length);
+        return slowEquals(hash, testHash);
+    }
 
     private static String toHex(byte[] array) {
         BigInteger bi = new BigInteger(1, array);
@@ -38,7 +45,7 @@ public class PasswordUtils {
     }
 
 
-    private static String createHash(String password) {
+    public static String createHash(String password) {
         final int SALT_BYTE_SIZE = 24;
         final int HASH_BYTE_SIZE = 24;
         final int PBKDF2_ITERATIONS = 1000;

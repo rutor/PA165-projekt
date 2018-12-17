@@ -5,16 +5,14 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:administrationTemplate subtitle="Role detail">
+<my:administrationTemplate subtitle="Confirm deletion">
     <jsp:attribute name="body_area">
-<h1>Detail for <c:out value="Name:${role.name}"/></h1>
-<p>Description:<c:out value="${role.description}"/></p>
-<h2>All users of this role</h2>
-<c:forEach items="${users}" var="users">
-    <p>User: ${users.lastName} ${users.firstName}</p><br/>
+<p>Do you really want to delete the user <c:out value="${user.lastName} ${user.firstName}"/>?</p>
+<form method="post" action="${pageContext.request.contextPath}/user/${user.id}/delete">
+    <button type="submit" class="btn btn-primary">Yes, delete it</button>
 
-</c:forEach>
-<my:a href="/role/" target="_parent"><button class="btn btn-primary">Go back</button></my:a>
+</form>
+<my:a href="/user//" target="_parent"><button class="btn btn-primary">No, go back</button></my:a>
 
 </jsp:attribute>
 </my:administrationTemplate>

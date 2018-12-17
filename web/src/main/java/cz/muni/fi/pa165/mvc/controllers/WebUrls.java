@@ -9,6 +9,9 @@ public class WebUrls {
     public static final String URL_ROLE = "/role";
     public static final String URL_USER = "/user";
 
+    public static final String Admin = "Admin";
+    public static final String User = "User";
+
     private WebUrls() {
         throw new AssertionError("This is not the class you are looking for");
     }
