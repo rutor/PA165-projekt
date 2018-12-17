@@ -71,12 +71,9 @@ public class UserFacadeImpl implements UserFacade {
     }
 
     @Override
-    public UserDTO authenticate(UserAuthenticateDTO userAuthenticateDTO) {
+    public Enum<AuthenticateUserStatus> authenticate(UserAuthenticateDTO userAuthenticateDTO) {
         Users user = mappingService.mapTo(userAuthenticateDTO, Users.class);
-        if(userService.authenticate(user)==AuthenticateUserStatus.OK){
-            return  mappingService.mapTo(user, UserDTO.class);
-        }
-        return null;
+        return userService.authenticate(user);
 
     }
 

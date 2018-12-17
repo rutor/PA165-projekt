@@ -3,7 +3,9 @@ package cz.muni.fi.pa165.mvc.controllers;
 
 import cz.muni.fi.pa165.dto.UserAuthenticateDTO;
 import cz.muni.fi.pa165.dto.UserDTO;
+import cz.muni.fi.pa165.enums.AuthenticateUserStatus;
 import cz.muni.fi.pa165.facade.UserFacade;
+import cz.muni.fi.pa165.services.BeanMappingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,9 @@ public class AuthenticationController {
     @Inject
     private UserFacade userFacade;
 
+    @Inject
+    private BeanMappingService mappingService;
+
     @RequestMapping(value = WebUrls.URL_LOGIN, method = RequestMethod.GET)
     public String authForm(
             Model model,
@@ -51,7 +56,11 @@ public class AuthenticationController {
         log.info("POST request:" +(WebUrls.Authentication+WebUrls.URL_LOGIN));
 
         UserAuthenticateDTO userAuthenticateDTO=new UserAuthenticateDTO(email,password);
-        UserDTO userDTO =userFacade.authenticate(userAuthenticateDTO);
+        UserDTO userDTO=null;
+        if(userFacade.authenticate(userAuthenticateDTO)== AuthenticateUserStatus.OK){
+            userDTO =mappingService.mapTo(userAuthenticateDTO, UserDTO.class);
+        }
+
 
         if (userDTO == null) {
             log.warn("POST request:" +(WebUrls.Authentication+WebUrls.URL_LOGIN)+" wrong login information, entered mail={}", email);
