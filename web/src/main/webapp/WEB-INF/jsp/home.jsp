@@ -12,7 +12,7 @@
             <div class="current-shows-panel row up-to-large-5">
                 <c:forEach items="${shows}" var="show">
                 <div class="img-container column">
-                    <a href="${pageContext.request.contextPath}/show_detail/${show.id}">
+                    <a href="${pageContext.request.contextPath}/show/${show.id}">
                     <img class="img" src="${pageContext.request.contextPath}/pictures/${show.id mod 3 + 1}.png">
                     </a>
                 </div>
@@ -27,9 +27,9 @@
                     <tr>
                         <td class="home">
                             <div class="img-container home column">
-                                <a href="${pageContext.request.contextPath}/show_detail/${show.id}">
+                                <my:a href="show/${show.id}">
                                     <img class="img" src="${pageContext.request.contextPath}/pictures/${show.id mod 3 + 1}.png">
-                                </a>
+                                </my:a>
                             </div>
                         </td>
                         
@@ -44,10 +44,10 @@
                                 ${show.description}
                             </div>
                             <div class="row show-bottom">
-                                <my:a href="${pageContext.request.contextPath}/show_detail/${show.id}" class="btn btn-primary">
+                                <my:a href="show/${show.id}" class="btn btn-primary">
                                     More information
                                 </my:a>
-                                <my:a href="${pageContext.request.contextPath}/show_detail/${show.id}" class="btn btn-primary">
+                                <my:a href="show/${show.id}" class="btn btn-primary">
                                     Buy tickets
                                 </my:a>
                             </div>
