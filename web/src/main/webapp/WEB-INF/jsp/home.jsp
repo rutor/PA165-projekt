@@ -12,9 +12,9 @@
             <div class="current-shows-panel row up-to-large-5">
                 <c:forEach items="${shows}" var="show">
                 <div class="img-container column">
-                    <a href="${pageContext.request.contextPath}/show/${show.id}">
+                    <my:a href="show/${show.id}">
                     <img class="img" src="${pageContext.request.contextPath}/pictures/${show.id mod 3 + 1}.png">
-                    </a>
+                    </my:a>
                 </div>
                 </c:forEach>
             </div>
