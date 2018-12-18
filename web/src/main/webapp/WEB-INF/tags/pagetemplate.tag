@@ -25,7 +25,7 @@
         <nav class="navbar navbar-inverse navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="/">Theatres&Cinemas</a>
+                    <a class="navbar-brand" href="${pageContext.request.contextPath}/">Theatres&Cinemas</a>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
