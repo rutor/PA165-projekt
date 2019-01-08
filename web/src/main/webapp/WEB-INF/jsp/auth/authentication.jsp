@@ -12,7 +12,7 @@
     <div class="col-6 col-md-6 col-md-offset-3 col-offset-3">
         <form class="form" method="POST" action="${pageContext.request.contextPath}/auth/login">
             <h2 class="form-heading">Please sign in</h2>
-
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <label for="email" class="sr-only">Email:</label>
             <input type="email" id="email" name="email" class="form-control" placeholder="Enter E-mail..." required autofocus/>
 

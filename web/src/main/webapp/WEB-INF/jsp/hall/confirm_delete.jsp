@@ -14,6 +14,7 @@
     <jsp:attribute name="body_area">
         <p>Do you really want to delete the hall <c:out value="${hall.name}"/>?</p>
         <form method="post" action="${pageContext.request.contextPath}/hall/${hall.id}/delete">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
             <button type="submit" class="btn btn-primary">Yes, delete it</button>
         </form>
         <my:a href="/hall/">No, goback to the overview</my:a>
