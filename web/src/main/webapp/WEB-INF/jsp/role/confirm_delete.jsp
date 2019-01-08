@@ -9,6 +9,7 @@
     <jsp:attribute name="body_area">
 <p>Do you really want to delete the role <c:out value="${role.name}"/>?</p>
 <form method="post" action="${pageContext.request.contextPath}/role/${role.id}/delete">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <button type="submit" class="btn btn-primary">Yes, delete it</button>
 </form>
 <my:a href="/role/" target="_parent"><button class="btn btn-primary">No, go back</button></my:a>

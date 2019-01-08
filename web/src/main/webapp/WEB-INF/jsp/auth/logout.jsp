@@ -12,6 +12,7 @@
     <div class="col-6 col-md-6 col-md-offset-3 col-offset-3">
         <form class="form" method="POST" action="${pageContext.request.contextPath}/auth/logout">
             <h2 class="form-heading">Logout?</h2>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
             <button class="btn btn-lg btn-primary btn-block" type="submit">Logout</button>
         </form>
     </div>

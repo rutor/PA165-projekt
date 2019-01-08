@@ -9,6 +9,7 @@
     <jsp:attribute name="body_area">
 <p>Do you really want to delete the user <c:out value="${user.lastName} ${user.firstName}"/>?</p>
 <form method="post" action="${pageContext.request.contextPath}/user/${user.id}/delete">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <button type="submit" class="btn btn-primary">Yes, delete it</button>
 
 </form>
