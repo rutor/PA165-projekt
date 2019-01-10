@@ -93,9 +93,6 @@ public class GenreDTO {
 
 	@Override
 	public String toString() {
-		return "GenreDTO{" +
-				"name='" + name + '\'' +
-				", description='" + description + '\'' +
-				'}';
+		return this.getName();
 	}
 }
