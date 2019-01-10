@@ -22,6 +22,9 @@
             <thead>
                 <tr>
                     <th>Name</th>
+                    <th>Description</th>
+                    <th>Genre</th>
+                    <th>Duration</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -30,8 +33,19 @@
                     <tr>
                         <td>
                             <my:a href="/show/${show.id}" class="btn btn-primary">
-                                <c:out value="${show.description}" />
+                                <c:out value="${show.name}" />
                             </my:a>
+                        </td>
+                        <td>
+                                <c:out value="${show.description}" />
+                        </td>
+                        <td>
+                            <my:a href="/genre/${show.genre.id}" class="btn btn-primary">
+                                <c:out value="${show.genre}" />
+                            </my:a>
+                        </td>
+                        <td>
+                                <c:out value="${show.duration} min" />
                         </td>
                         <td>
                             <!-- TODO: show both only for admins -->

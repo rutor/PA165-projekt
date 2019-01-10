@@ -58,7 +58,7 @@
                             ${performance.startDate}
                         </td>
                         <td>
-                            <c:out value="${performance.hall}"/>
+                            <c:out value="${performance.hall.address}, ${performance.hall.name}"/>
                         </td>
                         <td>
                             <c:out value="${performance.description}"/>

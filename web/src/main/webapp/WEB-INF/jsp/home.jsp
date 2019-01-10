@@ -12,7 +12,7 @@
             <div class="current-shows-panel row up-to-large-5">
                 <c:forEach items="${shows}" var="show">
                 <div class="img-container column">
-                    <my:a href="show/${show.id}">
+                    <my:a href="show_detail/${show.id}">
                     <img class="img" src="${pageContext.request.contextPath}/pictures/${show.id mod 3 + 1}.png">
                     </my:a>
                 </div>
@@ -27,7 +27,7 @@
                     <tr>
                         <td class="home">
                             <div class="img-container home column">
-                                <my:a href="show/${show.id}">
+                                <my:a href="show_detail/${show.id}">
                                     <img class="img" src="${pageContext.request.contextPath}/pictures/${show.id mod 3 + 1}.png">
                                 </my:a>
                             </div>
@@ -44,10 +44,10 @@
                                 ${show.description}
                             </div>
                             <div class="row show-bottom">
-                                <my:a href="show/${show.id}" class="btn btn-primary">
+                                <my:a href="show_detail/${show.id}" class="btn btn-primary">
                                     More information
                                 </my:a>
-                                <my:a href="show/${show.id}" class="btn btn-primary">
+                                <my:a href="show_detail/${show.id}" class="btn btn-primary">
                                     Buy tickets
                                 </my:a>
                             </div>
