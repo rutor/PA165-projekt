@@ -38,7 +38,7 @@ import cz.muni.fi.pa165.entity.Users;
 @Service
 public class UserServiceImpl implements UserService{
 
-    private final Pattern PASSWORD_PATTERN = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$");
+    private final Pattern PASSWORD_PATTERN = Pattern.compile("^.{8,}$");
 
     @Inject
     private UserService userService;
