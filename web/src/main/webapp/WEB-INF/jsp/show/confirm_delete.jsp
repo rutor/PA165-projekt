@@ -13,7 +13,7 @@
 
 <my:administrationTemplate subtitle="Delete">
 <jsp:attribute name="body_area">
-        <p>Do you really want to delete the hall <c:out value="${show.id}"/>?</p>
+        <p>Do you really want to delete the show <c:out value="${show.id}"/>?</p>
         <form method="post" action="${pageContext.request.contextPath}/show/${show.id}/delete">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
             <button type="submit" class="btn btn-primary">Yes, delete it</button>

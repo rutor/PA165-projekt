@@ -13,7 +13,7 @@
 
 <my:administrationTemplate subtitle="Edit hall">
     <jsp:attribute name="body_area">
-        <form:form method="post" action="${pageContext.request.contextPath}/hall/${hall.id}/edit"
+        <form:form method="post" action="${pageContext.request.contextPath}/hall/edit"
                    modelAttribute="hallEdit" cssClass="form-horizontal">
             <form:hidden path="id"/>
             

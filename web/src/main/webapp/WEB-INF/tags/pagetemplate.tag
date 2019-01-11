@@ -6,6 +6,7 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <html lang="${pageContext.request.locale}">
     <head>
@@ -29,36 +30,22 @@
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <!-- authenticated user info -->
-                        <li><my:a href="/bookings_tickets?userId=1">My Tickets</my:a></li>
-                        <li><my:a href="/show/">Administration</my:a></li>
+                        <sec:authorize access="isAuthenticated()">
+                            <li><my:a href="/bookings_tickets?userId=1">My Tickets</my:a></li>
+                        </sec:authorize>
+                        <sec:authorize access="hasRole('Admin')">
+                            <li><my:a href="/show/">Administration</my:a></li>
+                        </sec:authorize>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <!-- authenticated user info -->
-                        <!-- TODO - prizpusobit skutecne implementaci -->
                         <c:choose>
-                            <c:when test="${authenticatedUser}">
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">user <c:out value="${authenticatedUser.givenName} ${authenticatedUser.surname}"/><b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <c:choose>
-                                            <c:when test="${authenticatedUser.role == 'admin'}">
-                                                <li><my:a href="/order/list/all">Administration</my:a>
-                                                    </li>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <li><my:a href="/order/list/all">My orders</my:a></li>
-                                                <li><my:a href="/order/list/all">My account</my:a></li>
-                                                </c:otherwise>
-                                            </c:choose>
-                                    </ul>
-                                </li>
-
+                            <c:when test="${!empty pageContext.session.getAttribute('authUser')}">
+                                <li><c:out value="${pageContext.session.getAttribute('authUser').firstName} ${pageContext.session.getAttribute('authUser').lastName}"/></li>
+                                <li><a href="${pageContext.request.contextPath}/auth/logout/"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
                             </c:when>
                             <c:otherwise>
-                                <li><a href="${pageContext.request.contextPath}/auth/logout/"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
-                                <li><a href="${pageContext.request.contextPath}/auth/login/"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-
+                                <li><a href="${pageContext.request.contextPath}/auth/login/"><span class="glyphicon glyphicon-log-in"></span> Login/Register</a></li>
                             </c:otherwise>
 
                         </c:choose>

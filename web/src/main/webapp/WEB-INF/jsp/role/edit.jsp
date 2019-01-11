@@ -9,7 +9,7 @@
 
 <my:administrationTemplate subtitle="Edit a Role">
     <jsp:attribute name="body_area">
-    <form:form method="post" action="${pageContext.request.contextPath}/role/${role.id}/edit"
+    <form:form method="post" action="${pageContext.request.contextPath}/role/edit"
                modelAttribute="roleEdit" cssClass="form-horizontal">
         <form:hidden path="id"/>
         <div class="form-group ${name_error?'has-error':''}">

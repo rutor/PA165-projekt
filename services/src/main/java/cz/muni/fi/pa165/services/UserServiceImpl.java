@@ -38,7 +38,7 @@ import cz.muni.fi.pa165.entity.Users;
 @Service
 public class UserServiceImpl implements UserService{
 
-    private final Pattern PASSWORD_PATTERN = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$");
+    private final Pattern PASSWORD_PATTERN = Pattern.compile("^.{8,}$");
 
     @Inject
     private UserService userService;
@@ -53,14 +53,14 @@ public class UserServiceImpl implements UserService{
     public Long create(Users user) {
 
         //control valid Password
-        try {
+        //try {
             // Exception ex;
             if (!PASSWORD_PATTERN.matcher(user.getPassword()).matches()) {
-                throw new Exception("Password is not valid. Your password must contain at least one lowercase character, uppercase character and digit and be at least 8 characters. ");
+                throw new IllegalArgumentException("Password is not valid. Your password must contain at least one lowercase character, uppercase character and digit and be at least 8 characters. ");
             }
-        }catch(Exception ex){
+        /*} catch(Exception ex){
             System.out.println("Password is not valid. Your password must contain at least one lowercase character, uppercase character and digit and be at least 8 characters. ");
-        }
+        }*/
 
         //hash Password
         user.setPassword(PasswordUtils.createHash(user.getPassword()));
@@ -118,14 +118,14 @@ public class UserServiceImpl implements UserService{
     @Override
     public void update(Users user) {
         //control valid Password
-        try {
+        //try {
             // Exception ex;
             if (!PASSWORD_PATTERN.matcher(user.getPassword()).matches()) {
-                throw new Exception("Password is not valid. Your password must contain at least one lowercase character, uppercase character and digit and be at least 8 characters. ");
+                throw new IllegalArgumentException("Password is not valid. Your password must contain at least one lowercase character, uppercase character and digit and be at least 8 characters. ");
             }
-        }catch(Exception ex){
+        /*} catch(Exception ex){
             System.out.println("Password is not valid. Your password must contain at least one lowercase character, uppercase character and digit and be at least 8 characters. ");
-        }
+        }*/
 
         //hash Password
         user.setPassword(PasswordUtils.createHash(user.getPassword()));

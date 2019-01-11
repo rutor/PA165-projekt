@@ -8,7 +8,7 @@
 
 <my:administrationTemplate subtitle="Edit a user">
     <jsp:attribute name="body_area">
-    <form:form method="post" action="${pageContext.request.contextPath}/user/${user.id}/edit"
+    <form:form method="post" action="${pageContext.request.contextPath}/user/edit"
                modelAttribute="userEdit"  cssClass="form-horizontal">
         <form:hidden path="id"/>
         <div class="form-group ${lastName_error?'has-error':''}">
