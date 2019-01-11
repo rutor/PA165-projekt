@@ -30,7 +30,7 @@
                     <tr>
                         <td>
                             <my:a href="/show/${show.id}" class="btn btn-primary">
-                                <c:out value="${show.description}" />
+                                <c:out value="${show.name}" />
                             </my:a>
                         </td>
                         <td>

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.inject.Inject;
 import java.util.List;
@@ -39,7 +40,8 @@ public class ShowController {
     private GenreFacade genreFacade;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String list(@RequestParam(required = false) Long genreId, Model model) {
+    public String list(@RequestParam(required = false) Long genreId, Model model, HttpSession session) {
+        //model.addAttribute("authUser", session.getAttribute("authUser"));
         List<ShowDTO> shows;
         if (genreId == null) {
             shows = showFacade.getAllShows();

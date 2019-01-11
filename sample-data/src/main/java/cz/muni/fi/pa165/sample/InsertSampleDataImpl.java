@@ -77,8 +77,8 @@ public class InsertSampleDataImpl implements InsertSampleData {
         Hall smallHall = createHall(null,"Hall4", "Hall4Description", 65l);
 
         Performance performance1 = createPerformance(null, "The only chance to see", 15.0f, bigHall, BalletFashion, LocalDateTime.now());
-        Performance performance2 = createPerformance(null, "Performance", 12.0f, hall400,Zelary, LocalDateTime.now());
-        Performance performance3 = createPerformance(null, "Performance", 12.0f, hall500,Company, LocalDateTime.now());
+        Performance performance2 = createPerformance(null, "ZelaryPerformance", 12.0f, hall400,Zelary, LocalDateTime.now());
+        Performance performance3 = createPerformance(null, "CompanyPerformance", 12.0f, hall500,Company, LocalDateTime.now());
         Performance performance4 = createPerformance(null, "The best performance", 18.0f, bigHall, BedrichSmetana, LocalDateTime.now());
 
         roleService.create(userRole);

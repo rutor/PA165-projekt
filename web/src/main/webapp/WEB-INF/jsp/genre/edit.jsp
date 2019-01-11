@@ -7,7 +7,7 @@
 
 <my:administrationTemplate subtitle="Edit a genre">
 <jsp:attribute name="body_area">
-    <form:form method="post" action="${pageContext.request.contextPath}/genre/${genre.id}/edit"
+    <form:form method="post" action="${pageContext.request.contextPath}/genre/edit"
                modelAttribute="genreEdit" cssClass="form-horizontal">
         <form:hidden path="id"/>
                <div class="form-group">

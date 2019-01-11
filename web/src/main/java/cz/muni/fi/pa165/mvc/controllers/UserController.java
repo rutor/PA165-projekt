@@ -114,9 +114,13 @@ public class UserController {
         }
         formBean.setRoleId(formBean.getRoleId());
         formBean.setCreatedAt(LocalDate.now());
-        Long id = userFacade.createUser(formBean);
-        redirectAttributes.addFlashAttribute("alert_success", "User " + id + " was created");
-        return "redirect:" + uriBuilder.path(WebUrls.URL_USER+"/{id}").buildAndExpand(id).encode().toUriString();
+        try {
+            Long id = userFacade.createUser(formBean);
+            redirectAttributes.addFlashAttribute("alert_success", "User " + id + " was created");
+            return "redirect:" + uriBuilder.path(WebUrls.URL_USER+"/{id}").buildAndExpand(id).encode().toUriString();
+        } catch (Exception e) {
+            return (WebUrls.URL_USER+"/new");
+        }
     }
 
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
