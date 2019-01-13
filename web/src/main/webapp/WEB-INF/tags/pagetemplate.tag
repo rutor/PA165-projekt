@@ -41,7 +41,7 @@
                         <!-- authenticated user info -->
                         <c:choose>
                             <c:when test="${!empty pageContext.session.getAttribute('authUser')}">
-                                <li><c:out value="${pageContext.session.getAttribute('authUser').firstName} ${pageContext.session.getAttribute('authUser').lastName}"/></li>
+                                <li style="margin-top:1.25rem;"><c:out value="${pageContext.session.getAttribute('authUser').firstName} ${pageContext.session.getAttribute('authUser').lastName}"/></li>
                                 <li><a href="${pageContext.request.contextPath}/auth/logout/"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
                             </c:when>
                             <c:otherwise>
