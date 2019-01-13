@@ -16,6 +16,8 @@ public class WebUrls {
     public static final String URL_PERFORMANCE = "/performance";
     public static final String URL_BOOKING = "/booking";
     public static final String URL_TICKET = "/ticket";
+    public static final String URL_SHOW_DETAIL = "/show_detail";
+    public static final String URL_BOOKINGS_TICKETS = "/bookings_tickets";
 
     private WebUrls() {
         throw new AssertionError("This is not the class you are looking for");

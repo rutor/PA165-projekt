@@ -14,7 +14,7 @@
 <my:administrationTemplate subtitle="Hall detail">
 <jsp:attribute name="body_area">
     <h1>Detail for <c:out value="${hall.name}"/></h1>
-    <p><c:out value="${hall.address}"/></p>
-    <p><c:out value="${hall.capacity}"/></p>
+    <p>Address: <c:out value="${hall.address}"/></p>
+    <p>Capacity: <c:out value="${hall.capacity}"/></p>
 </jsp:attribute>
 </my:administrationTemplate>

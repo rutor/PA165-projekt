@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%@ tag pageEncoding="utf-8" dynamic-attributes="dynattrs" trimDirectiveWhitespaces="true" %>
+<%@ tag pageEncoding="utf-8" dynamic-attributes="dynattrs" trimDirectiveWhitespaces="true"%>
 <%@ attribute name="title" required="false" %>
 <%@ attribute name="head" fragment="true" %>
 <%@ attribute name="body" fragment="true" required="true" %>
@@ -30,8 +30,8 @@
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <sec:authorize access="isAuthenticated()">
-                            <li><my:a href="/bookings_tickets?userId=1">My Tickets</my:a></li>
+                        <sec:authorize access="hasRole('User')">
+                            <li><my:a href="/booking/list">My Tickets</my:a></li>
                         </sec:authorize>
                         <sec:authorize access="hasRole('Admin')">
                             <li><my:a href="/show/">Administration</my:a></li>
@@ -41,7 +41,7 @@
                         <!-- authenticated user info -->
                         <c:choose>
                             <c:when test="${!empty pageContext.session.getAttribute('authUser')}">
-                                <li><c:out value="${pageContext.session.getAttribute('authUser').firstName} ${pageContext.session.getAttribute('authUser').lastName}"/></li>
+                                <li style="margin-top:1.25rem;"><c:out value="${pageContext.session.getAttribute('authUser').firstName} ${pageContext.session.getAttribute('authUser').lastName}"/></li>
                                 <li><a href="${pageContext.request.contextPath}/auth/logout/"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
                             </c:when>
                             <c:otherwise>

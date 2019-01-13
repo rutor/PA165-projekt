@@ -8,7 +8,7 @@
 <my:administrationTemplate subtitle="Genre detail">
 <jsp:attribute name="body_area">
 <h1>Detail for <c:out value="${genre.name}"/></h1>
-<p><c:out value="${genre.description}"/></p>
+<p>Description: <c:out value="${genre.description}"/></p>
 <h2>Shows of this genre</h2>
 
 </jsp:attribute>

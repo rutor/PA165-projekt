@@ -46,12 +46,4 @@ public class HomeController {
         model.addAttribute("performances", performances);
         return "show_detail";
     }
-    
-    @RequestMapping(value = "/bookings_tickets", method = RequestMethod.GET)
-    public String tickets(@RequestParam(required = true) Long userId,Model model) {
-        model.addAttribute("tickets", ticketFacade.getByUser(userId));
-        return "bookings_tickets";
-    }
-    
-    
 }

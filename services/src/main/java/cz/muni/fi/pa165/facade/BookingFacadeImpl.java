@@ -6,8 +6,10 @@ import cz.muni.fi.pa165.dto.PayBookingDTO;
 import cz.muni.fi.pa165.dto.TicketDTO;
 import cz.muni.fi.pa165.entity.Booking;
 import cz.muni.fi.pa165.entity.Ticket;
+import cz.muni.fi.pa165.entity.Users;
 import cz.muni.fi.pa165.services.BeanMappingService;
 import cz.muni.fi.pa165.services.BookingService;
+import cz.muni.fi.pa165.services.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -20,6 +22,9 @@ public class BookingFacadeImpl implements BookingFacade{
 
     @Inject
     BookingService bookingService;
+    
+    @Inject
+    UserService userService;
 
     @Inject
     BeanMappingService beanMappingService;
@@ -27,6 +32,12 @@ public class BookingFacadeImpl implements BookingFacade{
     @Override
     public List<BookingDTO> getAll() {
         return beanMappingService.mapTo(bookingService.getAll(), BookingDTO.class);
+    }
+    
+    @Override
+    public List<BookingDTO> getAllByUser(Long id) {
+        Users user = userService.findById(id);
+        return beanMappingService.mapTo(bookingService.getAllByUser(user), BookingDTO.class);
     }
 
     @Override

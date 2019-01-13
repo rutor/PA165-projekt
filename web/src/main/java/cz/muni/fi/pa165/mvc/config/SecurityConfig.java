@@ -94,6 +94,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             // Accessible to logged in user
             .antMatchers(WebUrls.URL_BOOKING + "/*").hasAnyRole("User", "Admin")
             .antMatchers(WebUrls.URL_TICKET + "/*").hasAnyRole("User", "Admin")
+            .antMatchers(WebUrls.URL_BOOKINGS_TICKETS + "/*").permitAll()//hasAnyRole("User")
+            .antMatchers(WebUrls.URL_BOOKINGS_TICKETS).permitAll()
             //User controller
             .antMatchers(WebUrls.URL_USER + "/").hasAnyRole("Admin")
             .antMatchers(WebUrls.URL_USER + "/all").hasAnyRole("Admin")
@@ -106,6 +108,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers(WebUrls.URL_HALL + "/*").permitAll()
             .antMatchers(WebUrls.URL_GENRE + "/*").permitAll()
             .antMatchers(WebUrls.URL_PERFORMANCE + "/*").permitAll()
+            .antMatchers(WebUrls.URL_SHOW_DETAIL + "/*").permitAll()
             // Not specified pages are accessible only to logged on admins
             .antMatchers("/**").hasAnyRole("Admin")
             .anyRequest().authenticated()

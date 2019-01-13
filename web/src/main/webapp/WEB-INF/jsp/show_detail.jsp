@@ -4,7 +4,7 @@
     Author     : xtrnkal
 --%>
 
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="utf-8" trimDirectiveWhitespaces="true" session="false" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="utf-8" trimDirectiveWhitespaces="true" session="true" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -42,7 +42,7 @@
                 </tr>
                 </tbody>
                 </table>
-                <table class="table" summary="Performance listing">
+            <table class="table" summary="Performance listing">
             <thead>
                 <tr>
                     <th>Date</th>
@@ -58,14 +58,13 @@
                             ${performance.startDate}
                         </td>
                         <td>
-                            <c:out value="${performance.hall}"/>
+                            <c:out value="${performance.hall.address}, ${performance.hall.name}"/>
                         </td>
                         <td>
                             <c:out value="${performance.description}"/>
                         </td>
-
                         <td>
-                            <my:a href="${pageContext.request.contextPath}/buy_ticket/${performance.id}" class="btn btn-primary">
+                            <my:a href="/booking/create" class="btn btn-primary">
                                 Buy ticket
                             </my:a>
                         </td>

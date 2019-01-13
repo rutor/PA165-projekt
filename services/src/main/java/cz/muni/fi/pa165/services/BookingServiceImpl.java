@@ -4,6 +4,7 @@ import cz.muni.fi.pa165.dao.BookingDao;
 import cz.muni.fi.pa165.dao.TicketDao;
 import cz.muni.fi.pa165.entity.Booking;
 import cz.muni.fi.pa165.entity.Ticket;
+import cz.muni.fi.pa165.entity.Users;
 import cz.muni.fi.pa165.enums.PaymentStatus;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,11 @@ public class BookingServiceImpl implements BookingService{
     @Override
     public List<Booking> getAll() {
         return bookingDao.findAll();
+    }
+    
+    @Override
+    public List<Booking> getAllByUser(Users user) {
+        return bookingDao.findByUser(user);
     }
 
     @Override
