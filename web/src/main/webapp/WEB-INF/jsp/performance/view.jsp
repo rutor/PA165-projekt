@@ -14,10 +14,10 @@
 <my:administrationTemplate subtitle="Performace">
 <jsp:attribute name="body_area">
     <h1>Detail for <c:out value="${performance.id}"/></h1>
-    <p><c:out value="${performance.description}"/></p>
-    <p><c:out value="${performance.price}"/></p>
-    <p><c:out value="${performance.startDate}"/></p>
-    <p><c:out value="${performance.hall}"/></p>
-    <p><c:out value="${performance.show}"/></p>
+    <p>Show: <c:out value="${performance.show.name}"/></p>
+    <p>Description: <c:out value="${performance.description}"/></p>
+    <p>Price: <c:out value="${performance.price}"/></p>
+    <p>StartDate: <c:out value="${performance.startDate}"/></p>
+    <p>Hall: <c:out value="${performance.hall.address}, ${performance.hall.name}"/></p>
 </jsp:attribute>
 </my:administrationTemplate>

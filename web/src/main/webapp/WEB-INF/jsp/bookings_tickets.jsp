@@ -13,8 +13,7 @@
 
 <my:pagetemplate title="My tickets">
     <jsp:attribute name="body">
-        
-        <table class="table" summary="My tickets">
+                <table class="table" summary="My tickets">
             <thead>
                 <tr>
                     <th>Code</th>
@@ -32,6 +31,5 @@
                 </c:forEach>
             </tbody>
         </table>
-                
     </jsp:attribute>
 </my:pagetemplate>

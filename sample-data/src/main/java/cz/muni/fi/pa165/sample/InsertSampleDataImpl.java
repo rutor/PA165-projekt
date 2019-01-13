@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 @Service
@@ -71,15 +72,15 @@ public class InsertSampleDataImpl implements InsertSampleData {
         Show Zelary = createShow(null,"Zelary", "Abandoned mountain village somewhere in Beskydes, where is life controlled by hard changes and pure nature. Destine of the villagers in the background of the Second World War and german occupation, when intractable people lose their freedom.", genreDrama, 65);
 
 
-        Hall bigHall = createHall(null,"Hall1", "Hall1Description", 103l);
-        Hall hall400 = createHall(null,"Hall2", "Hall2Description", 400l);
-        Hall hall500 = createHall(null,"Hall3", "Hall3Description", 500l);
-        Hall smallHall = createHall(null,"Hall4", "Hall4Description", 65l);
+        Hall bigHall = createHall(null,"Hall1", "Street 123, City 456", 103l);
+        Hall hall400 = createHall(null,"Hall2", "New Street 23, City 22", 400l);
+        Hall hall500 = createHall(null,"Hall3", "Street 2, City 32", 500l);
+        Hall smallHall = createHall(null,"Hall4", "Street 9, City 45645", 65l);
 
-        Performance performance1 = createPerformance(null, "The only chance to see", 15.0f, bigHall, BalletFashion, LocalDateTime.now());
-        Performance performance2 = createPerformance(null, "ZelaryPerformance", 12.0f, hall400,Zelary, LocalDateTime.now());
-        Performance performance3 = createPerformance(null, "CompanyPerformance", 12.0f, hall500,Company, LocalDateTime.now());
-        Performance performance4 = createPerformance(null, "The best performance", 18.0f, bigHall, BedrichSmetana, LocalDateTime.now());
+        Performance performance1 = createPerformance(null, "The only chance to see", 15.0f, bigHall, BalletFashion, LocalDateTime.now());//parse("2019-02-03T10:15:00", DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        Performance performance2 = createPerformance(null, "Performance", 12.0f, hall400,Zelary, LocalDateTime.now());//.parse("2019-01-23T10:15:00", DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        Performance performance3 = createPerformance(null, "Performance", 12.0f, hall500,Company, LocalDateTime.now());//.parse("2019-02-04T9:00:00", DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        Performance performance4 = createPerformance(null, "The best performance", 18.0f, bigHall, BedrichSmetana, LocalDateTime.now());//.parse("2019-02-13T10:30:00", DateTimeFormatter.ISO_LOCAL_DATE_TIME));
 
         roleService.create(userRole);
         roleService.create(adminRole);
