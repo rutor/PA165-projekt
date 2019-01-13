@@ -42,7 +42,7 @@
                 </tr>
                 </tbody>
                 </table>
-                <table class="table" summary="Performance listing">
+            <table class="table" summary="Performance listing">
             <thead>
                 <tr>
                     <th>Date</th>
@@ -53,23 +53,27 @@
             </thead>
             <tbody>
                 <c:forEach items="${performances}" var="performance">
+                    <form:form method="post" action="${pageContext.request.contextPath}/show_detail/${show.id}" modelAttribute="bookingCreate">
                     <tr>
                         <td>
                             ${performance.startDate}
                         </td>
                         <td>
-                            <c:out value="${performance.hall}"/>
+                            <c:out value="${performance.hall.address}, ${performance.hall.name}"/>
                         </td>
                         <td>
                             <c:out value="${performance.description}"/>
                         </td>
-
                         <td>
-                            <my:a href="${pageContext.request.contextPath}/buy_ticket/${performance.id}" class="btn btn-primary">
+                            <hidden name="performance" path="performanceId" value="${performace.id}">
+                            <form:errors path="performance" cssClass="help-block"/>
+                            <button type="submit" name="userId" value="${pageContext.session.getAttribute('authUser').id}">Odeslat</button>
+                            <my:a href="/buy_ticket/${show.id}/${performance.id}" class="btn btn-primary">
                                 Buy ticket
                             </my:a>
                         </td>
                     </tr>
+                    </form:form>
                 </c:forEach>
             </tbody>
         </table>

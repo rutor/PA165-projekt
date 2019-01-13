@@ -30,8 +30,8 @@
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <sec:authorize access="isAuthenticated()">
-                            <li><my:a href="/bookings_tickets?userId=1">My Tickets</my:a></li>
+                        <sec:authorize access="hasRole('User')">
+                            <li><my:a href="/bookings_tickets/${pageContext.session.getAttribute('authUser').id}">My Tickets</my:a></li>
                         </sec:authorize>
                         <sec:authorize access="hasRole('Admin')">
                             <li><my:a href="/show/">Administration</my:a></li>
