@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%@ tag pageEncoding="utf-8" dynamic-attributes="dynattrs" trimDirectiveWhitespaces="true" %>
+<%@ tag pageEncoding="utf-8" dynamic-attributes="dynattrs" trimDirectiveWhitespaces="true"%>
 <%@ attribute name="title" required="false" %>
 <%@ attribute name="head" fragment="true" %>
 <%@ attribute name="body" fragment="true" required="true" %>
@@ -31,7 +31,7 @@
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <sec:authorize access="hasRole('User')">
-                            <li><my:a href="/booking/list/${pageContext.session.getAttribute('authUser').id}">My Tickets</my:a></li>
+                            <li><my:a href="/booking/list">My Tickets</my:a></li>
                         </sec:authorize>
                         <sec:authorize access="hasRole('Admin')">
                             <li><my:a href="/show/">Administration</my:a></li>
