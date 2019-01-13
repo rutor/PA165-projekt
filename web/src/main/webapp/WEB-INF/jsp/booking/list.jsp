@@ -16,6 +16,8 @@
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>Show</th>
+                    <th>Star date</th>
                     <th>Payment status</th>
                     <th>Description</th>
                     <th>Action</th>
@@ -27,6 +29,8 @@
                         <td><my:a href="/booking/${booking.id}" class="btn btn-primary">
                                 <c:out value="${booking.id}" />
                             </my:a></td>
+                        <td><c:out value="${booking.ticket.performance.show}"/></td>
+                        <td><c:out value="${booking.ticket.performance.startDate}"/></td>
                         <td><c:out value="${booking.paymentStatus}"/></td>
                         <td><c:out value="${booking.description}"/></td>
                         <td>
