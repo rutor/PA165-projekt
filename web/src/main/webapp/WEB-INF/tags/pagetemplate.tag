@@ -31,7 +31,7 @@
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <sec:authorize access="hasRole('User')">
-                            <li><my:a href="/bookings_tickets/${pageContext.session.getAttribute('authUser').id}">My Tickets</my:a></li>
+                            <li><my:a href="/booking/list/${pageContext.session.getAttribute('authUser').id}">My Tickets</my:a></li>
                         </sec:authorize>
                         <sec:authorize access="hasRole('Admin')">
                             <li><my:a href="/show/">Administration</my:a></li>

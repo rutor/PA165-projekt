@@ -7,6 +7,8 @@ import java.util.List;
 public interface BookingFacade {
 
     List<BookingDTO> getAll();
+    
+    List<BookingDTO> getAllByUser(Long id);
 
     BookingDTO getById(Long id);
 

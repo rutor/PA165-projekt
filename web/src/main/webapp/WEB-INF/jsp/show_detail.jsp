@@ -4,7 +4,7 @@
     Author     : xtrnkal
 --%>
 
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="utf-8" trimDirectiveWhitespaces="true" session="false" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="utf-8" trimDirectiveWhitespaces="true" session="true" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -53,7 +53,6 @@
             </thead>
             <tbody>
                 <c:forEach items="${performances}" var="performance">
-                    <form:form method="post" action="${pageContext.request.contextPath}/show_detail/${show.id}" modelAttribute="bookingCreate">
                     <tr>
                         <td>
                             ${performance.startDate}
@@ -65,15 +64,11 @@
                             <c:out value="${performance.description}"/>
                         </td>
                         <td>
-                            <hidden name="performance" path="performanceId" value="${performace.id}">
-                            <form:errors path="performance" cssClass="help-block"/>
-                            <button type="submit" name="userId" value="${pageContext.session.getAttribute('authUser').id}">Odeslat</button>
-                            <my:a href="/buy_ticket/${show.id}/${performance.id}" class="btn btn-primary">
+                            <my:a href="/booking/create" class="btn btn-primary">
                                 Buy ticket
                             </my:a>
                         </td>
                     </tr>
-                    </form:form>
                 </c:forEach>
             </tbody>
         </table>
