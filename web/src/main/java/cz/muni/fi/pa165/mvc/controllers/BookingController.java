@@ -55,11 +55,15 @@ public class BookingController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String createForm(Model model) {
+    public String createForm(Model model, @RequestParam(value = "performance", required = false) Long performanceId) {
         log.info("/create requested");
+        if (performanceId == null) {
+            performanceId = 1l;
+        }
         List<PerformanceDTO> allPerformances = performanceFacade.getAllPerformances();
         model.addAttribute("performances", allPerformances);
         model.addAttribute("bookingCreate", new CreateBookingDTO());
+        model.addAttribute("selectedPerformance", performanceId);
         return "booking/create";
     }
 

@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.inject.Inject;
 import java.beans.PropertyEditorSupport;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import static cz.muni.fi.pa165.mvc.controllers.BookingController.log;
@@ -94,11 +96,19 @@ public class UserController {
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.GET)
-    //public String newUser(@RequestParam(required = false) Long roleId, Model model) {
-    public String newUser(Model model) {
+    public String newUser(Model model, HttpSession session) {
         CreateUserDTO userCreate = new CreateUserDTO();
-        List<RoleDTO> roles = roleFacade.getAllRole();
-        model.addAttribute("roles", roles);
+        UserDTO authUser = (UserDTO) session.getAttribute("authUser");
+        if (authUser != null) {
+            if (authUser.getRole().equals(roleFacade.getRoleByName("Admin"))) {
+                List<RoleDTO> roles = roleFacade.getAllRole();
+                model.addAttribute("roles", roles);
+            }
+        } else {
+            ArrayList<RoleDTO> roles = new ArrayList<>();
+            roles.add(roleFacade.getRoleByName("User"));
+            model.addAttribute("roles", roles);
+        }
         model.addAttribute("userCreate", userCreate);
         return (WebUrls.URL_USER+"/new");
     }

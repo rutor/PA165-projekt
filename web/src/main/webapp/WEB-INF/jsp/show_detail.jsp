@@ -64,7 +64,7 @@
                             <c:out value="${performance.description}"/>
                         </td>
                         <td>
-                            <my:a href="/booking/create" class="btn btn-primary">
+                            <my:a href="/booking/create?performance=${performance.id}" class="btn btn-primary">
                                 Buy ticket
                             </my:a>
                         </td>

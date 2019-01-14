@@ -99,7 +99,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             //User controller
             .antMatchers(WebUrls.URL_USER + "/").hasAnyRole("Admin")
             .antMatchers(WebUrls.URL_USER + "/all").hasAnyRole("Admin")
-            .antMatchers(WebUrls.URL_USER + "/create").hasAnyRole("Admin", "User")
+            .antMatchers(WebUrls.URL_USER + "/new").anonymous()
             .antMatchers(WebUrls.URL_USER + "/*/update").hasAnyRole("Admin")
             .antMatchers(WebUrls.URL_USER + "/*/delete").hasAnyRole("Admin")
             .antMatchers(WebUrls.URL_USER + "/**").hasAnyRole("Admin")
