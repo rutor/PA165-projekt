@@ -1,11 +1,11 @@
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="utf-8" trimDirectiveWhitespaces="true" session="false" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="utf-8" trimDirectiveWhitespaces="true" session="true" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:administrationTemplate subtitle="Booking detail">
+<my:administrationTemplate subtitle="Booking creation">
 <jsp:attribute name="body_area">
 
     <form:form method="post" action="${pageContext.request.contextPath}/booking/create"
@@ -16,7 +16,14 @@
             <div class="col-sm-10">
                 <form:select path="performance" cssClass="form-control">
                     <c:forEach items="${performances}" var="performance">
-                        <form:option value="${performance.id}" label="${performance.getDisplayableFormat()}"/>
+                        <c:choose>
+                            <c:when test="${selectedPerformance == performance.id}">
+                                <form:option selected="selected" value="${performance.id}" label="${performance.getDisplayableFormat()}"/>
+                            </c:when>
+                            <c:otherwise>
+                                <form:option value="${performance.id}" label="${performance.getDisplayableFormat()}"/>
+                            </c:otherwise>
+                        </c:choose>
                     </c:forEach>
                 </form:select>
                 <form:errors path="performance" cssClass="help-block"/>
